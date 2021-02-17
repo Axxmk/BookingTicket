@@ -46,7 +46,7 @@ export default {
         "bighero.jpg",
         "bighero.jpg",
       ],
-      currentIndex: 2,
+      currentIndex: 1,
     };
   },
   methods: {
