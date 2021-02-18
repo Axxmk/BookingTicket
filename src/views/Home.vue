@@ -2,6 +2,7 @@
   <div id="part-flex">
     <NavBar></NavBar>
     <Carousel></Carousel>
+    <ViewMovie></ViewMovie>
   </div>
 </template>
 
@@ -10,6 +11,7 @@ export default {
   components: {
     NavBar: () => import("../components/NavBar"),
     Carousel: () => import("../components/Carousel"),
+    ViewMovie: () => import("../components/ViewMovie"),
   },
 };
 </script>
