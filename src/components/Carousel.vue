@@ -6,23 +6,15 @@
 
     <div id="totalImg-wrapper">
       <div id="totalImg">
+        
         <img
-          id="prevImg"
+          v-for="(url,index) in images"
+          :key="index"
           class="carousel-image"
-          :src="images[currentIndex - 1]"
+          :src="url"
           alt="NO new promotion"
-        />
-        <img
-          id="centerImg"
-          class="carousel-image"
-          :src="images[currentIndex]"
-          alt="NO new promotion"
-        />
-        <img
-          id="nextImg"
-          class="carousel-image"
-          :src="images[currentIndex + 1]"
-          alt="NO new promotion"
+          width="827px"
+          loading="lazy"
         />
       </div>
     </div>
@@ -39,40 +31,40 @@ export default {
     return {
       images: [
         "bighero.jpg",
-        "bighero.jpg",
-        "bighero.jpg",
-        "bighero.jpg",
+        "avatar.jpg",
+        "insideout.jpg",
+        "lake.jpg",
         "bighero.jpg",
         "bighero.jpg",
         "bighero.jpg",
       ],
-      currentIndex: 1,
+      currentIndex: 0,
     };
   },
   methods: {
     moveToPrevious() {
       const totalImage = document.getElementById("totalImg");
-
-      if (totalImage.classList.contains("translate-next")) {
-        totalImage.classList.remove("translate-next");
-        totalImage.classList.add("translate-prev");
-      } else if (!totalImage.classList.contains("translate-prev")) {
-        totalImage.classList.add("translate-prev");
-      }
-
       this.currentIndex -= 1;
+      if(this.currentIndex < 0){
+        this.currentIndex = this.images.length -1;
+        totalImage.classList.add('special');
+        setTimeout(()=>{
+          totalImage.classList.remove('special');
+        },3000)
+      }
+      totalImage.firstElementChild.style.marginLeft = -this.currentIndex*100 +'%';
     },
     moveToNext() {
       const totalImage = document.getElementById("totalImg");
-
-      if (totalImage.classList.contains("translate-prev")) {
-        totalImage.classList.remove("translate-prev");
-        totalImage.classList.add("translate-next");
-      } else if (!totalImage.classList.contains("translate-next")) {
-        totalImage.classList.add("translate-next");
-      }
-
       this.currentIndex += 1;
+      if(this.currentIndex >= this.images.length){
+        this.currentIndex = 0;
+        totalImage.classList.add('special');
+        setTimeout(()=>{
+          totalImage.classList.remove('special');
+        },3000)
+      }
+      totalImage.firstElementChild.style.marginLeft = -this.currentIndex*100 +'%';
     },
   },
 };
@@ -104,19 +96,17 @@ $radius: 25px;
     top: 0;
     position: absolute;
     overflow: hidden;
-
     #totalImg {
-      width: 300%;
       height: 100%;
       display: flex;
-      transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-      transform: translateX(-33.33%);
-
-      &.translate-prev {
-        transform: translateX(0);
+      position:relative;
+      img.carousel-image {
+      transition: 2s cubic-bezier(0.075, 0.82, 0.165, 1);
       }
-      &.translate-next {
-        transform: translateX(-66.66%);
+    }
+    #totalImg.special {
+      img.carousel-image {
+      transition: 5s cubic-bezier(0.075, 0.82, 0.165, 1);
       }
     }
   }
