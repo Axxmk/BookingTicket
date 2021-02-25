@@ -27,13 +27,13 @@ export default {
 #wrapper {
   display: flex;
   justify-content: center;
+
   #card-show {
     position: relative;
     max-width: 1440px;
 
     height: 100%;
     width: 100%;
-    padding: 2rem 0;
   }
 }
 </style>

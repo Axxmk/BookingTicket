@@ -19,14 +19,24 @@ const routes = [
     component: () => import('../views/Movies.vue')
   },
   {
-    path: '/cinema',
-    name: 'Cinema',
-    component: () => import('../views/Cinema.vue')
+    path: '/cinemas',
+    name: 'Cinemas',
+    component: () => import('../views/Cinemas.vue')
   },
   {
     path: '/profile',
     name: 'Profile',
     component: () => import('../views/Profile.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/booking',
+    name: 'Booking',
+    component: () => import('../views/Booking.vue')
   },
 ]
 

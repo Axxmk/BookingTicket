@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>Watch movie</h1>
+    <h1>Cinema page</h1>
   </div>
 </template>
 
 <script>
 export default {
   metaInfo: {
-    title: "Movies",
+    title: "Cinemas",
   },
 };
 </script>

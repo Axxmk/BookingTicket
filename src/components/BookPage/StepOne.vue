@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>Cinema page</h1>
-  </div>
+  <h1>This is step one</h1>
 </template>
 
 <script>

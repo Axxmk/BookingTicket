@@ -11,25 +11,28 @@
       <v-icon color="#56A3EB" medium>mdi-menu</v-icon>
 
       <v-list nav>
-        <v-list-item link :to="{ name: 'Profile' }" color="#56A3EB">
-          <template v-if="isLogin">
-            <v-list-item-icon>
-              <div
-                class="avatar"
-                :style="`background-image: url('/${userImage}');`"
-              ></div>
-            </v-list-item-icon>
-            <v-list-item-title>Profile</v-list-item-title>
-          </template>
+        <v-list-item
+          v-if="$store.state.auth"
+          link
+          :to="{ name: 'Profile' }"
+          color="#56A3EB"
+        >
+          <v-list-item-icon>
+            <div
+              class="avatar"
+              :style="`background-image: url('assets/${userImage}')`"
+            ></div>
+          </v-list-item-icon>
+          <v-list-item-title>Profile</v-list-item-title>
+        </v-list-item>
 
-          <template v-else>
-            <v-list-item-icon>
-              <v-icon color="#56A3EB" medium>mdi-account-circle</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title class="text--disabled">
-              Please login
-            </v-list-item-title>
-          </template>
+        <v-list-item v-else color="#56A3EB">
+          <v-list-item-icon>
+            <v-icon color="#56A3EB" medium>mdi-account-circle</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title class="text--disabled">
+            Please login
+          </v-list-item-title>
         </v-list-item>
 
         <v-list-item
@@ -47,21 +50,23 @@
       </v-list>
 
       <v-list nav>
-        <v-list-item link color="#56A3EB" @click="logInOut">
-          <template v-if="isLogin">
+        <template v-if="$store.state.auth">
+          <v-list-item link color="#56A3EB" @click="logOut">
             <v-list-item-icon>
               <v-icon color="#56A3EB" medium>mdi-logout</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Logout</v-list-item-title>
-          </template>
+          </v-list-item>
+        </template>
 
-          <template v-else>
+        <template v-else>
+          <v-list-item link color="#56A3EB" :to="{ name: 'Login' }">
             <v-list-item-icon>
               <v-icon color="#56A3EB" medium>mdi-login</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Login</v-list-item-title>
-          </template>
-        </v-list-item>
+          </v-list-item>
+        </template>
       </v-list>
     </div>
   </v-navigation-drawer>
@@ -74,15 +79,15 @@ export default {
       list: [
         { name: "Home", icon: "mdi-home" },
         { name: "Movies", icon: "mdi-movie-open" },
-        { name: "Cinema", icon: "mdi-theater" },
+        { name: "Cinemas", icon: "mdi-theater" },
       ],
-      userImage: "bighero.jpg",
-      isLogin: true,
+      userImage: "profile.jpg",
     };
   },
   methods: {
-    logInOut() {
-      this.isLogin = !this.isLogin;
+    logOut() {
+      console.log("test");
+      this.$store.dispatch("setAuth", false);
     },
   },
 };
@@ -91,6 +96,7 @@ export default {
 <style lang="scss" scoped>
 .v-navigation-drawer {
   z-index: 2000;
+  opacity: 0.97;
 
   #part {
     display: flex;
