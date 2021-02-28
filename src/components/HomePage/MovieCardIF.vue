@@ -4,17 +4,11 @@
       <v-card class="mx-auto" max-width="70%" elevation="3" shaped>
         <v-img :src="`assets/poster/${movie.id}.jpg`"></v-img>
 
-        <v-card-subtitle
-          class="pa-0 pt-1 text-center release-date"
-          style="color: #2580d3; font-size: 80%"
-        >
+        <v-card-subtitle class="pa-0 pt-1 release-date">
           {{ movie.releaseDate }}
         </v-card-subtitle>
 
-        <v-card-title
-          class="px-2 pb-2 justify-center text-uppercase"
-          style="color: #000000; font-size: 105%; font-weight: 500"
-        >
+        <v-card-title class="px-2 pb-2 title-movie">
           {{ movie.title }}
         </v-card-title>
 
@@ -37,4 +31,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.release-date {
+  text-align: center;
+  font-size: 80%;
+}
+
+.title-movie {
+  display: flex;
+  justify-content: center;
+  color: black;
+  font-size: 102%;
+  font-weight: 500;
+  text-transform: uppercase;
+}
 </style>

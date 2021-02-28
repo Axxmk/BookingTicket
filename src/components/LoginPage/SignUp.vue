@@ -72,8 +72,6 @@
           <v-text-field
             v-model="fullname.firstname"
             :rules="rules.firstname"
-            clear-icon="mdi-close-circle"
-            clearable
             filled
             color="blue darken-3"
             background-color="white"
@@ -97,8 +95,6 @@
           <v-text-field
             v-model="fullname.lastname"
             :rules="rules.lastname"
-            clear-icon="mdi-close-circle"
-            clearable
             filled
             color="blue darken-3"
             background-color="white"
@@ -183,7 +179,7 @@ export default {
             (v && v.length >= 6) || "Password must be more than 6 characters",
         ],
         confirmPass: [
-          (v) => (v && v == this.password) || "Password you enterd don't match",
+          (v) => v == this.password || "Password you enterd don't match",
         ],
         firstname: [(v) => !!v || "FirstName is required."],
         lastname: [(v) => !!v || "LastName is required."],
@@ -210,8 +206,13 @@ export default {
         return;
       } else {
         alert("Sign Up Success");
+        this.$router.push({ name: "Home" });
         this.$refs.form.reset();
+        this.$store.dispatch("setAuth", true);
       }
+    },
+    handleChange(e) {
+      console.log(e.target.value);
     },
   },
 };

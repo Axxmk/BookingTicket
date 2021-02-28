@@ -26,15 +26,6 @@
           <v-list-item-title>Profile</v-list-item-title>
         </v-list-item>
 
-        <v-list-item v-else color="#56A3EB">
-          <v-list-item-icon>
-            <v-icon color="#56A3EB" medium>mdi-account-circle</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title class="text--disabled">
-            Please login
-          </v-list-item-title>
-        </v-list-item>
-
         <v-list-item
           v-for="item in list"
           :key="item.name"
@@ -86,7 +77,6 @@ export default {
   },
   methods: {
     logOut() {
-      console.log("test");
       this.$store.dispatch("setAuth", false);
     },
   },

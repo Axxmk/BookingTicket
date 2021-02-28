@@ -1,6 +1,6 @@
 <template>
   <v-container class="py-5 my-5">
-    <h1 class="pb-10 text-center" style="font-size: 2.7vw">Box Office</h1>
+    <h1 class="pb-10 text-center header">Box Office</h1>
     <v-row>
       <v-col
         cols="12"
@@ -34,6 +34,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header {
+  font-size: 2.7vw;
+}
+
 .ranking {
   position: relative;
 

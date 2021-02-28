@@ -28,13 +28,7 @@
 export default {
   data() {
     return {
-      images: [
-        "bighero.jpg",
-        "avatar.jpg",
-        "insideout.jpg",
-        "lake.jpg",
-        "bighero.jpg",
-      ],
+      images: ["bighero.jpg", "avatar.jpg", "insideout.jpg", "lake.jpg"],
       currentIndex: 0,
     };
   },
@@ -101,7 +95,6 @@ $radius: 20px;
     top: 0;
     position: absolute;
     overflow: hidden;
-
     #totalImg {
       height: 100%;
       display: flex;
