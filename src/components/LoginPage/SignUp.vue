@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-5">
+  <div class="pa-1">
     <v-form ref="form" v-model="valid">
       <v-text-field
         v-model="username"
@@ -116,6 +116,28 @@
       </v-row>
 
       <v-text-field
+        v-model="email"
+        :rules="rules.email"
+        clear-icon="mdi-close-circle"
+        clearable
+        validate-on-blur
+        filled
+        color="blue darken-3"
+        background-color="white"
+        rounded
+        dense
+        required
+        @keydown.enter="createAccount"
+      >
+        <template v-slot:label>
+          <v-icon style="vertical-align: middle" color="blue lighten-2">
+            mdi-email-variant
+          </v-icon>
+          E-mail
+        </template>
+      </v-text-field>
+
+      <v-text-field
         v-model="phoneNumber"
         :rules="rules.phone"
         clear-icon="mdi-close-circle"
@@ -166,6 +188,7 @@ export default {
         firstname: "",
         lastname: "",
       },
+      email: "",
       phoneNumber: "",
       rules: {
         name: [
@@ -186,6 +209,10 @@ export default {
         phone: [
           (v) => !!v || "Phone Number is required.",
           (v) => (v && v.length == 10) || "Phone Number must be 10 digits",
+        ],
+        email: [
+          (v) => !!v || "E-mail is required",
+          (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
         ],
       },
     };

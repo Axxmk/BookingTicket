@@ -81,7 +81,7 @@ $radius: 20px;
   display: flex;
   align-items: center;
   position: relative;
-  margin: 2% 0;
+  margin: 2% 0 5% 0;
   width: calc(100% - 60px);
   padding-bottom: calc((100% - 60px) * 0.4189);
   background-color: #ffffff;

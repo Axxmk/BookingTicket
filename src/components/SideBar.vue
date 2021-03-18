@@ -12,7 +12,7 @@
 
       <v-list nav>
         <v-list-item
-          v-if="$store.state.auth"
+          v-if="$store.state.isAuth"
           link
           :to="{ name: 'Profile' }"
           color="#56A3EB"
@@ -41,7 +41,7 @@
       </v-list>
 
       <v-list nav>
-        <template v-if="$store.state.auth">
+        <template v-if="$store.state.isAuth">
           <v-list-item link color="#56A3EB" @click="logOut">
             <v-list-item-icon>
               <v-icon color="#56A3EB" medium>mdi-logout</v-icon>

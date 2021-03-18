@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="header">Movies</h1>
     <ViewMovie :movies="movies"></ViewMovie>
   </div>
 </template>
@@ -109,5 +110,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.header {
+  text-align: center;
+  font-size: 6vw;
+
+  margin-top: 1rem;
+  color: transparent;
+  -webkit-text-stroke: 2.5px #ebc858;
+}
 </style>

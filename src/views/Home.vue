@@ -27,14 +27,14 @@ export default {
             id: 1,
             title: "Aladdin",
             type: 1,
-            profit: 1000,
+            profit: 4900,
             releaseDate: "2021 Feb 18",
           },
           {
             id: 2,
             title: "Avenger End Game",
             type: 1,
-            profit: 320,
+            profit: 32000,
             releaseDate: "2021 Feb 18",
           },
           {
@@ -48,14 +48,14 @@ export default {
             id: 4,
             title: "Beauty and The Beast",
             type: 1,
-            profit: 410,
+            profit: 4100,
             releaseDate: "2021 Feb 18",
           },
           {
             id: 5,
             title: "Enchanted",
             type: 1,
-            profit: 4740,
+            profit: 47400,
             releaseDate: "2021 Feb 18",
           },
           {
@@ -115,26 +115,32 @@ export default {
         {
           id: 1,
           branch: "Central Rama 9",
+          phoneNumber: "112-313-2424",
         },
         {
           id: 2,
           branch: "Central Plaza Ladprao",
+          phoneNumber: "142-535-1462",
         },
         {
           id: 3,
           branch: "The Mall Thapra",
+          phoneNumber: "964-446-3852",
         },
         {
           id: 4,
           branch: "BK Center",
+          phoneNumber: "974-852-7375",
         },
         {
           id: 5,
           branch: "The Mall Bangkae",
+          phoneNumber: "089-979-8255",
         },
         {
           id: 6,
           branch: "The Crystal Ratchapruek",
+          phoneNumber: "864-826-2864",
         },
       ],
     };
@@ -157,6 +163,7 @@ export default {
   padding-top: 2rem;
 
   .line {
+    margin: 3% 0;
     width: 40vw;
     border: 1.5px solid #f7e78d;
     background-color: #f7e78d;

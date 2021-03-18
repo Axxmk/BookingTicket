@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-5">
+  <div class="pa-3">
     <v-form ref="form" v-model="valid">
       <v-text-field
         v-model="username"

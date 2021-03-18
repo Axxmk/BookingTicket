@@ -1,0 +1,71 @@
+<template>
+  <div class="ticket-info">
+    <div>
+      <span>Branch</span>
+      <p>{{ ticket.branch }}</p>
+    </div>
+
+    <div>
+      <span>Movie Title</span>
+      <p>{{ ticket.title }}</p>
+    </div>
+
+    <div class="part-row">
+      <div>
+        <span>ShowTime</span>
+        <div>{{ ticket.showTime }}</div>
+      </div>
+
+      <div>
+        <span>Seat No.</span>
+        <div>{{ ticket.seatNo }}</div>
+      </div>
+    </div>
+
+    <div>
+      <span>Date</span>
+      <p>{{ ticket.date }}</p>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    ticket: Object,
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.ticket-info {
+  & > div {
+    padding: 2%;
+  }
+
+  & div span {
+    font-size: 0.8rem;
+    color: #ddc32e;
+    display: block;
+  }
+
+  & div p {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  .part-row {
+    display: flex;
+
+    & div {
+      margin-right: 2.5rem;
+    }
+
+    & div div {
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+  }
+}
+</style>

@@ -5,16 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    auth: false,
+    isAuth: false,
   },
   mutations: {
     set_auth(state, value) {
-      state.auth = value;
+      state.isAuth = value;
     },
   },
   actions: {
     setAuth({ commit }, value) {
-      console.log("work")
+      console.log("work");
       commit("set_auth", value);
     },
   },
