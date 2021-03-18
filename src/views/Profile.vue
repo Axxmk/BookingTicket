@@ -1,29 +1,32 @@
 <template>
   <div class="wrapper">
-    <div class="editPart">
-      <h3>Your Information</h3>
-      <v-icon color="blue darken-3" class="edit-button">
-        mdi-pencil-circle-outline
-      </v-icon>
-    </div>
+    <div class="information">
+      <div class="editPart">
+        <h3>Your Information</h3>
+        <v-icon color="blue darken-3" class="edit-button">
+          mdi-pencil-circle-outline
+        </v-icon>
+      </div>
 
-    <v-avatar width="16vw" height="auto" class="py-8">
-      <img :src="`assets/${user.avatar}`" alt="Avatar" />
-    </v-avatar>
+      <div class="d-flex justify-center">
+        <v-avatar width="16vw" height="auto" class="py-8">
+          <img :src="`assets/${user.avatar}`" alt="Avatar" />
+        </v-avatar>
+      </div>
 
-    <div class="fullname">Monthita Kiatruangchai</div>
+      <div class="fullname">Monthita Kiatruangchai</div>
 
-    <div>
       <Information header="Username" :content="user.username"></Information>
       <Information header="E-mail" :content="user.email"></Information>
       <Information header="Phone Number" :content="user.phone"></Information>
     </div>
 
-    <hr class="line" />
+    <div class="line" />
 
-    <h3 class="py-12">Your Ticket Booking</h3>
-
-    <Ticket></Ticket>
+    <div class="d-flex flex-column align-center">
+      <h3 class="pb-12">Your Ticket Booking</h3>
+      <Ticket></Ticket>
+    </div>
   </div>
 </template>
 
@@ -53,42 +56,50 @@ export default {
 .wrapper {
   margin: 4% 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  // align-items: center;
+  justify-content: space-evenly;
 
   & h3 {
     font-size: 2.5vw;
     color: #358cdd;
   }
 
-  .editPart {
-    width: 24%;
+  .information {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
 
-    .edit-button {
-      font-size: 30px;
-      cursor: pointer;
-      transition: all 0.15s ease-in-out;
+    & > div {
+      align-items: center;
+    }
 
-      &:hover {
-        transform: scale(1.05) translateY(-5px);
+    .editPart {
+      width: 105%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .edit-button {
+        font-size: 30px;
+        cursor: pointer;
+        transition: all 0.15s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05) translateY(-5px);
+        }
       }
+    }
+
+    .fullname {
+      font-size: 2vw;
+      font-weight: 500;
+      padding-bottom: 20px;
     }
   }
 
   .line {
-    margin-top: 2%;
-    width: 40vw;
-    border: 0.9px solid #c9e1f8;
-    background-color: #c9e1f8;
-  }
-
-  .fullname {
-    font-size: 2vw;
-    font-weight: 500;
-    padding-bottom: 20px;
+    margin: 0 4%;
+    border-left: 3.5px solid #c9e1f8;
+    height: 600px;
   }
 
   @media screen and (max-width: 1024px) {

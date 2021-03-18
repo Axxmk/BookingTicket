@@ -1,6 +1,6 @@
 <template>
   <div class="information">
-    <span>{{ header }} :</span>
+    <span>{{ header }}</span>
     {{ content }}
   </div>
 </template>
