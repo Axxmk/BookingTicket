@@ -17,8 +17,8 @@ export default {
       ticket: {
         branch: "The Rama II",
         title: "Aladdin",
-        showTime: "20:20",
-        seatNo: "29",
+        time: "20:20",
+        seat: ["A10", "B19"],
         date: "2021 Mar 18",
       },
     };
@@ -27,9 +27,9 @@ export default {
     code() {
       return (
         this.ticket.title.substring(0, 2) +
-        this.ticket.showTime.substring(0, 2) +
-        this.ticket.branch.substring(this.ticket.branch.length - 2) +
-        this.ticket.seatNo
+        this.ticket.time.substring(0, 2) +
+        this.ticket.branch.substring(this.ticket.branch.length - 1) +
+        this.ticket.seat[0]
       );
     },
   },

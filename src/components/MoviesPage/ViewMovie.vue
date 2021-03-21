@@ -65,7 +65,7 @@ export default {
 <style lang="scss" scoped>
 #part-movie {
   margin: 1% 0;
-  width: 100%;
+  width: 80%;
 
   .v-tabs-items {
     background-color: transparent;

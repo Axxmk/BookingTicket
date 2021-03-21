@@ -1,6 +1,10 @@
 <template>
   <div id="part-flex">
-    <NavBar :movies="movies.nowShowing" :cinemas="cinemas"></NavBar>
+    <div class="header">
+      <hr />
+      <h1>MONTHEARA</h1>
+      <hr />
+    </div>
     <Carousel></Carousel>
     <ViewMovie :movies="movies"></ViewMovie>
     <hr class="line" />
@@ -11,9 +15,8 @@
 <script>
 export default {
   components: {
-    NavBar: () => import("../components/HomePage/NavBar"),
     Carousel: () => import("../components/HomePage/Carousel"),
-    ViewMovie: () => import("../components/HomePage/ViewMovie"),
+    ViewMovie: () => import("../components/MoviesPage/ViewMovie"),
     BoxOffice: () => import("../components/HomePage/BoxOffice"),
   },
   metaInfo: {
@@ -111,38 +114,6 @@ export default {
           },
         ],
       },
-      cinemas: [
-        {
-          id: 1,
-          branch: "Central Rama 9",
-          phoneNumber: "112-313-2424",
-        },
-        {
-          id: 2,
-          branch: "Central Plaza Ladprao",
-          phoneNumber: "142-535-1462",
-        },
-        {
-          id: 3,
-          branch: "The Mall Thapra",
-          phoneNumber: "964-446-3852",
-        },
-        {
-          id: 4,
-          branch: "BK Center",
-          phoneNumber: "974-852-7375",
-        },
-        {
-          id: 5,
-          branch: "The Mall Bangkae",
-          phoneNumber: "089-979-8255",
-        },
-        {
-          id: 6,
-          branch: "The Crystal Ratchapruek",
-          phoneNumber: "864-826-2864",
-        },
-      ],
     };
   },
   methods: {
@@ -161,6 +132,26 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-top: 2rem;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & hr {
+      width: 270px;
+      border: 1px solid #f7e78d;
+      background-color: #f7e78d;
+    }
+
+    & h1 {
+      letter-spacing: 5px;
+      padding: 0 2.5%;
+      font-size: 3.5vw;
+      color: transparent;
+      -webkit-text-stroke: 2px #ebc858;
+    }
+  }
 
   .line {
     margin: 3% 0;

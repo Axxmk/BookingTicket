@@ -13,12 +13,12 @@
     <div class="part-row">
       <div>
         <span>ShowTime</span>
-        <div>{{ ticket.showTime }}</div>
+        <div>{{ ticket.time }}</div>
       </div>
 
       <div>
         <span>Seat No.</span>
-        <div>{{ ticket.seatNo }}</div>
+        <div v-for="(seat, index) in ticket.seat" :key="index">{{ seat }}</div>
       </div>
     </div>
 

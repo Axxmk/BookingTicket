@@ -12,22 +12,38 @@
 
 <script>
 export default {
+  // props: {
+  //   searchStr: String,
+  // },
   data() {
     return {
       search: "",
     };
   },
+  // watch: {
+  //   search() {
+  //     this.$emit("searchBar", this.search);
+  //   },
+  // },
   methods: {
     searchMovie() {
       if (!this.search) {
         alert("Please Type Something");
         return;
       } else {
-        this.$router.push({ name: "Movies" });
+        this.$router.push({
+          name: "Movies",
+          query: {
+            search: this.search,
+          },
+        });
         this.search = "";
       }
     },
   },
+  // created() {
+  //   this.search = this.searchStr;
+  // },
 };
 </script>
 
@@ -36,8 +52,8 @@ export default {
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  margin: 0.5% 0 2% 0;
   padding: 0.7rem;
-  margin-right: 18%;
   border-radius: 17px;
   background-color: #ffffff;
   box-shadow: 0 2px 2px 0 #e5e5e5;

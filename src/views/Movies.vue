@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="d-flex flex-column align-center">
     <h1 class="header">Movies</h1>
+    <SearchBar></SearchBar>
     <ViewMovie :movies="movies"></ViewMovie>
   </div>
 </template>
@@ -11,10 +12,12 @@ export default {
     title: "Movies",
   },
   components: {
-    ViewMovie: () => import("../components/HomePage/ViewMovie"),
+    SearchBar: () => import("../components/HomePage/SearchBar"),
+    ViewMovie: () => import("../components/MoviesPage/ViewMovie"),
   },
   data() {
     return {
+      // search: "",
       movies: {
         nowShowing: [
           {
@@ -107,15 +110,25 @@ export default {
       },
     };
   },
+  computed: {
+    // nowShowing() {
+    //   return this.movies.filter((e) => e.indexOf(this));
+    // },
+  },
+  methods: {
+    // getDataFromSearchBar(search) {
+    //   console.log(search);
+    //   this.search = search;
+    // },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .header {
-  text-align: center;
   font-size: 6vw;
 
-  margin-top: 1rem;
+  margin-top: 2rem;
   color: transparent;
   -webkit-text-stroke: 2.5px #ebc858;
 }

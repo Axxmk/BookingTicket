@@ -81,7 +81,7 @@ $radius: 20px;
   display: flex;
   align-items: center;
   position: relative;
-  margin: 2% 0 5% 0;
+  margin: 1% 0 3% 0;
   width: calc(100% - 60px);
   padding-bottom: calc((100% - 60px) * 0.4189);
   background-color: #ffffff;
@@ -137,9 +137,6 @@ $radius: 20px;
     &:hover {
       transform: translateY(-50%) scale(1.05);
     }
-  }
-
-  @media screen and (max-width: 768px) {
   }
 }
 </style>

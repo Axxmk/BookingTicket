@@ -22,7 +22,7 @@
 <script>
 export default {
   components: {
-    MovieCardIF: () => import("./MovieCardIF"),
+    MovieCardIF: () => import("../MoviesPage/MovieCardIF"),
   },
   props: {
     movies: Array,
@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  font-size: 2.7vw;
+  font-size: 2.9vw;
 }
 
 .ranking {
@@ -46,7 +46,8 @@ export default {
     z-index: 100;
     font-size: 7.5vw;
     bottom: 20px;
-    color: transparent;
+    left: 5px;
+    color: #f5f5f5c5;
     -webkit-text-stroke: 2.5px #ebc858;
   }
 }
