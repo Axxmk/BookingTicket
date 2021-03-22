@@ -2,7 +2,7 @@
   <v-card width="95%">
     <p>Theatre {{ theatre.id }}</p>
     <div class="px-3">
-      <v-img height="200" src="../../assets/cinema.jpg"></v-img>
+      <v-img height="200" class="mx-1" src="../../assets/cinema.jpg"></v-img>
     </div>
     <h5>Now Showing</h5>
     <span>{{ theatre.movieShow }}</span>
@@ -40,7 +40,6 @@ export default {
 
   & p {
     color: rgba(128, 128, 128, 0.603);
-    font-weight: 600;
     font-size: 0.9em;
     text-align: end;
     padding: 2% 5%;
@@ -48,7 +47,7 @@ export default {
   }
 
   & h5 {
-    padding: 6% 5% 2% 5%;
+    padding: 6% 5% 2% 7%;
     font-weight: 400;
     color: rgb(168, 168, 168);
   }
@@ -57,7 +56,7 @@ export default {
     display: block;
     font-size: 1.1em;
     font-weight: 500;
-    padding: 0 5%;
+    padding: 0 7%;
     margin-bottom: 2%;
   }
 }
