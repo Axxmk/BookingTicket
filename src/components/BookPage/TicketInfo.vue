@@ -1,8 +1,8 @@
 <template>
   <div class="ticket-info">
     <div>
-      <span>Branch</span>
-      <p>{{ ticket.branch }}</p>
+      <span>Theatre</span>
+      <p>{{ ticket.theatre }}</p>
     </div>
 
     <div>
@@ -18,7 +18,9 @@
 
       <div>
         <span>Seat No.</span>
-        <div v-for="(seat, index) in ticket.seat" :key="index">{{ seat }}</div>
+        <div v-for="(seat, index) in ticket.seat" :key="index">
+          {{ seat }}
+        </div>
       </div>
     </div>
 
@@ -65,6 +67,14 @@ export default {
     & div div {
       font-size: 1.1em;
       font-weight: 500;
+    }
+
+    @media screen and (max-width: 1042px) {
+      flex-direction: column;
+
+      & div {
+        margin-right: 0;
+      }
     }
   }
 }

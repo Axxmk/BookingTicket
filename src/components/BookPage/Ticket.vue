@@ -12,25 +12,21 @@ export default {
   components: {
     TicketInfo: () => import("../BookPage/TicketInfo"),
   },
-  data() {
-    return {
-      ticket: {
-        branch: "The Rama II",
-        title: "Aladdin",
-        time: "20:20",
-        seat: ["A10", "B19"],
-        date: "2021 Mar 18",
-      },
-    };
+  props: {
+    ticket: Object,
   },
   computed: {
     code() {
-      return (
-        this.ticket.title.substring(0, 2) +
-        this.ticket.time.substring(0, 2) +
-        this.ticket.branch.substring(this.ticket.branch.length - 1) +
-        this.ticket.seat[0]
-      );
+      if (this.ticket.seat.length > 0) {
+        return (
+          this.ticket.title.substring(0, 2) +
+          this.ticket.time.substring(0, 2) +
+          this.ticket.theatre +
+          this.ticket.seat[0]
+        );
+      } else {
+        return "";
+      }
     },
   },
 };

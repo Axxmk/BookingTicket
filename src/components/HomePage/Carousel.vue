@@ -28,7 +28,7 @@
 export default {
   data() {
     return {
-      images: ["bighero.jpg", "avatar.jpg", "insideout.jpg", "lake.jpg"],
+      images: ["bighero.jpg", "insideout.jpg", "lake.jpg", "spiderman.jpg"],
       currentIndex: 0,
     };
   },

@@ -2,7 +2,7 @@
   <v-hover>
     <template v-slot:default="{ hover }">
       <v-card class="mx-auto" max-width="75%" elevation="3" shaped>
-        <v-img :src="`assets/poster/${movie.id}.jpg`"></v-img>
+        <v-img :src="`assets/poster/${movie.type}${movie.id}.jpg`"></v-img>
 
         <v-card-subtitle class="pa-0 pt-1 release-date">
           {{ movie.releaseDate }}
@@ -19,7 +19,7 @@
             <div class="d-flex flex-column">
               <v-btn
                 link
-                :to="{ name: 'Booking' }"
+                :to="{ name: 'Booking', params: { id: movie.id } }"
                 v-if="movie.type == 1"
                 color="#f5f5f5"
                 class="yellow--text text--darken-3 mb-3"
@@ -38,31 +38,12 @@
           </v-overlay>
         </v-fade-transition>
 
-        <v-dialog v-model="dialog" width="500">
-          <v-card>
-            <v-card-title class="headline grey lighten-2">
-              Privacy Policy
-            </v-card-title>
-
-            <v-card-text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </v-card-text>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" text @click="dialog = false">
-                I accept
-              </v-btn>
-            </v-card-actions>
-          </v-card>
+        <v-dialog v-model="dialog" width="700">
+          <DetailSheet
+            :movie="movie"
+            :dialog="dialog"
+            @closeDialog="dialog = false"
+          ></DetailSheet>
         </v-dialog>
       </v-card>
     </template>
@@ -71,6 +52,9 @@
 
 <script>
 export default {
+  components: {
+    DetailSheet: () => import("./DetailSheet"),
+  },
   props: {
     movie: Object,
   },

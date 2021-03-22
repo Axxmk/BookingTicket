@@ -19,14 +19,14 @@
 
         <v-slide-group v-model="dateSelect" mandatory show-arrows>
           <v-slide-item
-            v-for="(date, index) in movieInfo.allDate"
+            v-for="(date, index) in theatreInfo.allDate"
             :key="index"
             v-slot="{ active, toggle }"
           >
             <v-btn
               class="mx-2"
               :input-value="active"
-              active-class="yellow grey--text"
+              active-class="yellow darken-1 white--text"
               depressed
               @click="toggle"
             >
@@ -39,14 +39,14 @@
 
         <v-slide-group v-model="timeSelect" mandatory show-arrows>
           <v-slide-item
-            v-for="(time, index) in movieInfo.allTime"
+            v-for="(time, index) in theatreInfo.allTime"
             :key="index"
             v-slot="{ active, toggle }"
           >
             <v-btn
               class="mx-2"
               :input-value="active"
-              active-class="yellow grey--text"
+              active-class="yellow darken-1 white--text"
               depressed
               rounded
               @click="toggle"
@@ -76,7 +76,7 @@
         <v-select
           style="width: 300px"
           v-model="seatSelect"
-          :items="movieInfo.availableSeat"
+          :items="theatreInfo.availableSeat"
           label="Pick your seats"
           multiple
           chips
@@ -129,14 +129,14 @@
         <h1>Payment Method</h1>
         <v-radio-group v-model="payment" class="mt-0" row mandatory>
           <v-radio
-            label="KBank"
-            value="Banking"
+            label="Credit / Debit"
+            value="Credit"
             color="yellow darken-1"
             class="mx-5"
           ></v-radio>
           <v-radio
-            label="Credit / Debit"
-            value="Credit"
+            label="KBank"
+            value="KBank"
             color="yellow darken-1"
             class="mx-5"
           ></v-radio>
@@ -154,7 +154,7 @@
 <script>
 export default {
   props: {
-    movieInfo: Object,
+    theatreInfo: Object,
   },
   data() {
     return {
@@ -170,22 +170,37 @@ export default {
       ],
     };
   },
+  watch: {
+    dateSelect(current) {
+      this.$emit("dataChange", this.theatreInfo.allDate[current], "date");
+    },
+    timeSelect(current) {
+      this.$emit("dataChange", this.theatreInfo.allTime[current], "time");
+    },
+    seatSelect(current) {
+      this.$emit("dataChange", current, "seat");
+    },
+    payment(current) {
+      this.$emit("dataChange", current, "payment");
+    },
+  },
+  mounted() {
+    this.$emit("dataChange", this.theatreInfo.allDate[this.dateSelect], "date");
+    this.$emit("dataChange", this.theatreInfo.allTime[this.timeSelect], "time");
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .v-stepper--vertical {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 70%;
   padding: 4%;
 
   & h1 {
     font-size: 30px;
     line-height: 80px;
     letter-spacing: 2px;
-    color: #5babf5;
+    color: #4d92d3;
   }
 
   @media screen and (max-width: 768px) {

@@ -25,7 +25,7 @@
 
     <div class="d-flex flex-column align-center">
       <h3 class="pb-12">Your Ticket Booking</h3>
-      <Ticket></Ticket>
+      <Ticket :ticket="ticket"></Ticket>
     </div>
   </div>
 </template>
@@ -46,6 +46,13 @@ export default {
         email: "monthita.joy@mail.kmutt.ac.th",
         phone: "098-857-5473",
         username: "jxymk",
+      },
+      ticket: {
+        theatre: "1",
+        title: "Aladdin",
+        time: "20:20",
+        seat: ["A10", "B19"],
+        date: "2021 Mar 18",
       },
     };
   },
