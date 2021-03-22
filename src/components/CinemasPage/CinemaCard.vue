@@ -1,23 +1,26 @@
 <template>
-  <v-card class="mx-auto my-2 pa-6 pb-2 rounded-lg d-flex" width="70%">
-    <div class="pr-8 detail-cinema">
-      <h5>Cinema {{ cinema.id }}</h5>
-      <v-icon large color="#ebc858" class="py-3" style="font-size: 4rem">
-        mdi-theater
-      </v-icon>
+  <v-card width="95%">
+    <p>Theatre {{ theatre.id }}</p>
+    <div class="px-3">
+      <v-img height="200" src="../../assets/cinema.jpg"></v-img>
     </div>
-
-    <div class="branch-info">
-      <h3>{{ cinema.branch }}</h3>
-      <span>Tel: {{ cinema.phoneNumber }}</span>
-    </div>
+    <h5>Now Showing</h5>
+    <span>{{ theatre.movieShow }}</span>
+    <v-btn
+      text
+      class="yellow--text text--darken-1"
+      link
+      :to="{ name: 'Booking', params: { id: theatre.id } }"
+    >
+      Buy Ticket
+    </v-btn>
   </v-card>
 </template>
 
 <script>
 export default {
   props: {
-    cinema: Object,
+    theatre: Object,
   },
 };
 </script>
@@ -25,6 +28,9 @@ export default {
 <style lang="scss" scoped>
 .v-sheet.v-card {
   transition: all 0.2s ease-in-out;
+  margin: 2% auto;
+  padding: 3%;
+  border-radius: 10px;
 
   &:hover {
     transform: scale(1.05) translateY(-5px);
@@ -32,40 +38,27 @@ export default {
       0px 5px 16px 1px rgb(0, 0, 0, 0.05), 0px 2px 20px 1px rgb(0, 0, 0, 0.05);
   }
 
-  .detail-cinema {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    & h5 {
-      color: rgb(182, 180, 180);
-      font-size: 0.9rem;
-    }
-
-    & span {
-      font-size: 4rem;
-      color: transparent;
-      -webkit-text-stroke: 2.5px #ebc858;
-    }
+  & p {
+    color: rgba(128, 128, 128, 0.603);
+    font-weight: 600;
+    font-size: 0.9em;
+    text-align: end;
+    padding: 2% 5%;
+    margin-bottom: 3%;
   }
 
-  .branch-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  & h5 {
+    padding: 6% 5% 2% 5%;
+    font-weight: 400;
+    color: rgb(168, 168, 168);
+  }
 
-    & h3 {
-      font-size: 1.1rem;
-      font-weight: 500;
-      padding-bottom: 3px;
-      color: rgb(63, 63, 63);
-    }
-
-    & span {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: grey;
-    }
+  & span {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 0 5%;
+    margin-bottom: 2%;
   }
 }
 </style>

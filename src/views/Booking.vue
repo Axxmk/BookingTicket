@@ -4,7 +4,7 @@
       :theatreInfo="theatreInfo"
       @dataChange="dataChange"
     ></BookingStep>
-    <TicketPart :ticket="ticket"></TicketPart>
+    <BookingResult :ticket="ticket"></BookingResult>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   components: {
     BookingStep: () => import("../components/BookPage/BookingStep"),
-    TicketPart: () => import("../components/BookPage/TicketPart"),
+    BookingResult: () => import("../components/BookPage/BookingResult"),
   },
   mounted() {
     console.log(this.$route.params.id);

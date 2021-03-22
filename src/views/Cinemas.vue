@@ -1,19 +1,16 @@
 <template>
   <div>
-    <h1 class="header">
-      Cinemas
-      <hr />
-    </h1>
+    <h1 class="header">Cinemas</h1>
     <v-row class="cinema-wrap">
       <v-col
-        v-for="cinema in cinemas"
-        :key="cinema.id"
+        v-for="theatre in cinema"
+        :key="theatre.id"
         cols="12"
-        sm="12"
-        md="6"
-        lg="6"
+        sm="6"
+        md="4"
+        lg="3"
       >
-        <CinemaCard :cinema="cinema"></CinemaCard>
+        <CinemaCard :theatre="theatre"></CinemaCard>
       </v-col>
     </v-row>
   </div>
@@ -29,36 +26,30 @@ export default {
   },
   data() {
     return {
-      cinemas: [
+      cinema: [
         {
           id: 1,
-          branch: "Central Rama 9",
-          phoneNumber: "112-313-2424",
+          movieShow: "Aladdin",
         },
         {
           id: 2,
-          branch: "Central Plaza Ladprao",
-          phoneNumber: "142-535-1462",
+          movieShow: "Avenger End Game",
         },
         {
           id: 3,
-          branch: "The Mall Thapra",
-          phoneNumber: "964-446-3852",
+          movieShow: "Narnia",
         },
         {
           id: 4,
-          branch: "BK Center",
-          phoneNumber: "974-852-7375",
+          movieShow: "Beauty and The Beast",
         },
         {
           id: 5,
-          branch: "The Mall Bangkae",
-          phoneNumber: "089-979-8255",
+          movieShow: "Enchanted",
         },
         {
           id: 6,
-          branch: "The Crystal Ratchapruek",
-          phoneNumber: "864-826-2864",
+          movieShow: "Inside Out",
         },
       ],
     };
@@ -69,20 +60,14 @@ export default {
 <style lang="scss" scoped>
 .header {
   text-align: center;
-  font-size: 5vw;
+  font-size: 4.5vw;
 
-  margin: 1.2rem 0 3rem 0;
-  color: #5babf5;
-
-  & hr {
-    margin: 2% auto;
-    width: 70vw;
-    border: 0.8px solid #f7e78d;
-    background-color: #f7e78d;
-  }
+  margin: 2rem 0;
+  color: transparent;
+  -webkit-text-stroke: 2.5px #67aff3;
 }
 
 .cinema-wrap {
-  margin: 0 10rem;
+  margin: 0 6rem;
 }
 </style>

@@ -1,11 +1,13 @@
 <template>
   <v-card>
     <div class="d-flex flex-no-wrap justify-space-between">
-      <v-img
-        width="200"
-        height="330"
-        :src="`assets/poster/${movie.type}${movie.id}.jpg`"
-      ></v-img>
+      <div style="width: 220px">
+        <v-img
+          width="100%"
+          height="100%"
+          :src="`assets/poster/${movie.type}${movie.id}.jpg`"
+        ></v-img>
+      </div>
 
       <div class="mx-2 d-flex flex-column justify-space-between">
         <DetailContent :movie="movie"></DetailContent>

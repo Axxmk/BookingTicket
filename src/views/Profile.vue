@@ -53,6 +53,8 @@ export default {
         time: "20:20",
         seat: ["A10", "B19"],
         date: "2021 Mar 18",
+        price: 400,
+        payment: "KBank",
       },
     };
   },

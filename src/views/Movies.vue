@@ -146,7 +146,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  font-size: 6vw;
+  font-size: 5vw;
 
   margin-top: 2rem;
   color: transparent;
