@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1 class="header">Cinemas</h1>
+    <h1 class="header">Cinema</h1>
+
     <v-row class="cinema-wrap">
       <v-col
         v-for="theatre in cinema"
@@ -11,6 +12,15 @@
         lg="3"
       >
         <CinemaCard :theatre="theatre"></CinemaCard>
+      </v-col>
+
+      <v-col
+        class="d-flex justify-center align-center"
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3"
+      >
       </v-col>
     </v-row>
   </div>
@@ -60,7 +70,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   text-align: center;
-  font-size: 4.5vw;
+  font-size: 4.7vw;
 
   margin: 2rem 0;
   color: transparent;

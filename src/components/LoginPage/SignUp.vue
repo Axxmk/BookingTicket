@@ -8,12 +8,11 @@
         clear-icon="mdi-close-circle"
         clearable
         filled
-        color="blue darken-3"
+        color="blue lighten-1"
         background-color="white"
         rounded
         dense
         required
-        @keydown.enter="createAccount"
       >
         <template v-slot:label>
           <v-icon style="vertical-align: middle" color="blue lighten-2">
@@ -31,12 +30,11 @@
         clear-icon="mdi-close-circle"
         clearable
         filled
-        color="blue darken-3"
+        color="blue lighten-1"
         background-color="white"
         rounded
         dense
         required
-        @keydown.enter="createAccount"
       >
         <template v-slot:label>
           <v-icon style="vertical-align: middle" color="blue lighten-2">
@@ -52,12 +50,11 @@
         :rules="rules.confirmPass"
         validate-on-blur
         filled
-        color="blue darken-3"
+        color="blue lighten-1"
         background-color="white"
         rounded
         dense
         required
-        @keydown.enter="createAccount"
       >
         <template v-slot:label>
           <v-icon style="vertical-align: middle" color="blue lighten-2">
@@ -67,53 +64,12 @@
         </template>
       </v-text-field>
 
-      <v-row>
-        <v-col cols="12" sm="6" md="6" lg="6">
-          <v-text-field
-            v-model="fullname.firstname"
-            :rules="rules.firstname"
-            filled
-            color="blue darken-3"
-            background-color="white"
-            rounded
-            dense
-            required
-            @keydown.enter="createAccount"
-          >
-            <template v-slot:label>
-              <div style="width: 100%">
-                <v-icon style="vertical-align: middle" color="blue lighten-2">
-                  mdi-account
-                </v-icon>
-                Firstname
-              </div>
-            </template>
-          </v-text-field>
-        </v-col>
-
-        <v-col cols="12" sm="6" md="6" lg="6">
-          <v-text-field
-            v-model="fullname.lastname"
-            :rules="rules.lastname"
-            filled
-            color="blue darken-3"
-            background-color="white"
-            rounded
-            dense
-            required
-            @keydown.enter="createAccount"
-          >
-            <template v-slot:label>
-              <div style="width: 100%">
-                <v-icon style="vertical-align: middle" color="blue lighten-2">
-                  mdi-account
-                </v-icon>
-                Lastname
-              </div>
-            </template>
-          </v-text-field>
-        </v-col>
-      </v-row>
+      <NameField
+        :fullname="fullname"
+        :lastnameRule="rules.lastname"
+        :firstnameRule="rules.firstname"
+        color="white"
+      ></NameField>
 
       <v-text-field
         v-model="email"
@@ -122,12 +78,11 @@
         clearable
         validate-on-blur
         filled
-        color="blue darken-3"
+        color="blue lighten-1"
         background-color="white"
         rounded
         dense
         required
-        @keydown.enter="createAccount"
       >
         <template v-slot:label>
           <v-icon style="vertical-align: middle" color="blue lighten-2">
@@ -144,12 +99,11 @@
         clearable
         validate-on-blur
         filled
-        color="blue darken-3"
+        color="blue lighten-1"
         background-color="white"
         rounded
         dense
         required
-        @keydown.enter="createAccount"
       >
         <template v-slot:label>
           <v-icon style="vertical-align: middle" color="blue lighten-2">
@@ -178,6 +132,9 @@
 
 <script>
 export default {
+  components: {
+    NameField: () => import("./NameField"),
+  },
   data() {
     return {
       valid: true,

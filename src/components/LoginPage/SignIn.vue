@@ -8,7 +8,7 @@
         clear-icon="mdi-close-circle"
         clearable
         filled
-        color="blue darken-3"
+        color="blue lighten-1"
         background-color="white"
         rounded
         dense
@@ -32,7 +32,7 @@
         :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
         @click:append="showPass = !showPass"
         filled
-        color="blue darken-3"
+        color="blue lighten-1"
         background-color="white"
         rounded
         dense

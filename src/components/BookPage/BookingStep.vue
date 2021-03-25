@@ -143,7 +143,12 @@
         </v-radio-group>
       </v-card>
 
-      <v-btn color="yellow darken-1" class="white--text" @click="steps = 4">
+      <v-btn
+        color="yellow darken-1"
+        class="white--text"
+        link
+        :to="{ name: 'Home' }"
+      >
         Buy Ticket
       </v-btn>
       <v-btn text class="mx-3" @click="steps = 2"> Back </v-btn>

@@ -2,7 +2,7 @@
   <div id="search-bar">
     <i @click="searchMovie" class="material-icons icon-search"> search </i>
     <input
-      @keydown.enter="searchMovie"
+      @keyup="searchMovie"
       v-model="search"
       type="text"
       placeholder="Search"
@@ -19,18 +19,7 @@ export default {
   },
   methods: {
     searchMovie() {
-      if (!this.search) {
-        alert("Please Type Something");
-        return;
-      } else {
-        this.$router.push({
-          name: "Movies",
-          query: {
-            search: this.search,
-          },
-        });
-        this.search = "";
-      }
+      this.$emit("search", this.search);
     },
   },
 };

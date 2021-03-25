@@ -18,7 +18,12 @@
 
       <div>
         <span>Seat No.</span>
-        <div v-for="(seat, index) in ticket.seat" :key="index">
+        <div
+          class="showSeat"
+          style="display: inline"
+          v-for="(seat, index) in ticket.seat"
+          :key="index"
+        >
           {{ seat }}
         </div>
       </div>

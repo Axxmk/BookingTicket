@@ -1,8 +1,10 @@
 <template>
   <div class="d-flex flex-column align-center">
     <h1 class="header">Movies</h1>
-    <SearchBar></SearchBar>
-    <ViewMovie :movies="movies"></ViewMovie>
+    <SearchBar @search="search"></SearchBar>
+
+    <ViewMovie v-if="isSearch" :movies="selectMovies"></ViewMovie>
+    <ViewMovie v-else :movies="movies"></ViewMovie>
   </div>
 </template>
 
@@ -139,7 +141,29 @@ export default {
           },
         ],
       },
+      selectMovies: {
+        nowShowing: [],
+        comingSoon: [],
+      },
+      isSearch: false,
     };
+  },
+  methods: {
+    search(key) {
+      if (!key) {
+        this.isSearch = false;
+        return;
+      }
+
+      key = key.toLowerCase();
+      this.selectMovies.nowShowing = this.movies.nowShowing.filter((movie) =>
+        movie.title.toLowerCase().startsWith(key)
+      );
+      this.selectMovies.comingSoon = this.movies.comingSoon.filter((movie) =>
+        movie.title.toLowerCase().startsWith(key)
+      );
+      this.isSearch = true;
+    },
   },
 };
 </script>

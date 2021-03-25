@@ -70,7 +70,7 @@ export default {
       list: [
         { name: "Home", icon: "mdi-home" },
         { name: "Movies", icon: "mdi-movie-open" },
-        { name: "Cinemas", icon: "mdi-theater" },
+        { name: "Cinema", icon: "mdi-theater" },
       ],
       userImage: "profile.jpg",
     };
