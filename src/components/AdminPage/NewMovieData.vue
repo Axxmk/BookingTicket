@@ -19,6 +19,7 @@
               v-model="editedItem.theatre"
               :items="allTheatre"
               label="Theatre"
+              item-color="blue lighten-2"
             ></v-select>
           </v-col>
 
@@ -27,6 +28,7 @@
               v-model="editedItem.genre"
               :items="allGenre"
               label="Genre"
+              item-color="blue lighten-2"
               multiple
             ></v-combobox>
           </v-col>
@@ -53,6 +55,7 @@
               </template>
               <v-date-picker
                 v-model="editedItem.releaseDate"
+                color="blue lighten-2"
                 no-title
                 scrollable
               >
@@ -74,14 +77,24 @@
               v-model="editedItem.type"
               :items="['Now Showing', 'Coming Soon']"
               label="Type"
+              item-color="blue lighten-2"
             ></v-select>
           </v-col>
 
           <v-col cols="12">
+            <v-file-input
+              class="pt-0"
+              accept="image/jpg"
+              prepend-icon="mdi-camera"
+              label="Pick A Poster"
+            ></v-file-input>
+          </v-col>
+
+          <v-col cols="12">
             <v-textarea
-              name="input-7-4"
               label="Synopsis"
-              :value="editedItem.synopsis"
+              v-model="editedItem.synopsis"
+              rows="3"
               filled
               background-color="#f8f8f8"
             ></v-textarea>
@@ -93,8 +106,10 @@
     <v-divider class="mx-6"></v-divider>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="blue darken-1" text @click="$emit('close')"> Cancel </v-btn>
-      <v-btn color="blue darken-1" text @click="$emit('save')"> Save </v-btn>
+      <v-btn color="blue lighten-2" text @click="$emit('close')">
+        Cancel
+      </v-btn>
+      <v-btn color="blue lighten-2" text @click="$emit('save')"> Save </v-btn>
     </v-card-actions>
   </v-card>
 </template>

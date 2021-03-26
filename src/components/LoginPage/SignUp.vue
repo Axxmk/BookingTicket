@@ -193,6 +193,7 @@ export default {
         this.$router.push({ name: "Home" });
         this.$refs.form.reset();
         this.$store.dispatch("setAuth", true);
+        this.$store.dispatch("setAdmin", false);
       }
     },
     handleChange(e) {

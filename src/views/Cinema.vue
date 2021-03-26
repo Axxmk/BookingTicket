@@ -74,7 +74,7 @@ export default {
 
   margin: 2rem 0;
   color: transparent;
-  -webkit-text-stroke: 2.5px #67aff3;
+  -webkit-text-stroke: 2.5px #ebc858;
 }
 
 .cinema-wrap {

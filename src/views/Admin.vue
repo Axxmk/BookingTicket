@@ -1,16 +1,20 @@
 <template>
   <div>
-    <h1 class="header">Admin Dash Board</h1>
+    <h1 class="header">Admin Dashboard</h1>
     <v-data-table
       :headers="headers"
       :items="movies"
+      item-key="id"
+      :expanded.sync="expanded"
+      :single-expand="true"
+      show-expand
       sort-by="type"
       :sort-desc="true"
-      class="elevation-1 mx-8 mb-8"
+      class="elevation-1 mx-12 mb-8 px-1"
     >
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title style="color: #4a9ae4">Movies</v-toolbar-title>
+          <v-toolbar-title style="color: #387dd8">Movies</v-toolbar-title>
           <v-divider class="mx-5" inset vertical></v-divider>
           <v-spacer></v-spacer>
 
@@ -21,9 +25,9 @@
                 plain
                 v-bind="attrs"
                 v-on="on"
-                color="blue darken-3"
+                color="blue darken-2"
               >
-                <v-icon class="pr-2" size="17" color="blue darken-3">
+                <v-icon class="pr-2" size="17" color="blue darken-2">
                   mdi-plus
                 </v-icon>
                 Add Movie
@@ -48,12 +52,46 @@
       </template>
 
       <template v-slot:item.actions="{ item }">
-        <v-icon small color="#56A3EB" class="mr-2" @click="editItem(item)">
+        <v-icon
+          small
+          color="blue lighten-2"
+          class="mr-3"
+          @click="editItem(item)"
+        >
           mdi-pencil
         </v-icon>
-        <v-icon small color="#56A3EB" @click="deleteItem(item)">
+        <v-icon small color="blue lighten-2" @click="deleteItem(item)">
           mdi-delete
         </v-icon>
+      </template>
+
+      <template v-slot:expanded-item="{ headers, item }">
+        <td class="pa-8" :colspan="headers.length">
+          <div class="d-flex mx-auto" style="width: 700px">
+            <v-img
+              width="200px"
+              height="auto"
+              :src="`assets/poster/${item.id}.jpg`"
+            ></v-img>
+            <div class="pa-5 d-flex flex-column justify-center">
+              <div>
+                <h4>Synopsis</h4>
+                {{ item.synopsis }}
+              </div>
+              <div>
+                <h4 class="mt-2">Genre</h4>
+                <div
+                  class="mr-1"
+                  style="display: inline-block"
+                  v-for="(genre, index) in item.genre"
+                  :key="index"
+                >
+                  {{ genre }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
       </template>
     </v-data-table>
   </div>
@@ -72,19 +110,19 @@ export default {
     return {
       dialog: false,
       dialogDelete: false,
+      expanded: [],
       headers: [
         {
           text: "Movie Title",
           align: "start",
           value: "title",
+          width: "150px",
         },
-        { text: "Theatre", value: "theatre" },
-        { text: "Type", value: "type" },
-        { text: "Release Date", value: "releaseDate" },
-        { text: "Profit ($)", value: "profit" },
-        { text: "Synopsis", value: "synopsis" },
-        { text: "Genre", value: "genre" },
-        { text: "Actions", value: "actions", sortable: false },
+        { text: "Theatre", value: "theatre", width: "130px" },
+        { text: "Type", value: "type", width: "130px" },
+        { text: "Release Date", value: "releaseDate", width: "130px" },
+        { text: "Profit", value: "profit", width: "130px" },
+        { text: "Actions", value: "actions", width: "110px", sortable: false },
       ],
       editedIndex: -1,
       editedItem: {
@@ -283,6 +321,11 @@ export default {
 
   margin: 2rem 0;
   color: rgb(238, 247, 252);
-  -webkit-text-stroke: 2.5px #67aff3;
+  -webkit-text-stroke: 2.5px #ebc858;
+}
+h4 {
+  padding: 1% 0;
+  color: grey;
+  font-weight: 400;
 }
 </style>

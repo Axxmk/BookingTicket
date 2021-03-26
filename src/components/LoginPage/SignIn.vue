@@ -93,6 +93,7 @@ export default {
       } else {
         this.$router.push({ name: "Home" });
         this.$store.dispatch("setAuth", true);
+        this.$store.dispatch("setAdmin", true);
       }
     },
   },

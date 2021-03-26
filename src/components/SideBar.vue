@@ -51,6 +51,18 @@
           </v-list-item-icon>
           <v-list-item-title>{{ item.name }}</v-list-item-title>
         </v-list-item>
+
+        <v-list-item
+          v-if="$store.state.isAdmin"
+          link
+          :to="{ name: 'Admin' }"
+          color="#56A3EB"
+        >
+          <v-list-item-icon>
+            <v-icon color="#56A3EB">mdi-account-star</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Admin</v-list-item-title>
+        </v-list-item>
       </v-list>
 
       <v-list nav>
@@ -84,7 +96,6 @@ export default {
         { name: "Home", icon: "mdi-home" },
         { name: "Movies", icon: "mdi-movie-open" },
         { name: "Cinema", icon: "mdi-theater" },
-        { name: "Admin", icon: "mdi-account-star" },
       ],
       userImage: "profile.jpg",
     };
@@ -92,6 +103,7 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch("setAuth", false);
+      this.$store.dispatch("setAdmin", false);
     },
   },
 };

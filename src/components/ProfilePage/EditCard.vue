@@ -17,7 +17,7 @@
           clear-icon="mdi-close-circle"
           validate-on-blur
           filled
-          background-color="#f5f5f5"
+          background-color="#f7f7f7"
           color="blue lighten-1"
           dense
           rounded
@@ -37,7 +37,7 @@
           clear-icon="mdi-close-circle"
           validate-on-blur
           filled
-          background-color="#f5f5f5"
+          background-color="#f7f7f7"
           color="blue lighten-1"
           dense
           rounded
