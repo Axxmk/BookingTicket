@@ -8,18 +8,19 @@
           :fullname="userInfo.fullname"
           :lastnameRule="rules.lastname"
           :firstnameRule="rules.firstname"
+          color="#f6f6f6"
         ></NameField>
 
         <v-text-field
           v-model="userInfo.email"
           :rules="rules.email"
           clear-icon="mdi-close-circle"
-          clearable
           validate-on-blur
           filled
+          background-color="#f5f5f5"
           color="blue lighten-1"
-          rounded
           dense
+          rounded
           required
         >
           <template v-slot:label>
@@ -34,12 +35,12 @@
           v-model="userInfo.phone"
           :rules="rules.phone"
           clear-icon="mdi-close-circle"
-          clearable
           validate-on-blur
           filled
+          background-color="#f5f5f5"
           color="blue lighten-1"
-          rounded
           dense
+          rounded
           required
         >
           <template v-slot:label>
@@ -97,7 +98,8 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  color: rgb(51, 80, 158);
+  font-size: 1.5rem;
+  color: rgb(37, 62, 129);
   margin-left: 2%;
   margin-bottom: 2%;
 }

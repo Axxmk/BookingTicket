@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isAuth: false,
+    isAuth: true,
   },
   mutations: {
     set_auth(state, value) {

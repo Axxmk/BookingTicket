@@ -4,11 +4,24 @@
     floating
     permanent
     expand-on-hover
-    width="180px"
+    width="195px"
     class="py-9 rounded-r-xl elevation-1"
   >
     <div id="part">
-      <v-icon color="#56A3EB" medium>mdi-menu</v-icon>
+      <v-list class="d-flex justify-center">
+        <v-list-item>
+          <v-list-item-icon>
+            <v-img
+              max-width="35"
+              max-height="35"
+              src="../assets/logo.png"
+            ></v-img>
+          </v-list-item-icon>
+          <v-list-item-title>
+            <h3 class="logo-name">MONTHEARA</h3>
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
 
       <v-list nav>
         <v-list-item
@@ -71,6 +84,7 @@ export default {
         { name: "Home", icon: "mdi-home" },
         { name: "Movies", icon: "mdi-movie-open" },
         { name: "Cinema", icon: "mdi-theater" },
+        { name: "Admin", icon: "mdi-account-star" },
       ],
       userImage: "profile.jpg",
     };
@@ -94,6 +108,13 @@ export default {
     justify-content: space-between;
 
     height: 100%;
+
+    .logo-name {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 75px;
+      color: #69c2dd;
+    }
 
     .avatar {
       width: 1.5rem;

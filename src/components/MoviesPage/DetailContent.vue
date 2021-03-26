@@ -8,7 +8,7 @@
       {{ movie.synopsis }}
 
       <h4 class="mt-2">Genre</h4>
-      {{ movie.genre }}
+      {{ genre }}
     </v-card-text>
   </div>
 </template>
@@ -17,6 +17,22 @@
 export default {
   props: {
     movie: Object,
+  },
+  computed: {
+    genre() {
+      let genres = this.movie.genre;
+      let result = "";
+
+      for (let i = 0; i < genres.length; i++) {
+        if (i == genres.length - 1) {
+          result += genres[i];
+        } else {
+          result += genres[i] + ", ";
+        }
+      }
+
+      return result;
+    },
   },
 };
 </script>

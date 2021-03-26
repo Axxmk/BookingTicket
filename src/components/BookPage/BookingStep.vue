@@ -73,16 +73,22 @@
         class="mb-12 pa-4 d-flex flex-column justify-center align-center"
         height="fit-content"
       >
+        <v-img
+          width="510"
+          height="auto"
+          src="../../assets/cinemaPlan.png"
+        ></v-img>
+        <v-subheader v-text="'(preview only)'"></v-subheader>
         <v-select
           style="width: 300px"
           v-model="seatSelect"
           :items="theatreInfo.availableSeat"
-          label="Pick your seats"
+          label="Available Seats"
           multiple
           chips
           color="yellow darken-2"
           item-color="yellow darken-1"
-          hint="Available Seats"
+          hint="Pick your seats"
           persistent-hint
         ></v-select>
       </v-card>

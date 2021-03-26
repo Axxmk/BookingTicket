@@ -2,7 +2,7 @@
   <v-hover>
     <template v-slot:default="{ hover }">
       <v-card class="mx-auto" max-width="75%" elevation="3" shaped>
-        <v-img :src="`assets/poster/${movie.type}${movie.id}.jpg`"></v-img>
+        <v-img :src="`assets/poster/${movie.id}.jpg`"></v-img>
 
         <v-card-subtitle class="pa-0 pt-1 release-date">
           {{ movie.releaseDate }}
@@ -20,7 +20,7 @@
               <v-btn
                 link
                 :to="{ name: 'Booking', params: { id: movie.id } }"
-                v-if="movie.type == 1"
+                v-if="movie.type == 'Now Showing'"
                 color="#f5f5f5"
                 class="yellow--text text--darken-3 mb-3"
               >

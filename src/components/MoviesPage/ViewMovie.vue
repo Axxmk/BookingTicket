@@ -36,16 +36,6 @@
           >
             <MovieCardIF :movie="movie"></MovieCardIF>
           </v-col>
-
-          <!-- <v-col
-            class="d-flex justify-center align-center"
-            cols="12"
-            sm="6"
-            md="4"
-            lg="3"
-          >
-            <NewMovie v-if="isAdmin"></NewMovie>
-          </v-col> -->
         </v-row>
       </v-tab-item>
     </v-tabs-items>
@@ -56,7 +46,6 @@
 export default {
   components: {
     MovieCardIF: () => import("./MovieCardIF"),
-    // NewMovie: () => import("./NewMovie"),
   },
   props: {
     movies: {
@@ -68,7 +57,6 @@ export default {
     return {
       currentTab: null,
       tabs: ["Now Showing", "Coming Soon"],
-      // isAdmin: true,
     };
   },
 };

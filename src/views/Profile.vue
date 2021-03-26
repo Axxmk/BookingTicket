@@ -42,7 +42,7 @@ export default {
           theatre: "3",
           title: "Narnia",
           time: "14:50",
-          seat: ["A09", "C09"],
+          seat: ["A12", "C12"],
           date: "03 Apr 2021",
           price: 400,
           payment: "KBank",

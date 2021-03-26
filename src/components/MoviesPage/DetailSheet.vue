@@ -5,7 +5,7 @@
         <v-img
           width="100%"
           height="100%"
-          :src="`assets/poster/${movie.type}${movie.id}.jpg`"
+          :src="`assets/poster/${movie.id}.jpg`"
         ></v-img>
       </div>
 
