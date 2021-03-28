@@ -85,7 +85,7 @@
             <v-file-input
               class="pt-0"
               accept="image/jpg"
-              prepend-icon="mdi-camera"
+              prepend-icon="mdi-camera-burst"
               label="Pick A Poster"
             ></v-file-input>
           </v-col>

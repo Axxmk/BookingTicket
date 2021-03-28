@@ -67,30 +67,11 @@
 
       <template v-slot:expanded-item="{ headers, item }">
         <td class="pa-8" :colspan="headers.length">
-          <div class="d-flex mx-auto" style="width: 700px">
-            <v-img
-              width="200px"
-              height="auto"
-              :src="`assets/poster/${item.id}.jpg`"
-            ></v-img>
-            <div class="pa-5 d-flex flex-column justify-center">
-              <div>
-                <h4>Synopsis</h4>
-                {{ item.synopsis }}
-              </div>
-              <div>
-                <h4 class="mt-2">Genre</h4>
-                <div
-                  class="mr-1"
-                  style="display: inline-block"
-                  v-for="(genre, index) in item.genre"
-                  :key="index"
-                >
-                  {{ genre }}
-                </div>
-              </div>
-            </div>
-          </div>
+          <MoreInfo
+            :id="item.id"
+            :synopsis="item.synopsis"
+            :genre="item.genre"
+          ></MoreInfo>
         </td>
       </template>
     </v-data-table>
@@ -105,6 +86,7 @@ export default {
   components: {
     NewMovieData: () => import("../components/AdminPage/NewMovieData"),
     Admin: () => import("../components/AdminPage/DeleteSheet"),
+    MoreInfo: () => import("../components/AdminPage/MoreInfo"),
   },
   data() {
     return {
@@ -118,11 +100,11 @@ export default {
           value: "title",
           width: "150px",
         },
-        { text: "Theatre", value: "theatre", width: "130px" },
-        { text: "Type", value: "type", width: "130px" },
-        { text: "Release Date", value: "releaseDate", width: "130px" },
-        { text: "Profit", value: "profit", width: "130px" },
-        { text: "Actions", value: "actions", width: "110px", sortable: false },
+        { text: "Theatre", value: "theatre", width: "100px" },
+        { text: "Type", value: "type", width: "150px" },
+        { text: "Release Date", value: "releaseDate", width: "150px" },
+        { text: "Profit", value: "profit", width: "150px" },
+        { text: "Actions", value: "actions", width: "100px", sortable: false },
       ],
       editedIndex: -1,
       editedItem: {
@@ -322,10 +304,5 @@ export default {
   margin: 2rem 0;
   color: rgb(238, 247, 252);
   -webkit-text-stroke: 2.5px #ebc858;
-}
-h4 {
-  padding: 1% 0;
-  color: grey;
-  font-weight: 400;
 }
 </style>
