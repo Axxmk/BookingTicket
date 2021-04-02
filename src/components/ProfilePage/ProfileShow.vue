@@ -4,7 +4,10 @@
 
     <FullName :userInfo="userInfo"></FullName>
 
-    <Information :phone="userInfo.phone" :email="userInfo.email"></Information>
+    <Information
+      :phone="userInfo.contacts.phone"
+      :email="userInfo.contacts.email"
+    ></Information>
 
     <DialogEdit :userInfo="userInfo"></DialogEdit>
   </div>

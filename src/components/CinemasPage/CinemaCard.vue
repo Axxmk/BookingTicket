@@ -1,6 +1,6 @@
 <template>
   <v-card width="95%">
-    <p>Theatre {{ theatre.id }}</p>
+    <p>Theatre {{ theatre.theatreId }}</p>
     <div class="px-3">
       <v-img height="200" class="mx-1" src="../../assets/cinema.jpg"></v-img>
     </div>
@@ -10,7 +10,7 @@
       text
       class="yellow--text text--darken-1"
       link
-      :to="{ name: 'Booking', params: { id: theatre.id } }"
+      :to="{ name: 'Booking', params: { id: theatre.theatreId } }"
     >
       Buy Ticket
     </v-btn>

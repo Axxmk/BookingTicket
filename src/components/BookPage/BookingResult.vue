@@ -8,7 +8,7 @@
     <div class="checkout-part">
       <h3>Total Checkout</h3>
       <Checkout :price="ticket.price"></Checkout>
-      <p>Payment Method: {{ ticket.payment }}</p>
+      <p>Payment Method: Cash</p>
     </div>
   </div>
 </template>

@@ -19,7 +19,7 @@
 
         <v-slide-group v-model="dateSelect" mandatory show-arrows>
           <v-slide-item
-            v-for="(date, index) in theatreInfo.allDate"
+            v-for="(date, index) in theatreInfo.dates"
             :key="index"
             v-slot="{ active, toggle }"
           >
@@ -39,7 +39,7 @@
 
         <v-slide-group v-model="timeSelect" mandatory show-arrows>
           <v-slide-item
-            v-for="(time, index) in theatreInfo.allTime"
+            v-for="(time, index) in theatreInfo.times"
             :key="index"
             v-slot="{ active, toggle }"
           >
@@ -133,20 +133,7 @@
         </v-text-field>
 
         <h1>Payment Method</h1>
-        <v-radio-group v-model="payment" class="mt-0" row mandatory>
-          <v-radio
-            label="Credit / Debit"
-            value="Credit"
-            color="yellow darken-1"
-            class="mx-5"
-          ></v-radio>
-          <v-radio
-            label="KBank"
-            value="KBank"
-            color="yellow darken-1"
-            class="mx-5"
-          ></v-radio>
-        </v-radio-group>
+        <span style="color: grey">* Cash Only</span>
       </v-card>
 
       <v-btn
@@ -164,16 +151,38 @@
 
 <script>
 export default {
-  props: {
-    theatreInfo: Object,
-  },
   data() {
     return {
+      theatreInfo: {
+        dates: [
+          "2021-03-01",
+          "2021-03-02",
+          "2021-03-03",
+          "2021-03-04",
+          "2021-03-05",
+          "2021-03-06",
+          "2021-03-07",
+          "2021-03-08",
+          "2021-03-09",
+          "2021-03-10",
+        ],
+        times: ["11:50", "14:30", "15:50", "17:10", "19:50"],
+        availableSeat: [
+          "A12",
+          "A14",
+          "A20",
+          "B02",
+          "B08",
+          "B19",
+          "C10",
+          "C14",
+          "D20",
+        ],
+      },
       dateSelect: 0,
       timeSelect: 0,
       seatSelect: [],
       confirmEmail: "",
-      payment: "",
       steps: 1,
       rule: [
         (v) => !!v || "E-mail is required",
@@ -183,10 +192,10 @@ export default {
   },
   watch: {
     dateSelect(current) {
-      this.$emit("dataChange", this.theatreInfo.allDate[current], "date");
+      this.$emit("dataChange", this.theatreInfo.dates[current], "date");
     },
     timeSelect(current) {
-      this.$emit("dataChange", this.theatreInfo.allTime[current], "time");
+      this.$emit("dataChange", this.theatreInfo.times[current], "time");
     },
     seatSelect(current) {
       this.$emit("dataChange", current, "seat");
@@ -196,8 +205,8 @@ export default {
     },
   },
   mounted() {
-    this.$emit("dataChange", this.theatreInfo.allDate[this.dateSelect], "date");
-    this.$emit("dataChange", this.theatreInfo.allTime[this.timeSelect], "time");
+    this.$emit("dataChange", this.theatreInfo.dates[this.dateSelect], "date");
+    this.$emit("dataChange", this.theatreInfo.times[this.timeSelect], "time");
   },
 };
 </script>

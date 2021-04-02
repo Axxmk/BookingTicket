@@ -25,8 +25,10 @@ export default {
           lastname: "Kiatruangchai",
         },
         username: "jxymttk_",
-        email: "monthita.joy@mail.kmutt.ac.th",
-        phone: "0988575473",
+        contacts: {
+          email: "monthita.joy@mail.kmutt.ac.th",
+          phone: "0988575473",
+        },
       },
       tickets: [
         {

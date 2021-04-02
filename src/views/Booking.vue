@@ -1,9 +1,6 @@
 <template>
   <div class="part">
-    <BookingStep
-      :theatreInfo="theatreInfo"
-      @dataChange="dataChange"
-    ></BookingStep>
+    <BookingStep @dataChange="dataChange"></BookingStep>
     <BookingResult :ticket="ticket"></BookingResult>
   </div>
 </template>
@@ -96,32 +93,6 @@ export default {
   },
   data() {
     return {
-      theatreInfo: {
-        allDate: [
-          "2021-03-01",
-          "2021-03-02",
-          "2021-03-03",
-          "2021-03-04",
-          "2021-03-05",
-          "2021-03-06",
-          "2021-03-07",
-          "2021-03-08",
-          "2021-03-09",
-          "2021-03-10",
-        ],
-        allTime: ["11:50", "14:30", "15:50", "17:10", "19:50"],
-        availableSeat: [
-          "A12",
-          "A14",
-          "A20",
-          "B02",
-          "B08",
-          "B19",
-          "C10",
-          "C14",
-          "D20",
-        ],
-      },
       ticket: {
         theatre: "",
         title: "",

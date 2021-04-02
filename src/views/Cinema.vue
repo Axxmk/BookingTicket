@@ -38,27 +38,27 @@ export default {
     return {
       cinema: [
         {
-          id: 1,
+          theatreId: 1,
           movieShow: "Aladdin",
         },
         {
-          id: 2,
+          theatreId: 2,
           movieShow: "Avenger End Game",
         },
         {
-          id: 3,
+          theatreId: 3,
           movieShow: "Narnia",
         },
         {
-          id: 4,
+          theatreId: 4,
           movieShow: "Beauty and The Beast",
         },
         {
-          id: 5,
+          theatreId: 5,
           movieShow: "Enchanted",
         },
         {
-          id: 6,
+          theatreId: 6,
           movieShow: "Inside Out",
         },
       ],
