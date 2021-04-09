@@ -67,6 +67,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -91,9 +93,23 @@ export default {
         this.$refs.form.reset();
         return;
       } else {
-        this.$router.push({ name: "Home" });
-        this.$store.dispatch("setAuth", true);
-        this.$store.dispatch("setAdmin", true);
+        axios
+          .get(
+            `http://localhost:8081/account/login?username=${this.username}&password=${this.password}`
+          )
+          .then((response) => {
+            this.$store.dispatch("setAuth", response.data.isLogin);
+            this.$store.dispatch(
+              "setAdmin",
+              response.data.isLogin && response.data.user.isAdmin
+            );
+
+            if (response.data.isLogin) {
+              this.$router.push({ name: "Home" });
+            } else {
+              alert("Something wrong, Please try Again :(");
+            }
+          });
       }
     },
   },

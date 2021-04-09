@@ -1,14 +1,14 @@
 <template>
   <v-card>
     <v-card-title class="delete-text">
-      Are you sure to delete this Movie?
+      Are you sure to delete this showtime?
     </v-card-title>
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn color="blue darken-1" text @click="$emit('closeDelete')">
         Cancel
       </v-btn>
-      <v-btn color="blue darken-1" text @click="$emit('deleteItemConfirm')">
+      <v-btn color="blue darken-1" text @click="deleteShowtime">
         Confirm
       </v-btn>
       <v-spacer></v-spacer>
@@ -17,7 +17,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    showtimeId: Number,
+  },
+  methods: {
+    deleteShowtime() {
+      console.log(this.movieid);
+      this.$emit("closeDelete");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

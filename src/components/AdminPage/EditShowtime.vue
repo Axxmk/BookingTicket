@@ -124,25 +124,17 @@ export default {
         this.newShowtime.date &&
         this.newShowtime.time.length > 0
       ) {
-        this.$emit("addShowtime", this.newShowtime);
-        this.newShowtime = {
-          theatre: 0,
-          date: "",
-          time: [],
-        };
+        this.close();
       }
     },
     close() {
+      this.$emit("close");
       this.newShowtime = {
         theatre: 0,
         date: "",
         time: [],
       };
-      this.$emit("close");
     },
   },
 };
 </script>
-
-<style>
-</style>

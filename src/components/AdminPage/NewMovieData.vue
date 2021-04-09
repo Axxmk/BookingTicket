@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="pl-8 pt-5" style="color: #0361b9">
-      {{ formTitle }}
+      New Movie
     </v-card-title>
 
     <v-card-text class="pb-0">
@@ -9,14 +9,14 @@
         <v-row>
           <v-col cols="12">
             <v-text-field
-              v-model="editedItem.title"
+              v-model="newMovie.title"
               label="Movie Title"
             ></v-text-field>
           </v-col>
 
           <v-col cols="12" sm="7" md="7">
             <v-combobox
-              v-model="editedItem.genre"
+              v-model="newMovie.genre"
               :items="allGenre"
               label="Genre"
               item-color="blue lighten-2"
@@ -26,7 +26,7 @@
 
           <v-col cols="12" sm="5" md="5">
             <v-select
-              v-model="editedItem.status"
+              v-model="newMovie.status"
               :items="['Now Showing', 'Coming Soon']"
               label="Status"
               item-color="blue lighten-2"
@@ -35,15 +35,16 @@
 
           <v-col cols="12">
             <v-text-field
-              v-model="tmdbMovieId"
-              label="TMDB movie id (for Release Date, Revenue and Poster)"
+              type="Number"
+              v-model="newMovie.tmdbMovieId"
+              label="TMDB movie id (for Release Date, Revenue, Duration and Poster)"
             ></v-text-field>
           </v-col>
 
           <v-col cols="12">
             <v-textarea
               label="Synopsis"
-              v-model="editedItem.synopsis"
+              v-model="newMovie.synopsis"
               rows="3"
               filled
               background-color="#f8f8f8"
@@ -59,20 +60,22 @@
       <v-btn color="blue lighten-2" text @click="$emit('close')">
         Cancel
       </v-btn>
-      <v-btn color="blue lighten-2" text @click="$emit('save')"> Save </v-btn>
+      <v-btn color="blue lighten-2" text @click="addNew"> Save </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
 export default {
-  props: {
-    formTitle: String,
-    editedItem: Object,
-  },
   data() {
     return {
-      tmdbMovieId: 0,
+      newMovie: {
+        title: "",
+        status: "",
+        synopsis: "",
+        genre: "",
+        tmdbMovieId: 0,
+      },
       allGenre: [
         "Adventure",
         "Family",
@@ -84,11 +87,21 @@ export default {
         "Animation",
         "Sci-Fi",
       ],
-      // allTheatre: ["1", "2", "3", "4", "5", "6", "7", "8"],
     };
+  },
+  methods: {
+    addNew() {
+      if (
+        this.newMovie.title &&
+        this.newMovie.status &&
+        this.newMovie.synopsis &&
+        this.newMovie.genre &&
+        this.newMovie.tmdbMovieId
+      ) {
+        console.log(this.newMovie);
+        this.$emit("close");
+      }
+    },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

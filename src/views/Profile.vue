@@ -2,7 +2,7 @@
   <div class="wrapper">
     <TicketShow v-if="tickets.length > 0" :tickets="tickets"></TicketShow>
     <NoReservation v-else></NoReservation>
-    <ProfileShow :userInfo="userInfo"></ProfileShow>
+    <ProfileShow v-if="userInfo" :userInfo="userInfo"></ProfileShow>
   </div>
 </template>
 
