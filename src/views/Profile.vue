@@ -2,7 +2,7 @@
   <div class="wrapper">
     <TicketShow v-if="tickets.length > 0" :tickets="tickets"></TicketShow>
     <NoReservation v-else></NoReservation>
-    <ProfileShow v-if="userInfo" :userInfo="userInfo"></ProfileShow>
+    <ProfileShow v-if="user" :user="user"></ProfileShow>
   </div>
 </template>
 
@@ -16,20 +16,13 @@ export default {
     NoReservation: () => import("../components/ProfilePage/NoReservation"),
     ProfileShow: () => import("../components/ProfilePage/ProfileShow"),
   },
+  computed: {
+    user() {
+      return this.$store.getters.user;
+    },
+  },
   data() {
     return {
-      userInfo: {
-        avatar: "profile.jpg",
-        fullname: {
-          firstname: "Monthita",
-          lastname: "Kiatruangchai",
-        },
-        username: "jxymttk_",
-        contacts: {
-          email: "monthita.joy@mail.kmutt.ac.th",
-          phone: "0988575473",
-        },
-      },
       tickets: [
         {
           theatre: "1",
@@ -52,7 +45,6 @@ export default {
       ],
     };
   },
-  methods: {},
 };
 </script>
 

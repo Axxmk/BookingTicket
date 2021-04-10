@@ -25,7 +25,7 @@
 
       <v-list nav>
         <v-list-item
-          v-if="$store.state.isAuth"
+          v-if="$store.getters.isAuth"
           link
           :to="{ name: 'Profile' }"
           color="#56A3EB"
@@ -36,7 +36,7 @@
               :style="`background-image: url('assets/${userImage}')`"
             ></div>
           </v-list-item-icon>
-          <v-list-item-title>Profile</v-list-item-title>
+          <v-list-item-title>Account</v-list-item-title>
         </v-list-item>
 
         <v-list-item
@@ -53,7 +53,7 @@
         </v-list-item>
 
         <v-list-item
-          v-if="$store.state.isAdmin"
+          v-if="$store.getters.user.role"
           link
           :to="{ name: 'Admin' }"
           color="#56A3EB"
@@ -66,7 +66,7 @@
       </v-list>
 
       <v-list nav>
-        <template v-if="$store.state.isAuth">
+        <template v-if="$store.getters.isAuth">
           <v-list-item link color="#56A3EB" @click="logOut">
             <v-list-item-icon>
               <v-icon color="#56A3EB" medium>mdi-logout</v-icon>
@@ -102,8 +102,8 @@ export default {
   },
   methods: {
     logOut() {
-      this.$store.dispatch("setAuth", false);
-      this.$store.dispatch("setAdmin", false);
+      // this.$store.dispatch("setAuth", false);
+      // this.$store.dispatch("setAdmin", false);
     },
   },
 };

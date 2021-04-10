@@ -67,8 +67,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   data() {
     return {
@@ -89,32 +87,16 @@ export default {
   methods: {
     submitForm() {
       if (!this.valid || !this.username || !this.password) {
-        alert("Please corect your information :(");
+        alert("Incorrect username or password");
         this.$refs.form.reset();
         return;
       } else {
-        axios
-          .get(
-            `http://localhost:8081/account/login?username=${this.username}&password=${this.password}`
-          )
-          .then((response) => {
-            this.$store.dispatch("setAuth", response.data.isLogin);
-            this.$store.dispatch(
-              "setAdmin",
-              response.data.isLogin && response.data.user.isAdmin
-            );
-
-            if (response.data.isLogin) {
-              this.$router.push({ name: "Home" });
-            } else {
-              alert("Something wrong, Please try Again :(");
-            }
-          });
+        this.$store.dispatch("login", {
+          username: this.username,
+          password: this.password,
+        });
       }
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

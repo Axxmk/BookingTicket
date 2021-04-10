@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     deleteShowtime() {
-      console.log(this.movieid);
+      console.log(this.showtimeId);
       this.$emit("closeDelete");
     },
   },

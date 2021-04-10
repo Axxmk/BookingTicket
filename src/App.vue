@@ -17,9 +17,6 @@ export default {
   components: {
     SideBar: () => import("./components/SideBar"),
   },
-  data: () => ({
-    //
-  }),
 };
 </script>
 

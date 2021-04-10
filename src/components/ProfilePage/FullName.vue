@@ -1,22 +1,23 @@
 <template>
   <div class="name-part">
     <v-avatar width="15vw" height="auto" class="py-3">
-      <img :src="`assets/${userInfo.avatar}`" alt="Avatar" />
+      <img src="assets/profile.jpg" alt="Avatar" />
+      <!-- <img :src="`assets/${user.avatar}`" alt="Avatar" /> -->
     </v-avatar>
     <h2>{{ firstname }} {{ lastname }}</h2>
-    <span>{{ userInfo.username }}</span>
+    <span>{{ user.username }}</span>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    userInfo: Object,
+    user: Object,
   },
   data() {
     return {
-      firstname: this.userInfo.fullname.firstname,
-      lastname: this.userInfo.fullname.lastname,
+      firstname: this.user.fullname.firstname,
+      lastname: this.user.fullname.lastname,
     };
   },
 };

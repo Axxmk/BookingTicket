@@ -34,12 +34,10 @@ export default {
   metaInfo: {
     title: "Log in",
   },
-  data() {
-    return {
-      model: "login",
-      types: ["Login", "Sign Up"],
-    };
-  },
+  data: () => ({
+    model: "login",
+    types: ["Login", "Sign Up"],
+  }),
 };
 </script>
 <style lang="scss" scoped>

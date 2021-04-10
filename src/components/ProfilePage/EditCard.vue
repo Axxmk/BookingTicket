@@ -5,14 +5,14 @@
     <v-card-text>
       <v-form ref="form" v-model="valid">
         <NameField
-          :fullname="userInfo.fullname"
+          :fullname="user.fullname"
           :lastnameRule="rules.lastname"
           :firstnameRule="rules.firstname"
           color="#f6f6f6"
         ></NameField>
 
         <v-text-field
-          v-model="userInfo.email"
+          v-model="user.email"
           :rules="rules.email"
           clear-icon="mdi-close-circle"
           validate-on-blur
@@ -32,7 +32,7 @@
         </v-text-field>
 
         <v-text-field
-          v-model="userInfo.phone"
+          v-model="user.phone"
           :rules="rules.phone"
           clear-icon="mdi-close-circle"
           validate-on-blur
@@ -73,7 +73,7 @@ export default {
     NameField: () => import("../LoginPage/NameField"),
   },
   props: {
-    userInfo: Object,
+    user: Object,
   },
   data() {
     return {

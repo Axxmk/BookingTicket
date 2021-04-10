@@ -83,10 +83,6 @@ export default {
       this.deleteId = id;
       this.dialogDelete = true;
     },
-    deleteItemConfirm() {
-      console.log(this.deleteId);
-      this.dialogDelete = false;
-    },
   },
 };
 </script>

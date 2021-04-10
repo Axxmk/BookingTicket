@@ -2,14 +2,14 @@
   <div class="contain">
     <h2>Your Information</h2>
 
-    <FullName :userInfo="userInfo"></FullName>
+    <FullName :user="user"></FullName>
 
     <Information
-      :phone="userInfo.contacts.phone"
-      :email="userInfo.contacts.email"
+      :phone="user.contacts.phone"
+      :email="user.contacts.email"
     ></Information>
 
-    <DialogEdit :userInfo="userInfo"></DialogEdit>
+    <DialogEdit :user="user"></DialogEdit>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
     DialogEdit: () => import("./DialogEdit"),
   },
   props: {
-    userInfo: Object,
+    user: Object,
   },
   methods: {},
 };

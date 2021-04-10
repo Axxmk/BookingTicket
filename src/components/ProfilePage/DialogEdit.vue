@@ -13,7 +13,7 @@
       </v-btn>
     </template>
 
-    <EditCard :userInfo="userInfo" @closeDialog="dialog = false"></EditCard>
+    <EditCard :user="user" @closeDialog="dialog = false"></EditCard>
   </v-dialog>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     EditCard: () => import("./EditCard"),
   },
   props: {
-    userInfo: Object,
+    user: Object,
   },
   data() {
     return {
