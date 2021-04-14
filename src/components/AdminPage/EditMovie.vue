@@ -8,13 +8,16 @@
       <v-container>
         <v-row>
           <v-col cols="12">
-            <v-text-field v-model="title" label="Movie Title"></v-text-field>
+            <v-text-field
+              v-model="movie.title"
+              label="Movie Title"
+            ></v-text-field>
           </v-col>
 
           <v-col cols="12" sm="7" md="7">
             <v-combobox
               v-model="movie.genre"
-              :items="allGenre"
+              :items="genres"
               label="Genre"
               item-color="blue lighten-2"
               multiple
@@ -24,7 +27,7 @@
           <v-col cols="12" sm="5" md="5">
             <v-select
               v-model="movie.status"
-              :items="['Now Showing', 'Coming Soon']"
+              :items="['nowShowing', 'comingSoon']"
               label="Status"
               item-color="blue lighten-2"
             ></v-select>
@@ -112,7 +115,17 @@
 <script>
 export default {
   props: {
-    movie: Object,
+    movieId: Number,
+  },
+  computed: {
+    movie() {
+      return this.$store.getters.movies.find(
+        (movie) => movie.movieId == this.movieId
+      );
+    },
+    genres() {
+      return this.$store.getters.genres;
+    },
   },
   data() {
     return {
@@ -122,19 +135,21 @@ export default {
       status: "",
       allGenre: [
         "Adventure",
-        "Family",
         "Fantasy",
+        "Animation",
+        "Romance",
+        "Comedy",
         "Drama",
         "Action",
-        "Musical",
-        "Comedy",
-        "Animation",
+        "Family",
         "Sci-Fi",
+        "Musical",
+        "Horror",
+        "Romantic comedy",
+        "Sports",
+        "Thriller",
       ],
     };
-  },
-  mounted() {
-    this.title = this.movie.title;
   },
   methods: {
     update() {

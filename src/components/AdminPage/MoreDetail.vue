@@ -4,7 +4,7 @@
       class="rounded-lg"
       max-width="200px"
       height="auto"
-      :src="`assets/poster/${movie.id}.jpg`"
+      :src="movie.poster_path"
     ></v-img>
 
     <div class="pa-5 d-flex flex-column justify-space-around">
@@ -43,7 +43,7 @@
           </template>
 
           <EditShowtime
-            :movie_id="movie.id"
+            :movieId="movie.movieId"
             @close="dialog = false"
           ></EditShowtime>
         </v-dialog>

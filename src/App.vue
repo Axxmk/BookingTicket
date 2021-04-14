@@ -28,7 +28,6 @@ export default {
   #card-show {
     position: relative;
     max-width: 1440px;
-
     height: 100%;
     width: 100%;
   }

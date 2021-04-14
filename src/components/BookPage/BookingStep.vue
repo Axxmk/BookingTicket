@@ -200,9 +200,6 @@ export default {
     seatSelect(current) {
       this.$emit("dataChange", current, "seat");
     },
-    payment(current) {
-      this.$emit("dataChange", current, "payment");
-    },
   },
   mounted() {
     this.$emit("dataChange", this.theatreInfo.dates[this.dateSelect], "date");

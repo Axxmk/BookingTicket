@@ -57,18 +57,6 @@ export default {
     lastnameRule: Array,
     firstnameRule: Array,
   },
-  // watch: {
-  //   firstname(current) {
-  //     this.$emit("fillFn", current);
-  //   },
-  //   lastname(current) {
-  //     this.$emit("fillLn", current);
-  //   },
-  // },
-  // mounted() {
-  //   this.$emit("fillFn", this.firstname);
-  //   this.$emit("fillLn", this.lastname);
-  // },
 };
 </script>
 

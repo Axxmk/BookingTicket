@@ -1,7 +1,7 @@
 <template>
   <v-card class="price-box">
     <h4>Checkout</h4>
-    <div>$ {{ price }}</div>
+    <div>฿ {{ price }}</div>
   </v-card>
 </template>
 

@@ -19,7 +19,7 @@ export default {
     let id = this.$route.params.id;
     let movieList = [
       {
-        id: 1,
+        movieId: 1,
         title: "Aladdin",
         type: 1,
         theatre: "1",
@@ -30,7 +30,7 @@ export default {
         genre: "Adventure, Family, Fantasy",
       },
       {
-        id: 2,
+        movieId: 2,
         title: "Avenger End Game",
         type: 1,
         theatre: "2",
@@ -41,7 +41,7 @@ export default {
         genre: "Action, Adventure, Drama ",
       },
       {
-        id: 3,
+        movieId: 3,
         title: "Narnia",
         type: 1,
         theatre: "3",
@@ -52,7 +52,7 @@ export default {
         genre: "Adventure, Family, Fantasy",
       },
       {
-        id: 4,
+        movieId: 4,
         title: "Beauty and The Beast",
         type: 1,
         theatre: "4",
@@ -63,7 +63,7 @@ export default {
         genre: "Family, Fantasy, Musical",
       },
       {
-        id: 5,
+        movieId: 5,
         title: "Enchanted",
         type: 1,
         theatre: "5",
@@ -74,7 +74,7 @@ export default {
         genre: "Animation, Comedy, Family",
       },
       {
-        id: 6,
+        movieId: 6,
         title: "Inside Out",
         type: 1,
         theatre: "6",
@@ -86,7 +86,7 @@ export default {
       },
     ];
 
-    let selectMovie = movieList.find((movie) => movie.id == id);
+    let selectMovie = movieList.find((movie) => movie.theatre == id);
 
     this.ticket.theatre = selectMovie.theatre;
     this.ticket.title = selectMovie.title;
@@ -100,7 +100,6 @@ export default {
         seat: [],
         date: "",
         price: 0,
-        payment: "",
       },
     };
   },
@@ -116,9 +115,6 @@ export default {
           break;
         case "time":
           this.ticket.time = data;
-          break;
-        case "payment":
-          this.ticket.payment = data;
           break;
       }
     },

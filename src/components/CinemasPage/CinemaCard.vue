@@ -5,7 +5,7 @@
       <v-img height="200" class="mx-1" src="../../assets/cinema.jpg"></v-img>
     </div>
     <h5>Now Showing</h5>
-    <span>{{ theatre.movieShow }}</span>
+    <span>{{ theatre.movieTitle }}</span>
     <v-btn
       text
       class="yellow--text text--darken-1"

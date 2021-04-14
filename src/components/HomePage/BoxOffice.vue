@@ -8,7 +8,7 @@
         md="3"
         lg="3"
         v-for="(movie, index) in movies"
-        :key="movie.id"
+        :key="movie.movieId"
       >
         <v-container class="ranking">
           <span class="rank-number">{{ index + 1 }}</span>

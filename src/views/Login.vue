@@ -17,7 +17,7 @@
         <v-tabs-items v-model="model" class="my-6">
           <v-tab-item v-for="type in types" :key="type">
             <template v-if="type == 'Login'"><SignIn></SignIn></template>
-            <template v-else-if="type == 'Sign Up'"><SignUp></SignUp></template>
+            <template v-else> <Register></Register> </template>
           </v-tab-item>
         </v-tabs-items>
       </v-container>
@@ -29,17 +29,18 @@
 export default {
   components: {
     SignIn: () => import("../components/LoginPage/SignIn"),
-    SignUp: () => import("../components/LoginPage/SignUp"),
+    Register: () => import("../components/LoginPage/Register"),
   },
   metaInfo: {
     title: "Log in",
   },
   data: () => ({
     model: "login",
-    types: ["Login", "Sign Up"],
+    types: ["Login", "Register"],
   }),
 };
 </script>
+
 <style lang="scss" scoped>
 .whole-page {
   background-image: url("../assets/loginBg.png");

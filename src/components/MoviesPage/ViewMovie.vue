@@ -15,8 +15,8 @@
             sm="6"
             md="3"
             lg="3"
-            v-for="movie in movies.nowShowing"
-            :key="movie.id"
+            v-for="movie in nowShowing"
+            :key="movie.movieId"
           >
             <MovieCardIF :movie="movie"></MovieCardIF>
           </v-col>
@@ -31,8 +31,8 @@
             sm="6"
             md="3"
             lg="3"
-            v-for="movie in movies.comingSoon"
-            :key="movie.id"
+            v-for="movie in comingSoon"
+            :key="movie.movieId"
           >
             <MovieCardIF :movie="movie"></MovieCardIF>
           </v-col>
@@ -48,10 +48,8 @@ export default {
     MovieCardIF: () => import("./MovieCardIF"),
   },
   props: {
-    movies: {
-      nowShowing: Array,
-      comingSoon: Array,
-    },
+    nowShowing: Array,
+    comingSoon: Array,
   },
   data() {
     return {

@@ -2,7 +2,7 @@
   <v-hover>
     <template v-slot:default="{ hover }">
       <v-card class="mx-auto" max-width="75%" elevation="3" shaped>
-        <v-img :src="`assets/poster/${movie.id}.jpg`"></v-img>
+        <v-img :src="movie.poster_path"></v-img>
 
         <v-card-subtitle class="pa-0 pt-1 release-date">
           {{ movie.releaseDate }}
@@ -19,8 +19,8 @@
             <div class="d-flex flex-column">
               <v-btn
                 link
-                :to="{ name: 'Booking', params: { id: movie.id } }"
-                v-if="movie.type == 'Now Showing'"
+                :to="{ name: 'Booking', params: { id: movie.movieId } }"
+                v-if="movie.status == 'nowShowing'"
                 color="#f5f5f5"
                 class="yellow--text text--darken-3 mb-3"
               >
@@ -75,7 +75,7 @@ export default {
 .title-wrap {
   display: flex;
   justify-content: center;
-  font-size: 102%;
+  font-size: 98%;
 
   .title-movie {
     color: #186dbd;

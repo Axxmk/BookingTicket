@@ -5,7 +5,7 @@
     <v-row class="cinema-wrap">
       <v-col
         v-for="theatre in cinema"
-        :key="theatre.id"
+        :key="theatre.theatreId"
         cols="12"
         sm="6"
         md="4"
@@ -29,7 +29,7 @@
 <script>
 export default {
   metaInfo: {
-    title: "Cinemas",
+    title: "Cinema",
   },
   components: {
     CinemaCard: () => import("../components/CinemasPage/CinemaCard"),
@@ -39,27 +39,27 @@ export default {
       cinema: [
         {
           theatreId: 1,
-          movieShow: "Aladdin",
+          movieTitle: "Aladdin",
         },
         {
           theatreId: 2,
-          movieShow: "Avenger End Game",
+          movieTitle: "Avenger End Game",
         },
         {
           theatreId: 3,
-          movieShow: "Narnia",
+          movieTitle: "Narnia",
         },
         {
           theatreId: 4,
-          movieShow: "Beauty and The Beast",
+          movieTitle: "Beauty and The Beast",
         },
         {
           theatreId: 5,
-          movieShow: "Enchanted",
+          movieTitle: "Enchanted",
         },
         {
           theatreId: 6,
-          movieShow: "Inside Out",
+          movieTitle: "Inside Out",
         },
       ],
     };

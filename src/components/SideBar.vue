@@ -25,7 +25,7 @@
 
       <v-list nav>
         <v-list-item
-          v-if="$store.getters.isAuth"
+          v-if="isAuth"
           link
           :to="{ name: 'Profile' }"
           color="#56A3EB"
@@ -53,7 +53,7 @@
         </v-list-item>
 
         <v-list-item
-          v-if="$store.getters.user.role"
+          v-if="user.role"
           link
           :to="{ name: 'Admin' }"
           color="#56A3EB"
@@ -66,7 +66,7 @@
       </v-list>
 
       <v-list nav>
-        <template v-if="$store.getters.isAuth">
+        <template v-if="isAuth">
           <v-list-item link color="#56A3EB" @click="logOut">
             <v-list-item-icon>
               <v-icon color="#56A3EB" medium>mdi-logout</v-icon>
@@ -89,6 +89,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -100,10 +102,12 @@ export default {
       userImage: "profile.jpg",
     };
   },
+  computed: {
+    ...mapGetters(["isAuth", "user"]),
+  },
   methods: {
     logOut() {
-      // this.$store.dispatch("setAuth", false);
-      // this.$store.dispatch("setAdmin", false);
+      this.$store.dispatch("logout");
     },
   },
 };

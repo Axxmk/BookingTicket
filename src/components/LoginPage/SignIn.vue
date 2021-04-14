@@ -48,9 +48,7 @@
       </v-text-field>
     </v-form>
 
-    <div class="pt-2 d-flex justify-space-between align-center">
-      <v-btn color="grey" text> Forget your password? </v-btn>
-
+    <div class="pt-2 d-flex justify-end">
       <v-btn
         class="px-9 white--text"
         color="blue lighten-2"
@@ -86,16 +84,10 @@ export default {
   },
   methods: {
     submitForm() {
-      if (!this.valid || !this.username || !this.password) {
-        alert("Incorrect username or password");
-        this.$refs.form.reset();
-        return;
-      } else {
-        this.$store.dispatch("login", {
-          username: this.username,
-          password: this.password,
-        });
-      }
+      this.$store.dispatch("login", {
+        username: this.username,
+        password: this.password,
+      });
     },
   },
 };
