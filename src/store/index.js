@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import qs from 'qs'
 import router from '../router'
+import createPersistedState from 'vuex-persistedstate';
+import Cookies from 'js-cookie';
 
 Vue.use(Vuex)
 
@@ -28,6 +30,15 @@ export default new Vuex.Store({
       "Thriller",
     ],
   },
+
+  plugins: [createPersistedState({
+    paths: ['isAuth', 'user'],
+    storage: {
+      getItem: key => Cookies.get(key),
+      setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: false }),
+      removeItem: key => Cookies.remove(key)
+    }
+  })],
 
   getters: {
     isAuth: state => state.isAuth,
@@ -92,11 +103,12 @@ export default new Vuex.Store({
         .then(
           (response) => {
             if (response.data.success) {
+              alert("Register was successful")
               dispatch("login", { username: newUser.username, password: newUser.password });
             }
             else {
               console.log(response.data);
-              alert("Something wrong with your registration");
+              alert(response.data.error_reason);
             }
           },
           (error) => console.log(error)

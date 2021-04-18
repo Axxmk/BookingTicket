@@ -4,14 +4,17 @@
 
     <v-row class="cinema-wrap">
       <v-col
-        v-for="theatre in cinema"
-        :key="theatre.theatreId"
+        v-for="showtime in showtimes"
+        :key="showtime.theatre"
         cols="12"
         sm="6"
         md="4"
         lg="3"
       >
-        <CinemaCard :theatre="theatre"></CinemaCard>
+        <CinemaCard
+          :theatre="showtime.theatre"
+          :movieId="showtime.movieId"
+        ></CinemaCard>
       </v-col>
 
       <v-col
@@ -36,30 +39,34 @@ export default {
   },
   data() {
     return {
-      cinema: [
+      showtimes: [
         {
-          theatreId: 1,
-          movieTitle: "Aladdin",
+          theatre: 1,
+          movieId: 1,
         },
         {
-          theatreId: 2,
-          movieTitle: "Avenger End Game",
+          theatre: 2,
+          movieId: 2,
         },
         {
-          theatreId: 3,
-          movieTitle: "Narnia",
+          theatre: 3,
+          movieId: 3,
         },
         {
-          theatreId: 4,
-          movieTitle: "Beauty and The Beast",
+          theatre: 4,
+          movieId: 4,
         },
         {
-          theatreId: 5,
-          movieTitle: "Enchanted",
+          theatre: 5,
+          movieId: 5,
         },
         {
-          theatreId: 6,
-          movieTitle: "Inside Out",
+          theatre: 6,
+          movieId: 6,
+        },
+        {
+          theatre: 7,
+          movieId: 13,
         },
       ],
     };

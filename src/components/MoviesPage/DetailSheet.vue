@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <div class="d-flex flex-no-wrap justify-space-between">
+    <div class="d-flex justify-space-between">
       <div style="width: 220px">
         <v-img width="100%" height="100%" :src="movie.poster_path"></v-img>
       </div>
@@ -24,12 +24,11 @@
 
 <script>
 export default {
-  props: {
-    dialog: Boolean,
-    movie: Object,
-  },
   components: {
     DetailContent: () => import("./DetailContent"),
+  },
+  props: {
+    movie: Object,
   },
 };
 </script>

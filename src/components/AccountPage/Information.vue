@@ -2,12 +2,12 @@
   <div class="information">
     <div>
       <v-icon color="blue darken-1"> mdi-email </v-icon>
-      <span>{{ emailShow }}</span>
+      <span>{{ email }}</span>
     </div>
 
     <div>
       <v-icon color="blue darken-1"> mdi-phone </v-icon>
-      <span>{{ phoneShow }}</span>
+      <span>{{ phone }}</span>
     </div>
   </div>
 </template>
@@ -17,12 +17,6 @@ export default {
   props: {
     phone: String,
     email: String,
-  },
-  data() {
-    return {
-      phoneShow: this.phone,
-      emailShow: this.email,
-    };
   },
 };
 </script>
@@ -39,9 +33,6 @@ export default {
   & span {
     font-size: 1.05em;
     color: black;
-  }
-
-  @media screen and (max-width: 1042px) {
   }
 }
 </style>

@@ -41,7 +41,6 @@
         <v-dialog v-model="dialog" width="700">
           <DetailSheet
             :movie="movie"
-            :dialog="dialog"
             @closeDialog="dialog = false"
           ></DetailSheet>
         </v-dialog>
@@ -58,11 +57,9 @@ export default {
   props: {
     movie: Object,
   },
-  data() {
-    return {
-      dialog: false,
-    };
-  },
+  data: () => ({
+    dialog: false,
+  }),
 };
 </script>
 

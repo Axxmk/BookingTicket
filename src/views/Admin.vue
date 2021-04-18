@@ -71,11 +71,9 @@
             v-if="item.movieId == selectId"
             v-model="dialogEdit"
             max-width="550px"
+            persistent
           >
-            <EditMovie
-              :movieId="item.movieId"
-              @close="dialogEdit = false"
-            ></EditMovie>
+            <EditMovie :movie="movie" @close="dialogEdit = false"></EditMovie>
           </v-dialog>
 
           <v-dialog
@@ -119,31 +117,32 @@ export default {
       return this.$store.getters.movies;
     },
   },
-  data() {
-    return {
-      dialogNew: false,
-      dialogDelete: false,
-      dialogEdit: false,
-      selectId: 0,
-      headers: [
-        {
-          text: "Movie Title",
-          align: "start",
-          value: "title",
-        },
-        { text: "Status", value: "status" },
-        { text: "Release Date", value: "releaseDate" },
-        { text: "Duration", value: "duration" },
-        { text: "Revenue", value: "revenue" },
-        { text: "Actions", value: "actions", sortable: false },
-        { text: "", value: "data-table-expand" },
-      ],
-      editedIndex: -1,
-    };
-  },
+  data: () => ({
+    movie: {},
+    dialogNew: false,
+    dialogDelete: false,
+    dialogEdit: false,
+    selectId: 0,
+    headers: [
+      {
+        text: "Movie Title",
+        align: "start",
+        value: "title",
+      },
+      { text: "Status", value: "status" },
+      { text: "Release Date", value: "releaseDate" },
+      { text: "Duration", value: "duration" },
+      { text: "Revenue", value: "revenue" },
+      { text: "Actions", value: "actions", sortable: false },
+      { text: "", value: "data-table-expand" },
+    ],
+  }),
   methods: {
     movieAction(id, action) {
       if (action == "edit") {
+        this.movie = this.$store.getters.movies.find(
+          (movie) => movie.movieId == id
+        );
         this.selectId = id;
         this.dialogEdit = true;
       } else if (action == "delete") {

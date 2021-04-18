@@ -5,17 +5,16 @@
     <v-card-text>
       <v-form ref="form" v-model="valid">
         <NameField
-          :fullname="user.fullname"
+          :fullname="fullname"
           :lastnameRule="rules.lastname"
           :firstnameRule="rules.firstname"
           color="#f6f6f6"
         ></NameField>
 
         <v-text-field
-          v-model="user.email"
+          v-model="email"
           :rules="rules.email"
           clear-icon="mdi-close-circle"
-          validate-on-blur
           filled
           background-color="#f7f7f7"
           color="blue lighten-1"
@@ -32,10 +31,9 @@
         </v-text-field>
 
         <v-text-field
-          v-model="user.phone"
+          v-model="phone"
           :rules="rules.phone"
           clear-icon="mdi-close-circle"
-          validate-on-blur
           filled
           background-color="#f7f7f7"
           color="blue lighten-1"
@@ -57,12 +55,8 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="blue darken-1" text @click="$emit('closeDialog')">
-        Close
-      </v-btn>
-      <v-btn color="blue darken-1" text @click="$emit('closeDialog')">
-        Save
-      </v-btn>
+      <v-btn color="blue darken-1" text @click="close"> Close </v-btn>
+      <v-btn color="blue darken-1" text @click="update"> Save </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -90,7 +84,29 @@ export default {
           (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
         ],
       },
+      fullname: {
+        firstname: this.user.fullname.firstname,
+        lastname: this.user.fullname.lastname,
+      },
+      email: this.user.contacts.email,
+      phone: this.user.contacts.phone,
     };
+  },
+  methods: {
+    update() {
+      console.log(this.email);
+      this.$emit("closeDialog");
+    },
+    close() {
+      this.fullname = {
+        firstname: this.user.fullname.firstname,
+        lastname: this.user.fullname.lastname,
+      };
+      this.email = this.user.contacts.email;
+      this.phone = this.user.contacts.phone;
+
+      this.$emit("closeDialog");
+    },
   },
 };
 </script>

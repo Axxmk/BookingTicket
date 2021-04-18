@@ -2,9 +2,8 @@
   <div class="name-part">
     <v-avatar width="15vw" height="auto" class="py-3">
       <img src="assets/profile.jpg" alt="Avatar" />
-      <!-- <img :src="`assets/${user.avatar}`" alt="Avatar" /> -->
     </v-avatar>
-    <h2>{{ firstname }} {{ lastname }}</h2>
+    <h2>{{ user.fullname.firstname }} {{ user.fullname.lastname }}</h2>
     <span>{{ user.username }}</span>
   </div>
 </template>
@@ -13,12 +12,6 @@
 export default {
   props: {
     user: Object,
-  },
-  data() {
-    return {
-      firstname: this.user.fullname.firstname,
-      lastname: this.user.fullname.lastname,
-    };
   },
 };
 </script>

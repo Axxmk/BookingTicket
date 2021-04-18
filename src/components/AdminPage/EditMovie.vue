@@ -5,18 +5,15 @@
     </v-card-title>
 
     <v-card-text class="pb-0">
-      <v-container>
+      <v-form ref="form" v-model="valid">
         <v-row>
           <v-col cols="12">
-            <v-text-field
-              v-model="movie.title"
-              label="Movie Title"
-            ></v-text-field>
+            <v-text-field v-model="title" label="Movie Title"></v-text-field>
           </v-col>
 
           <v-col cols="12" sm="7" md="7">
             <v-combobox
-              v-model="movie.genre"
+              v-model="genre"
               :items="genres"
               label="Genre"
               item-color="blue lighten-2"
@@ -26,7 +23,7 @@
 
           <v-col cols="12" sm="5" md="5">
             <v-select
-              v-model="movie.status"
+              v-model="status"
               :items="['nowShowing', 'comingSoon']"
               label="Status"
               item-color="blue lighten-2"
@@ -36,7 +33,7 @@
           <v-col cols="12" sm="7" md="7">
             <v-text-field
               type="Number"
-              v-model="movie.duration"
+              v-model="duration"
               label="Duration"
             ></v-text-field>
           </v-col>
@@ -44,7 +41,7 @@
           <v-col cols="12" sm="5" md="5">
             <v-text-field
               type="Number"
-              v-model="movie.revenue"
+              v-model="revenue"
               label="Revenue"
             ></v-text-field>
           </v-col>
@@ -54,14 +51,14 @@
               ref="menu"
               v-model="menu"
               :close-on-content-click="false"
-              :return-value.sync="movie.releaseDate"
+              :return-value.sync="releaseDate"
               transition="scale-transition"
               offset-y
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="movie.releaseDate"
+                  v-model="releaseDate"
                   label="Release Date"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -70,7 +67,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="movie.releaseDate"
+                v-model="releaseDate"
                 color="blue lighten-2"
                 no-title
                 scrollable
@@ -80,7 +77,7 @@
                 <v-btn
                   text
                   color="primary"
-                  @click="$refs.menu.save(movie.releaseDate)"
+                  @click="$refs.menu.save(releaseDate)"
                 >
                   OK
                 </v-btn>
@@ -91,22 +88,20 @@
           <v-col cols="12">
             <v-textarea
               label="Synopsis"
-              v-model="movie.synopsis"
+              v-model="synopsis"
               rows="3"
               filled
               background-color="#f8f8f8"
             ></v-textarea>
           </v-col>
         </v-row>
-      </v-container>
+      </v-form>
     </v-card-text>
 
     <v-divider class="mx-6"></v-divider>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="blue lighten-2" text @click="$emit('close')">
-        Cancel
-      </v-btn>
+      <v-btn color="blue lighten-2" text @click="cancle"> Cancel </v-btn>
       <v-btn color="blue lighten-2" text @click="update"> Save </v-btn>
     </v-card-actions>
   </v-card>
@@ -115,14 +110,9 @@
 <script>
 export default {
   props: {
-    movieId: Number,
+    movie: Object,
   },
   computed: {
-    movie() {
-      return this.$store.getters.movies.find(
-        (movie) => movie.movieId == this.movieId
-      );
-    },
     genres() {
       return this.$store.getters.genres;
     },
@@ -130,40 +120,40 @@ export default {
   data() {
     return {
       menu: false,
-      title: "",
-      genre: "",
-      status: "",
-      allGenre: [
-        "Adventure",
-        "Fantasy",
-        "Animation",
-        "Romance",
-        "Comedy",
-        "Drama",
-        "Action",
-        "Family",
-        "Sci-Fi",
-        "Musical",
-        "Horror",
-        "Romantic comedy",
-        "Sports",
-        "Thriller",
-      ],
+      valid: true,
+      title: this.movie.title,
+      genre: this.movie.genre,
+      status: this.movie.status,
+      duration: this.movie.duration,
+      revenue: this.movie.revenue,
+      releaseDate: this.movie.releaseDate,
+      synopsis: this.movie.synopsis,
     };
   },
   methods: {
     update() {
       if (
-        this.movie.title &&
-        this.movie.status &&
-        this.movie.synopsis &&
-        this.movie.genre &&
-        this.movie.releaseDate &&
-        this.movie.duration
+        this.title &&
+        this.status &&
+        this.synopsis &&
+        this.genre &&
+        this.releaseDate &&
+        this.duration
       ) {
         console.log(this.movie);
         this.$emit("close");
       }
+    },
+    cancle() {
+      this.$emit("close");
+
+      this.title = this.movie.title;
+      this.genre = this.movie.genre;
+      this.status = this.movie.status;
+      this.duration = this.movie.duration;
+      this.revenue = this.movie.revenue;
+      this.releaseDate = this.movie.releaseDate;
+      this.synopsis = this.movie.synopsis;
     },
   },
 };

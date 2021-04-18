@@ -1,27 +1,34 @@
 <template>
   <v-card width="95%">
-    <p>Theatre {{ theatre.theatreId }}</p>
+    <p>Theatre {{ theatre }}</p>
     <div class="px-3">
       <v-img height="200" class="mx-1" src="../../assets/cinema.jpg"></v-img>
     </div>
     <h5>Now Showing</h5>
-    <span>{{ theatre.movieTitle }}</span>
-    <v-btn
-      text
-      class="yellow--text text--darken-1"
-      link
-      :to="{ name: 'Booking', params: { id: theatre.theatreId } }"
-    >
-      Buy Ticket
+    <!-- <span>{{ movie.title }}</span> -->
+    <v-btn text class="yellow--text text--darken-2" @click="dialog = true">
+      Movie Detail
     </v-btn>
+
+    <v-dialog v-model="dialog" width="700">
+      <DetailSheet @closeDialog="dialog = false"></DetailSheet>
+    </v-dialog>
   </v-card>
 </template>
 
 <script>
 export default {
-  props: {
-    theatre: Object,
+  components: {
+    DetailSheet: () => import("../MoviesPage/DetailSheet"),
   },
+  mounted() {},
+  props: {
+    theatre: Number,
+    movieId: Number,
+  },
+  data: () => ({
+    dialog: false,
+  }),
 };
 </script>
 
