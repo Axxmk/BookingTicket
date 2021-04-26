@@ -36,13 +36,11 @@ export default {
       comingSoon: "comingSoonMovies",
     }),
   },
-  data() {
-    return {
-      selectNowShowing: [],
-      selectComingSoon: [],
-      isSearch: false,
-    };
-  },
+  data: () => ({
+    selectNowShowing: [],
+    selectComingSoon: [],
+    isSearch: false,
+  }),
   methods: {
     search(key) {
       if (!key) {

@@ -8,7 +8,11 @@
       <v-form ref="form" v-model="valid">
         <v-row>
           <v-col cols="12">
-            <v-text-field v-model="title" label="Movie Title"></v-text-field>
+            <v-text-field
+              v-model="title"
+              label="Movie Title"
+              :rules="rule.name"
+            ></v-text-field>
           </v-col>
 
           <v-col cols="12" sm="7" md="7">
@@ -16,6 +20,7 @@
               v-model="genre"
               :items="genres"
               label="Genre"
+              :rules="rule.name"
               item-color="blue lighten-2"
               multiple
             ></v-combobox>
@@ -26,6 +31,7 @@
               v-model="status"
               :items="['nowShowing', 'comingSoon']"
               label="Status"
+              :rules="rule.name"
               item-color="blue lighten-2"
             ></v-select>
           </v-col>
@@ -35,6 +41,7 @@
               type="Number"
               v-model="duration"
               label="Duration"
+              :rules="rule.name"
             ></v-text-field>
           </v-col>
 
@@ -43,6 +50,7 @@
               type="Number"
               v-model="revenue"
               label="Revenue"
+              :rules="rule.name"
             ></v-text-field>
           </v-col>
 
@@ -62,6 +70,7 @@
                   label="Release Date"
                   prepend-icon="mdi-calendar"
                   readonly
+                  :rules="rule.name"
                   v-bind="attrs"
                   v-on="on"
                 ></v-text-field>
@@ -89,6 +98,7 @@
             <v-textarea
               label="Synopsis"
               v-model="synopsis"
+              :rules="rule.name"
               rows="3"
               filled
               background-color="#f8f8f8"
@@ -102,7 +112,9 @@
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn color="blue lighten-2" text @click="cancle"> Cancel </v-btn>
-      <v-btn color="blue lighten-2" text @click="update"> Save </v-btn>
+      <v-btn color="blue lighten-2" text type="submit" @click="update">
+        Save
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -120,7 +132,10 @@ export default {
   data() {
     return {
       menu: false,
-      valid: true,
+      valid: false,
+      rule: {
+        name: [(v) => !!v || "required"],
+      },
       title: this.movie.title,
       genre: this.movie.genre,
       status: this.movie.status,
@@ -132,15 +147,21 @@ export default {
   },
   methods: {
     update() {
-      if (
-        this.title &&
-        this.status &&
-        this.synopsis &&
-        this.genre &&
-        this.releaseDate &&
-        this.duration
-      ) {
-        console.log(this.movie);
+      if (this.valid) {
+        let data = {
+          movieId: this.movie.movieId,
+          detail: {
+            title: this.title,
+            status: this.status,
+            releaseDate: this.releaseDate,
+            revenue: Number(this.revenue),
+            duration: Number(this.duration),
+            synopsis: this.synopsis,
+            genre: this.genre.join(),
+          },
+        };
+
+        this.$store.dispatch("updateMovie", data);
         this.$emit("close");
       }
     },

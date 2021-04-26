@@ -61,7 +61,13 @@
               </v-icon>
             </td>
             <td>
-              <v-icon @click="expand(!isExpanded)" size="18">
+              <v-icon
+                @click="
+                  expand(!isExpanded);
+                  getShowtime(!isExpanded, item.movieId);
+                "
+                size="18"
+              >
                 mdi-chevron-down
               </v-icon>
             </td>
@@ -148,6 +154,11 @@ export default {
       } else if (action == "delete") {
         this.selectId = id;
         this.dialogDelete = true;
+      }
+    },
+    getShowtime(isExpanded, movieId) {
+      if (isExpanded) {
+        this.$store.dispatch("getShowtimes", movieId);
       }
     },
   },

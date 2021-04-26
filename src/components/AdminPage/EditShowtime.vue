@@ -10,7 +10,7 @@
           <v-row>
             <v-col cols="12" sm="5" md="5">
               <v-select
-                v-model="newShowtime.theatre"
+                v-model="theatre"
                 :items="allTheatre"
                 label="Theatre"
                 item-color="blue lighten-2"
@@ -22,14 +22,14 @@
                 ref="menu"
                 v-model="menu"
                 :close-on-content-click="false"
-                :return-value.sync="newShowtime.date"
+                :return-value.sync="date"
                 transition="scale-transition"
                 offset-y
                 min-width="auto"
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
-                    v-model="newShowtime.date"
+                    v-model="date"
                     label="Date"
                     prepend-icon="mdi-calendar"
                     readonly
@@ -38,27 +38,21 @@
                   ></v-text-field>
                 </template>
                 <v-date-picker
-                  v-model="newShowtime.date"
+                  v-model="date"
                   color="blue lighten-2"
                   no-title
                   scrollable
                 >
                   <v-spacer></v-spacer>
 
-                  <v-btn
-                    text
-                    color="primary"
-                    @click="$refs.menu.save(newShowtime.date)"
-                  >
-                    OK
-                  </v-btn>
+                  <v-btn text color="primary" @click="dateShow"> OK </v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
 
             <v-col cols="12">
               <v-combobox
-                v-model="newShowtime.time"
+                v-model="start_times"
                 :items="timeTable"
                 label="showtime"
                 item-color="blue lighten-2"
@@ -74,7 +68,7 @@
     <v-card-actions>
       <v-spacer></v-spacer>
       <v-btn color="blue lighten-2" text @click="close"> Cancel </v-btn>
-      <v-btn color="blue lighten-2" text @click="save"> Save </v-btn>
+      <v-btn color="blue lighten-2" text @click="addnew"> Save </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -84,54 +78,57 @@ export default {
   props: {
     movieId: Number,
   },
-  data() {
-    return {
-      menu: false,
-      newShowtime: {
-        theatre: 0,
-        date: "",
-        time: [],
-      },
-      timeTable: [
-        "10:00",
-        "10:30",
-        "11:00",
-        "11:30",
-        "12:00",
-        "12:30",
-        "13:00",
-        "13:30",
-        "14:00",
-        "14:30",
-        "15:00",
-        "15:30",
-        "16:00",
-        "16:30",
-        "17:00",
-        "17:30",
-        "18:00",
-        "18:30",
-        "19:00",
-        "19:30",
-        "20:00",
-        "20:30",
-      ],
-      allTheatre: ["1", "2", "3", "4", "5", "6", "7", "8"],
-    };
-  },
+  data: () => ({
+    menu: false,
+    theatre: 0,
+    date: "",
+    start_times: [],
+    timeTable: [
+      "10:00",
+      "10:30",
+      "11:00",
+      "11:30",
+      "12:00",
+      "12:30",
+      "13:00",
+      "13:30",
+      "14:00",
+      "14:30",
+      "15:00",
+      "15:30",
+      "16:00",
+      "16:30",
+      "17:00",
+      "17:30",
+      "18:00",
+      "18:30",
+      "19:00",
+      "19:30",
+      "20:00",
+      "20:30",
+    ],
+    allTheatre: ["1", "2", "3", "4", "5", "6", "7", "8"],
+  }),
   methods: {
-    save() {
-      if (
-        this.newShowtime.theatre &&
-        this.newShowtime.date &&
-        this.newShowtime.time.length > 0
-      ) {
+    addnew() {
+      if (this.theatre && this.date && this.start_times.length > 0) {
+        let newShowtime = {
+          movieId: this.movieId,
+          theatre: Number(this.theatre),
+          date: this.date,
+          start_times: this.start_times.join(),
+        };
+
+        this.$store.dispatch("addShowtime", newShowtime);
         this.close();
       }
     },
     close() {
       this.$refs.form.reset();
       this.$emit("close");
+    },
+    dateShow() {
+      this.$refs.menu.save(this.date);
     },
   },
 };

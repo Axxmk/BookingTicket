@@ -25,25 +25,25 @@
       <tr>
         <td>{{ item.theatre }}</td>
         <td>{{ item.date }}</td>
+        <td>{{ item.start_time }}</td>
         <td>
-          <div class="py-1" v-for="(time, index) in item.time" :key="index">
-            {{ time }}
-          </div>
-        </td>
-        <td>
-          <v-icon small color="blue lighten-2" @click="deleteItem(item.id)">
+          <v-icon
+            small
+            color="blue lighten-2"
+            @click="deleteItem(item.showtimeId)"
+          >
             mdi-delete
           </v-icon>
         </td>
       </tr>
 
       <v-dialog
-        v-if="item.id == deleteId"
+        v-if="item.showtimeId == deleteId"
         v-model="dialogDelete"
         max-width="400px"
       >
         <DeleteShowtime
-          :showtimeId="item.id"
+          :showtimeId="item.showtimeId"
           @closeDelete="dialogDelete = false"
         ></DeleteShowtime>
       </v-dialog>
@@ -56,8 +56,10 @@ export default {
   components: {
     DeleteShowtime: () => import("./DeleteShowtime"),
   },
-  props: {
-    movieId: Number,
+  computed: {
+    showtimes() {
+      return this.$store.getters.showtimes;
+    },
   },
   data() {
     return {
@@ -75,7 +77,6 @@ export default {
         { text: "showtime", value: "time", filterable: false },
         { text: "Actions", value: "actions", sortable: false },
       ],
-      showtimes: [],
     };
   },
   methods: {

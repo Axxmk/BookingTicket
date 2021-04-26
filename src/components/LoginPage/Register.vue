@@ -12,7 +12,6 @@
         background-color="white"
         rounded
         dense
-        required
       >
         <template v-slot:label>
           <v-icon style="vertical-align: middle" color="blue lighten-2">
@@ -34,7 +33,6 @@
         background-color="white"
         rounded
         dense
-        required
       >
         <template v-slot:label>
           <v-icon style="vertical-align: middle" color="blue lighten-2">
@@ -62,7 +60,6 @@
         background-color="white"
         rounded
         dense
-        required
       >
         <template v-slot:label>
           <v-icon style="vertical-align: middle" color="blue lighten-2">
@@ -83,7 +80,6 @@
         background-color="white"
         rounded
         dense
-        required
       >
         <template v-slot:label>
           <v-icon style="vertical-align: middle" color="blue lighten-2">

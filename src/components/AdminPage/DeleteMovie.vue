@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     deleteMovie() {
-      console.log(this.movieid);
+      this.$store.dispatch("deleteMovie", this.movieId);
       this.$emit("closeDelete");
     },
   },

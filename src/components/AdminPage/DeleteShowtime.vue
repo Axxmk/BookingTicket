@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     deleteShowtime() {
-      console.log(this.showtimeId);
+      this.$store.dispatch("deleteShowtime", this.showtimeId);
       this.$emit("closeDelete");
     },
   },

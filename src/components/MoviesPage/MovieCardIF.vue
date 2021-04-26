@@ -18,8 +18,7 @@
           <v-overlay v-if="hover" absolute color="#B0BEC5">
             <div class="d-flex flex-column">
               <v-btn
-                link
-                :to="{ name: 'Booking', params: { id: movie.movieId } }"
+                @click="buyTicket"
                 v-if="movie.status == 'nowShowing'"
                 color="#f5f5f5"
                 class="yellow--text text--darken-3 mb-3"
@@ -60,6 +59,18 @@ export default {
   data: () => ({
     dialog: false,
   }),
+  methods: {
+    buyTicket() {
+      if (this.$store.getters.isAuth) {
+        this.$router.push({
+          name: "Booking",
+          params: { id: this.movie.movieId },
+        });
+      } else {
+        this.$router.push({ name: "Login" });
+      }
+    },
+  },
 };
 </script>
 
