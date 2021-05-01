@@ -13,7 +13,7 @@
     <div class="part-row">
       <div>
         <span>ShowTime</span>
-        <div>{{ ticket.time }}</div>
+        <div>{{ ticket.start_time }}</div>
       </div>
 
       <div>

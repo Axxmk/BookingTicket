@@ -1,17 +1,20 @@
 <template>
-  <v-card width="95%">
-    <p>Theatre {{ theatre }}</p>
+  <v-card max-width="95%" class="cinema-card">
+    <p>Theatre {{ showtime.showtimeInfo.theatre }}</p>
     <div class="px-3">
       <v-img height="200" class="mx-1" src="../../assets/cinema.jpg"></v-img>
     </div>
     <h5>Now Showing</h5>
-    <!-- <span>{{ movie.title }}</span> -->
-    <v-btn text class="yellow--text text--darken-2" @click="dialog = true">
+    <span>{{ showtime.movie.title }}</span>
+    <v-btn text plain class="movie-btn" @click="dialog = true">
       Movie Detail
     </v-btn>
 
     <v-dialog v-model="dialog" width="700">
-      <DetailSheet @closeDialog="dialog = false"></DetailSheet>
+      <DetailSheet
+        @closeDialog="dialog = false"
+        :movie="showtime.movie"
+      ></DetailSheet>
     </v-dialog>
   </v-card>
 </template>
@@ -21,10 +24,8 @@ export default {
   components: {
     DetailSheet: () => import("../MoviesPage/DetailSheet"),
   },
-  mounted() {},
   props: {
-    theatre: Number,
-    movieId: Number,
+    showtime: Object,
   },
   data: () => ({
     dialog: false,
@@ -33,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-sheet.v-card {
+.cinema-card {
   transition: all 0.2s ease-in-out;
   margin: 2% auto;
   padding: 3%;
@@ -61,10 +62,15 @@ export default {
 
   & span {
     display: block;
-    font-size: 1.1em;
-    font-weight: 500;
+    font-size: 1.15em;
+    font-weight: 400;
     padding: 0 7%;
     margin-bottom: 2%;
+  }
+
+  .movie-btn {
+    color: #f4c430;
+    font-size: 13.5px;
   }
 }
 </style>

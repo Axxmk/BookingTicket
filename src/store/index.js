@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import authen from './modules/authen';
 import movie from './modules/movie';
 import showtime from './modules/showtime';
+import booking from './modules/booking';
 
 Vue.use(Vuex)
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     authen,
     movie,
     showtime,
+    booking,
   },
 
 })

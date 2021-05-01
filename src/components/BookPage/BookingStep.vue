@@ -4,7 +4,7 @@
     vertical
     style="background-color: #f5f5f5; box-shadow: none"
   >
-    <v-stepper-step :complete="steps > 1" step="1" editable>
+    <v-stepper-step :complete="steps > 1" step="1">
       Select Showtime
       <small class="pt-1">Date & Time</small>
     </v-stepper-step>
@@ -12,15 +12,16 @@
     <v-stepper-content step="1">
       <v-card
         color="white"
-        class="mb-12 pa-4 d-flex flex-column align-center justify-center"
+        class="mb-12 pb-10 pa-4 d-flex flex-column align-center justify-center"
         height="fit-content"
       >
         <h1>Date</h1>
 
-        <v-slide-group v-model="dateSelect" mandatory show-arrows>
+        <v-slide-group v-model="bookingInfo.date" mandatory show-arrows>
           <v-slide-item
-            v-for="(date, index) in theatreInfo.dates"
+            v-for="(date, index) in dates"
             :key="index"
+            :value="date"
             v-slot="{ active, toggle }"
           >
             <v-btn
@@ -35,35 +36,60 @@
           </v-slide-item>
         </v-slide-group>
 
-        <h1>Time</h1>
+        <template v-if="start_times.length > 0">
+          <h1>Time</h1>
 
-        <v-slide-group v-model="timeSelect" mandatory show-arrows>
-          <v-slide-item
-            v-for="(time, index) in theatreInfo.times"
-            :key="index"
-            v-slot="{ active, toggle }"
-          >
-            <v-btn
-              class="mx-2"
-              :input-value="active"
-              active-class="yellow darken-1 white--text"
-              depressed
-              rounded
-              @click="toggle"
+          <v-slide-group v-model="bookingInfo.start_time" show-arrows>
+            <v-slide-item
+              v-for="(time, index) in start_times"
+              :key="index"
+              :value="time"
+              v-slot="{ active, toggle }"
             >
-              {{ time }}
-            </v-btn>
-          </v-slide-item>
-        </v-slide-group>
+              <v-btn
+                class="mx-2"
+                :input-value="active"
+                active-class="yellow darken-1 white--text"
+                depressed
+                @click="toggle"
+              >
+                {{ time }}
+              </v-btn>
+            </v-slide-item>
+          </v-slide-group>
+        </template>
+
+        <template v-if="theatres.length > 0">
+          <h1>Theatre</h1>
+
+          <v-slide-group v-model="bookingInfo.theatre" mandatory show-arrows>
+            <v-slide-item
+              v-for="(theatre, index) in theatres"
+              :key="index"
+              :value="theatre"
+              v-slot="{ active, toggle }"
+            >
+              <v-btn
+                class="mx-2"
+                :input-value="active"
+                active-class="yellow darken-1 white--text"
+                depressed
+                @click="toggle"
+              >
+                {{ theatre }}
+              </v-btn>
+            </v-slide-item>
+          </v-slide-group>
+        </template>
       </v-card>
 
-      <v-btn color="blue lighten-1" class="white--text" @click="steps = 2">
+      <v-btn color="blue lighten-1" class="white--text" @click="nextToStep2">
         Continue
       </v-btn>
       <v-btn text class="mx-3" disabled> Back </v-btn>
     </v-stepper-content>
 
-    <v-stepper-step :complete="steps > 2" step="2" editable>
+    <v-stepper-step :complete="steps > 2" step="2">
       Select Seat
     </v-stepper-step>
 
@@ -81,8 +107,8 @@
         <v-subheader v-text="'(preview only)'"></v-subheader>
         <v-select
           style="width: 300px"
-          v-model="seatSelect"
-          :items="theatreInfo.availableSeat"
+          v-model="bookingInfo.seat"
+          :items="bookingSeats"
           label="Available Seats"
           multiple
           chips
@@ -93,15 +119,13 @@
         ></v-select>
       </v-card>
 
-      <v-btn color="blue lighten-1" class="white--text" @click="steps = 3">
+      <v-btn color="blue lighten-1" class="white--text" @click="nextToStep3">
         Continue
       </v-btn>
       <v-btn text class="mx-3" @click="steps = 1"> Back </v-btn>
     </v-stepper-content>
 
-    <v-stepper-step :complete="steps > 3" step="3" editable>
-      Payment
-    </v-stepper-step>
+    <v-stepper-step :complete="steps > 3" step="3"> Payment </v-stepper-step>
 
     <v-stepper-content step="3">
       <v-card
@@ -111,7 +135,7 @@
       >
         <h1>Confirmation</h1>
         <v-text-field
-          v-model="confirmEmail"
+          v-model="bookingInfo.confirmEmail"
           :rules="rule"
           clear-icon="mdi-close-circle"
           clearable
@@ -136,12 +160,7 @@
         <span style="color: grey">* Cash Only</span>
       </v-card>
 
-      <v-btn
-        color="yellow darken-1"
-        class="white--text"
-        link
-        :to="{ name: 'Home' }"
-      >
+      <v-btn color="yellow darken-1" class="white--text" @click="buyTicket">
         Buy Ticket
       </v-btn>
       <v-btn text class="mx-3" @click="steps = 2"> Back </v-btn>
@@ -150,60 +169,54 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {
-      theatreInfo: {
-        dates: [
-          "2021-03-01",
-          "2021-03-02",
-          "2021-03-03",
-          "2021-03-04",
-          "2021-03-05",
-          "2021-03-06",
-          "2021-03-07",
-          "2021-03-08",
-          "2021-03-09",
-          "2021-03-10",
-        ],
-        times: ["11:50", "14:30", "15:50", "17:10", "19:50"],
-        availableSeat: [
-          "A12",
-          "A14",
-          "A20",
-          "B02",
-          "B08",
-          "B19",
-          "C10",
-          "C14",
-          "D20",
-        ],
-      },
-      dateSelect: 0,
-      timeSelect: 0,
-      seatSelect: [],
-      confirmEmail: "",
-      steps: 1,
-      rule: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      ],
-    };
-  },
-  watch: {
-    dateSelect(current) {
-      this.$emit("dataChange", this.theatreInfo.dates[current], "date");
-    },
-    timeSelect(current) {
-      this.$emit("dataChange", this.theatreInfo.times[current], "time");
-    },
-    seatSelect(current) {
-      this.$emit("dataChange", current, "seat");
-    },
-  },
   mounted() {
-    this.$emit("dataChange", this.theatreInfo.dates[this.dateSelect], "date");
-    this.$emit("dataChange", this.theatreInfo.times[this.timeSelect], "time");
+    this.$store.dispatch("bookingShowtime", this.$route.params.id);
+  },
+  computed: {
+    ...mapGetters([
+      "dates",
+      "start_times",
+      "theatres",
+      "bookingSeats",
+      "bookingInfo",
+      "showtimeId",
+    ]),
+  },
+  data: () => ({
+    steps: 1,
+    rule: [
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
+  }),
+  methods: {
+    nextToStep2() {
+      if (
+        this.bookingInfo.date &&
+        this.bookingInfo.start_time &&
+        this.bookingInfo.theatre
+      ) {
+        this.$store.dispatch("bookingSeats", this.showtimeId);
+        this.steps = 2;
+      } else {
+        if (!this.bookingInfo.start_time) alert("Please select time");
+        else alert("somting went wrong");
+      }
+    },
+    nextToStep3() {
+      let seatCount = this.bookingInfo.seat.length;
+      if (seatCount > 0) {
+        this.bookingInfo.price = seatCount * 200;
+        this.steps = 3;
+      } else alert("Please select seat");
+    },
+    buyTicket() {
+      if (this.bookingInfo.confirmEmail) console.log(this.showtimeId);
+      else alert("Please fill confirm email");
+    },
   },
 };
 </script>

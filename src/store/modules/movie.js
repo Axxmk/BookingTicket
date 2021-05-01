@@ -47,9 +47,12 @@ const actions = {
 	getMovies({ commit }) {
 		axios
 			.get('/movies')
-			.then((response) => {
-				commit("set_movies", response.data.movies);
-			});
+			.then(
+				(response) => {
+					commit("set_movies", response.data.movies);
+				},
+				(error) => console.log(error)
+			);
 	},
 
 	addMovie(_app, newMovie) {

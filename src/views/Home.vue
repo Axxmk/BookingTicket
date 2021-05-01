@@ -38,6 +38,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$base-color: #f4c430;
+
 #part-flex {
   display: flex;
   flex-direction: column;
@@ -51,8 +53,8 @@ export default {
 
     & hr {
       width: 270px;
-      border: 1px solid #f7e78d;
-      background-color: #f7e78d;
+      border: 1px solid $base-color;
+      background-color: $base-color;
     }
 
     & h1 {
@@ -60,15 +62,15 @@ export default {
       padding: 0 2.5%;
       font-size: 3.7vw;
       color: transparent;
-      -webkit-text-stroke: 2px #ebc858;
+      -webkit-text-stroke: 2px $base-color;
     }
   }
 
   .line {
     margin: 3% 0;
     width: 40vw;
-    border: 1.5px solid #f7e78d;
-    background-color: #f7e78d;
+    border: 1.5px solid $base-color;
+    background-color: $base-color;
   }
 }
 </style>

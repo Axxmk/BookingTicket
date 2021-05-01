@@ -12,25 +12,6 @@
         ></NameField>
 
         <v-text-field
-          v-model="username"
-          :rules="rules.username"
-          clear-icon="mdi-close-circle"
-          filled
-          background-color="#f7f7f7"
-          color="blue lighten-1"
-          dense
-          rounded
-          required
-        >
-          <template v-slot:label>
-            <v-icon style="vertical-align: middle" color="blue lighten-2">
-              mdi-account
-            </v-icon>
-            Username
-          </template>
-        </v-text-field>
-
-        <v-text-field
           v-model="email"
           :rules="rules.email"
           clear-icon="mdi-close-circle"
@@ -112,7 +93,6 @@ export default {
         firstname: this.user.fullname.firstname,
         lastname: this.user.fullname.lastname,
       },
-      username: this.user.username,
       email: this.user.contacts.email,
       phone: this.user.contacts.phone,
     };
@@ -123,7 +103,6 @@ export default {
         let newData = {
           userId: this.user.userId,
           detail: {
-            username: this.username,
             firstname: this.fullname.firstname,
             lastname: this.fullname.lastname,
             email: this.email,
@@ -141,7 +120,6 @@ export default {
         firstname: this.user.fullname.firstname,
         lastname: this.user.fullname.lastname,
       };
-      this.username = this.user.username;
       this.email = this.user.contacts.email;
       this.phone = this.user.contacts.phone;
 

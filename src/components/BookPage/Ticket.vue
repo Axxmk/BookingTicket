@@ -20,7 +20,7 @@ export default {
       if (this.ticket.seat.length > 0) {
         return (
           this.ticket.title.substring(0, 2) +
-          this.ticket.time.substring(0, 2) +
+          this.ticket.start_time.substring(0, 2) +
           this.ticket.theatre +
           this.ticket.seat[0]
         );

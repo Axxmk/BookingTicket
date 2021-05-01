@@ -2,30 +2,27 @@
   <div>
     <h1 class="header">Cinema</h1>
 
-    <v-row class="cinema-wrap">
-      <v-col
-        v-for="showtime in showtimes"
-        :key="showtime.theatre"
-        cols="12"
-        sm="6"
-        md="4"
-        lg="3"
-      >
-        <CinemaCard
-          :theatre="showtime.theatre"
-          :movieId="showtime.movieId"
-        ></CinemaCard>
-      </v-col>
+    <div v-if="showtimes.length > 0">
+      <v-row class="cinema-wrap">
+        <v-col
+          v-for="showtime in showtimes"
+          :key="showtime.theatre"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+        >
+          <CinemaCard :showtime="showtime"></CinemaCard>
+        </v-col>
+      </v-row>
+    </div>
 
-      <v-col
-        class="d-flex justify-center align-center"
-        cols="12"
-        sm="6"
-        md="4"
-        lg="3"
-      >
-      </v-col>
-    </v-row>
+    <div v-else class="no-movie">
+      <span>No Movie Showtime Right Now</span>
+      <v-btn link :to="{ name: 'Movies' }" color="white" class="yellow--text">
+        See Movies
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -37,39 +34,13 @@ export default {
   components: {
     CinemaCard: () => import("../components/CinemasPage/CinemaCard"),
   },
-  data() {
-    return {
-      showtimes: [
-        {
-          theatre: 1,
-          movieId: 1,
-        },
-        {
-          theatre: 2,
-          movieId: 2,
-        },
-        {
-          theatre: 3,
-          movieId: 3,
-        },
-        {
-          theatre: 4,
-          movieId: 4,
-        },
-        {
-          theatre: 5,
-          movieId: 5,
-        },
-        {
-          theatre: 6,
-          movieId: 6,
-        },
-        {
-          theatre: 7,
-          movieId: 13,
-        },
-      ],
-    };
+  mounted() {
+    this.$store.dispatch("getNowShowing");
+  },
+  computed: {
+    showtimes() {
+      return this.$store.getters.nowShowingShowtime;
+    },
   },
 };
 </script>
@@ -81,10 +52,23 @@ export default {
 
   margin: 2rem 0;
   color: transparent;
-  -webkit-text-stroke: 2.5px #ebc858;
+  -webkit-text-stroke: 2.5px #f4c430;
 }
 
 .cinema-wrap {
   margin: 0 6rem;
+}
+
+.no-movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & span {
+    padding: 10% 0 2% 0;
+    font-size: 1.7vw;
+    color: rgba(0, 0, 0, 0.541);
+  }
 }
 </style>

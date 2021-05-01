@@ -21,7 +21,6 @@
               <v-menu
                 ref="menu"
                 v-model="menu"
-                :close-on-content-click="false"
                 :return-value.sync="date"
                 transition="scale-transition"
                 offset-y
@@ -40,12 +39,9 @@
                 <v-date-picker
                   v-model="date"
                   color="blue lighten-2"
-                  no-title
                   scrollable
+                  @change="$refs.menu.save(date)"
                 >
-                  <v-spacer></v-spacer>
-
-                  <v-btn text color="primary" @click="dateShow"> OK </v-btn>
                 </v-date-picker>
               </v-menu>
             </v-col>
@@ -126,9 +122,6 @@ export default {
     close() {
       this.$refs.form.reset();
       this.$emit("close");
-    },
-    dateShow() {
-      this.$refs.menu.save(this.date);
     },
   },
 };

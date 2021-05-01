@@ -45,7 +45,6 @@ const actions = {
 	},
 
 	addShowtime(_app, newShowtime) {
-		// console.log(newShowtime);
 		axios
 			.post('/showtimes', newShowtime)
 			.then(
@@ -58,7 +57,6 @@ const actions = {
 	},
 
 	deleteShowtime(_app, showtimeId) {
-		// console.log(showtimeId);
 		axios
 			.delete(`/showtimes/${showtimeId}`)
 			.then(

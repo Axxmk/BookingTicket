@@ -67,6 +67,6 @@ export default {
 
   margin-top: 2rem;
   color: transparent;
-  -webkit-text-stroke: 2.5px #ebc858;
+  -webkit-text-stroke: 2.5px #f4c430;
 }
 </style>

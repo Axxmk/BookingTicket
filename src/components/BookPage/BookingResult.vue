@@ -19,8 +19,10 @@ export default {
     Ticket: () => import("./Ticket"),
     Checkout: () => import("./Checkout"),
   },
-  props: {
-    ticket: Object,
+  computed: {
+    ticket() {
+      return this.$store.getters.bookingInfo;
+    },
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="name-part">
     <v-avatar width="15vw" height="auto" class="py-3">
-      <img src="assets/profile.jpg" alt="Avatar" />
+      <img :src="user.avatar_url" alt="Avatar" />
     </v-avatar>
     <h2>{{ user.fullname.firstname }} {{ user.fullname.lastname }}</h2>
     <span>{{ user.username }}</span>

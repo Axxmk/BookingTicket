@@ -58,7 +58,6 @@
             <v-menu
               ref="menu"
               v-model="menu"
-              :close-on-content-click="false"
               :return-value.sync="releaseDate"
               transition="scale-transition"
               offset-y
@@ -78,18 +77,9 @@
               <v-date-picker
                 v-model="releaseDate"
                 color="blue lighten-2"
-                no-title
                 scrollable
+                @change="$refs.menu.save(releaseDate)"
               >
-                <v-spacer></v-spacer>
-
-                <v-btn
-                  text
-                  color="primary"
-                  @click="$refs.menu.save(releaseDate)"
-                >
-                  OK
-                </v-btn>
               </v-date-picker>
             </v-menu>
           </v-col>

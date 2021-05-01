@@ -31,10 +31,7 @@
           color="#56A3EB"
         >
           <v-list-item-icon>
-            <div
-              class="avatar"
-              :style="`background-image: url('assets/${userImage}')`"
-            ></div>
+            <img class="avatar" :src="user.avatar_url" />
           </v-list-item-icon>
           <v-list-item-title>Account</v-list-item-title>
         </v-list-item>
@@ -99,7 +96,6 @@ export default {
         { name: "Movies", icon: "mdi-movie-open" },
         { name: "Cinema", icon: "mdi-theater" },
       ],
-      userImage: "profile.jpg",
     };
   },
   computed: {
