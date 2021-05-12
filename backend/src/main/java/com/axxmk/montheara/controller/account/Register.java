@@ -8,7 +8,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Connection;
@@ -32,7 +31,7 @@ public class Register {
             Connection connection = MySQLConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "INSERT INTO user (username, password, firstname, lastname, phone, email, avatar_url) " +
-                            "VALUE (?, ?, ?, ?, ?, ?, ?)"
+                            "VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
@@ -67,15 +66,15 @@ public class Register {
     JavaMailSender javaMailSender;
 
     @PostMapping(path = "/account/register/mail")
-    public Map<String, Object> sendMail(@RequestParam String email) {
+    public Map<String, Object> sendMail(@RequestBody User user) {
         Map<String, Object> res = new HashMap<>();
 
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(email);
+        msg.setTo(user.getEmail());
         msg.setFrom("montheara@axxmk.ga");
         msg.setSubject("Login Successfully");
-        msg.setText("Hello, This is email from Ann, Monthara. Your registration was successful. " +
-                "Thank you for visiting and booking ticket with my website. " +
+        msg.setText("Hello, This is email from Montheara. Your registration was successful. " +
+                "Thank you for visiting and booking ticket with our website. " +
                 "Hope you have a great experience. Thank you, Ann (Founder of Montheara)");
 
         javaMailSender.send(msg);
