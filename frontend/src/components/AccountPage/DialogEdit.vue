@@ -105,7 +105,7 @@ export default {
         };
 
         this.$store.dispatch("updateUser", newData);
-        this.this.$emit("closeDialog");
+        this.$emit("closeDialog");
       }
     },
   },

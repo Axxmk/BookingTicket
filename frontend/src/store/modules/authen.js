@@ -80,8 +80,6 @@ const actions = {
 			.put(`/account/${newData.userId}`, newData.detail)
 			.then(
 				(response) => {
-					location.reload();
-
 					commit("set_user", response.data.user);
 					Cookies.set("token", response.data.token, { expires: 3, secure: false });
 				},

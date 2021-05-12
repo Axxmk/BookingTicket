@@ -61,9 +61,13 @@ const actions = {
 			.post('/movies', newMovie)
 			.then(
 				(response) => {
-					console.log(response.data)
-					dispatch("getMovies");
-
+					console.log(response.data);
+					if (response.data.success) {
+						dispatch("getMovies");
+					}
+					else {
+						alert(response.data.error_reason);
+					}
 				},
 				(error) => console.log(error)
 			);

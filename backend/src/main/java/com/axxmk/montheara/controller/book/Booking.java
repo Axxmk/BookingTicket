@@ -44,7 +44,17 @@ public class Booking {
                 showtimes.add(showtime);
             }
             res.put("showtimes", showtimes);
-            res.put("success", true);
+
+            preparedStatement = connection.prepareStatement(
+                    "SELECT title FROM movie WHERE id = ?"
+            );
+            preparedStatement.setInt(1, movieId);
+
+            rs = preparedStatement.executeQuery();
+            if(rs.next()) {
+                res.put("movieTitle", rs.getString("title"));
+                res.put("success", true);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

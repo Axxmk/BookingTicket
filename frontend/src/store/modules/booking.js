@@ -1,4 +1,5 @@
 import axios from '../../util/axios'
+import router from '../../router'
 
 const state = () => ({
 	bookingShowtimes: [],
@@ -18,6 +19,7 @@ const getters = {
 	bookingShowtimes: (state) => state.bookingShowtimes,
 	bookingSeats: (state) => state.bookingSeats,
 	bookingInfo: (state) => state.bookingInfo,
+	dialog: (state) => state.dialog,
 
 	dates: (state) => {
 		let list = state.bookingShowtimes.map(showtime => showtime.date);
@@ -65,7 +67,7 @@ const mutations = {
 }
 
 const actions = {
-	bookingShowtime({ commit, rootGetters }, movieId) {
+	bookingShowtime({ commit }, movieId) {
 		console.log(movieId);
 		axios
 			.get(`/booking/showtimes/${movieId}`)
@@ -73,9 +75,7 @@ const actions = {
 				(response) => {
 					console.log(response.data);
 					commit("set_bookingShowtimes", response.data.showtimes);
-
-					let movie = rootGetters.movies.find((movie) => movie.id == movieId);
-					commit("set_bookingInfo_title", movie.title);
+					commit("set_bookingInfo_title", response.data.movieTitle);
 				},
 				(error) => console.log(error)
 			);
@@ -94,13 +94,14 @@ const actions = {
 			);
 	},
 
-	checkPassword(_app, data) {
+	checkPassword({ commit }, data) {
 		axios
 			.post('/booking/check', data)
 			.then(
 				(response) => {
 					if (response.data.success) {
-						alert("password is correct");
+						console.log(response.data);
+						commit("set_dialog", true);
 					}
 					else alert(response.data.error_reason);
 				},
@@ -108,15 +109,45 @@ const actions = {
 			);
 	},
 
-	buyTicket(_app, data) {
+	buyTicket({ dispatch, commit }, data) {
 		axios
 			.post('/tickets', data)
 			.then(
 				(response) => {
 					console.log(response.data);
+					dispatch("sendMail");
+					commit("set_dialog", false);
+					router.push({ name: "Home" });
 				},
 				(error) => console.log(error)
 			);
+	},
+
+	sendMail({ getters }) {
+		let info = getters.bookingInfo;
+		let ticket = {
+			title: info.title,
+			theatre: Number(info.theatre),
+			date: info.date,
+			start_time: info.start_time,
+			seatNumbers: info.seat.join(),
+			price: Number(info.price),
+		};
+
+		axios
+			.post('/tickets/mail', ticket)
+			.then(
+				(response) => {
+					console.log(response.data);
+					if (response.data.success) {
+						alert("We have already sent you an email");
+					}
+					else {
+						alert(response.data.error_reason);
+					}
+				},
+				(error) => console.log(error)
+			)
 	},
 
 	clearInfo({ commit }) {

@@ -15,9 +15,7 @@
     </v-card-text>
 
     <v-card-actions class="d-flex justify-end">
-      <v-btn color="grey" plain text @click="$emit('closeDialog')">
-        Cancle
-      </v-btn>
+      <v-btn color="grey" plain text @click="close"> Cancle </v-btn>
       <v-btn color="primary" plain text @click="buyTicket">Confirm</v-btn>
     </v-card-actions>
   </v-card>
@@ -48,6 +46,9 @@ export default {
         };
         this.$store.dispatch("buyTicket", data);
       } else alert("Please fill the checkbox");
+    },
+    close() {
+      this.$store.commit("set_dialog", false);
     },
   },
 };
