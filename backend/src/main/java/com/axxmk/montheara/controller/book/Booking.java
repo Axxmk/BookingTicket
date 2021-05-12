@@ -26,11 +26,10 @@ public class Booking {
         try {
             Connection connection = MySQLConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM showtime WHERE movieId = ? AND start_time >= ? AND start_time <= ? ORDER BY start_time"
+                    "SELECT * FROM showtime WHERE movieId = ? AND start_time >= current_timestamp AND start_time <= ? ORDER BY start_time"
             );
             preparedStatement.setInt(1, movieId);
-            preparedStatement.setTimestamp(2, now);
-            preparedStatement.setTimestamp(3, sevenDays);
+            preparedStatement.setTimestamp(2, sevenDays);
 
             ResultSet rs = preparedStatement.executeQuery();
 

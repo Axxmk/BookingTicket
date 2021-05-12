@@ -14,7 +14,7 @@ public class MySQLConnection {
     private static Connection connection;
 
     public static Connection getConnection() throws SQLException {
-        if (!connection.isValid(300)) {
+        if (!connection.isValid(200)) {
             return reConnect();
         }
         return connection;

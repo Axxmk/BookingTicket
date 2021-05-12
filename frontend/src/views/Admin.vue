@@ -39,7 +39,9 @@
         <template v-slot:item="{ item, expand, isExpanded }">
           <tr>
             <td>{{ item.title }}</td>
-            <td>{{ item.status }}</td>
+            <td>
+              {{ display[item.status] }}
+            </td>
             <td>{{ item.releaseDate }}</td>
             <td>{{ item.duration }}</td>
             <td>{{ item.revenue }}</td>
@@ -124,6 +126,7 @@ export default {
     },
   },
   data: () => ({
+    display: { nowShowing: "Now Showing", comingSoon: "Coming Soon" },
     movie: {},
     dialogNew: false,
     dialogDelete: false,

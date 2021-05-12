@@ -97,16 +97,11 @@ export default {
   // mounted() {
   //   this.$store.dispatch("bookingShowtime", this.$route.params.id);
   // },
-  // computed: {
-  //   ...mapGetters([
-  //     "dates",
-  //     "start_times",
-  //     "theatres",
-  //     "bookingSeats",
-  //     "bookingInfo",
-  //     "showtimeId",
-  //   ]),
-  // },
+  computed: {
+    bookingInfo() {
+      return this.$store.getters.bookingInfo;
+    },
+  },
   data: () => ({
     steps: 1,
     rule: [(v) => !!v || "Password is required."],

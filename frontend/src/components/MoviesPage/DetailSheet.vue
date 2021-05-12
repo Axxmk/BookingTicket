@@ -5,7 +5,7 @@
         <v-img width="100%" height="100%" :src="movie.poster_path"></v-img>
       </div>
 
-      <div class="mx-2 d-flex flex-column justify-space-between">
+      <div class="mx-2 d-flex flex flex-column justify-space-between">
         <DetailContent :movie="movie"></DetailContent>
 
         <div class="ma-2">

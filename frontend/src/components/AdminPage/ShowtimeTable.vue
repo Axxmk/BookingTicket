@@ -74,7 +74,7 @@ export default {
           filterable: false,
         },
         { text: "Date", value: "date" },
-        { text: "showtime", value: "time", filterable: false },
+        { text: "Showtime", value: "time", filterable: false },
         { text: "Actions", value: "actions", sortable: false },
       ],
     };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="header">Cinema</h1>
+    <h1 class="header">Theatre</h1>
 
     <div v-if="showtimes.length > 0">
       <v-row class="cinema-wrap">

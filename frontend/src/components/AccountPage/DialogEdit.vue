@@ -83,7 +83,7 @@ export default {
       lastname: [(v) => !!v || "LastName is required."],
       phone: [
         (v) => !!v || "Phone Number is required.",
-        (v) => (v && v.length == 10) || "Phone Number must be 10 digits",
+        (v) => /[0]{1}[0-9]{9}/.test(v) || "Phone Number must be 10 digits",
       ],
       email: [
         (v) => !!v || "E-mail is required",

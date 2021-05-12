@@ -25,7 +25,9 @@
             <v-col cols="12" sm="5" md="5">
               <v-select
                 v-model="status"
-                :items="['nowShowing', 'comingSoon']"
+                :items="statuses"
+                item-text="text"
+                item-value="value"
                 label="Status"
                 item-color="blue lighten-2"
               ></v-select>
@@ -75,6 +77,16 @@ export default {
     genre: "",
     synopsis: "",
     tmdbId: 0,
+    statuses: [
+      {
+        text: "Now Showing",
+        value: "nowShowing",
+      },
+      {
+        text: "Coming Soon",
+        value: "comingSoon",
+      },
+    ],
   }),
   methods: {
     addNew() {

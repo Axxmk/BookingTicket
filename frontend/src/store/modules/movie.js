@@ -55,36 +55,38 @@ const actions = {
 			);
 	},
 
-	addMovie(_app, newMovie) {
+	addMovie({ dispatch }, newMovie) {
+		console.log(newMovie);
 		axios
 			.post('/movies', newMovie)
 			.then(
 				(response) => {
-					location.reload();
 					console.log(response.data)
+					dispatch("getMovies");
+
 				},
 				(error) => console.log(error)
 			);
 	},
 
-	updateMovie(_app, data) {
+	updateMovie({ dispatch }, data) {
 		axios
 			.put(`/movies/${data.movieId}`, data.detail)
 			.then(
 				(response) => {
-					location.reload();
+					dispatch("getMovies");
 					console.log(response.data)
 				},
 				(error) => console.log(error)
 			);
 	},
 
-	deleteMovie(_app, movieId) {
+	deleteMovie({ dispatch }, movieId) {
 		axios
 			.delete(`/movies/${movieId}`)
 			.then(
 				(response) => {
-					location.reload();
+					dispatch("getMovies");
 					console.log(response.data)
 				},
 				(error) => console.log(error)
