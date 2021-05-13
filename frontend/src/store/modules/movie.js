@@ -92,6 +92,16 @@ const actions = {
 				(response) => {
 					dispatch("getMovies");
 					console.log(response.data)
+					dispatch("showNotification",
+						{
+							message: {
+								color: "success",
+								text: "Delete movie was successful",
+							},
+							snackbar: true,
+						},
+						{ root: true }
+					);
 				},
 				(error) => console.log(error)
 			);

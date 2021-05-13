@@ -38,7 +38,6 @@ export default {
   }),
   methods: {
     open() {
-      console.log(this.user);
       this.userEdit = {
         ...this.user,
         contacts: { ...this.user.contacts },
@@ -50,7 +49,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .contain {
   position: fixed;
   right: 0;
@@ -70,5 +69,8 @@ export default {
     padding-bottom: 2%;
     color: rgba(0, 0, 0, 0.493);
   }
+}
+.v-dialog {
+  border-radius: 20px;
 }
 </style>

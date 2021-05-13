@@ -135,16 +135,18 @@ export default {
       lastname: [(v) => !!v || "LastName is required."],
       phone: [
         (v) => !!v || "Phone Number is required.",
-        (v) => (v && v.length == 10) || "Phone Number must be 10 digits",
+        (v) =>
+          /[0]{1}[0-9]{9}/.test(v) ||
+          "Phone Number must be 10 digits and 0xx-xxx-xxxx",
       ],
       email: [
         (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+        (v) => /.+@.+\.(com|ac.th)/.test(v) || "E-mail must be valid",
       ],
     },
   }),
   methods: {
-    createAccount() {
+    async createAccount() {
       if (!this.valid) {
         alert("Please correct your inform");
         return;
@@ -158,9 +160,11 @@ export default {
         phone: this.phone,
         email: this.email,
       };
+      await this.$store.dispatch("register", newUser);
 
-      this.$store.dispatch("register", newUser);
-      this.$refs.form.reset();
+      if (this.$store.isLogin) {
+        this.$refs.form.reset();
+      }
     },
   },
 };

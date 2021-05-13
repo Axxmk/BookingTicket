@@ -24,7 +24,7 @@
       <StepThree @backStep="steps = 2"></StepThree>
     </v-stepper-content>
 
-    <v-dialog v-model="dialog" width="550">
+    <v-dialog v-model="dialog" width="550" persistent>
       <DialogInfo></DialogInfo>
     </v-dialog>
   </v-stepper>
@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .v-stepper--vertical {
   width: 70%;
   padding: 4%;
@@ -69,6 +69,6 @@ export default {
 }
 
 .v-dialog {
-  border-radius: 20px;
+  border-radius: 30px;
 }
 </style>

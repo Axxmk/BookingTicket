@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="header">Admin Dashboard</h1>
+    <h1 class="page-name">Admin Dashboard</h1>
     <div style="width: 90%" class="mx-auto">
       <v-data-table
         :headers="headers"
@@ -103,6 +103,7 @@
         </template>
       </v-data-table>
     </div>
+    <SnackBar></SnackBar>
   </div>
 </template>
 
@@ -116,6 +117,7 @@ export default {
     EditMovie: () => import("../components/AdminPage/EditMovie"),
     DeleteMovie: () => import("../components/AdminPage/DeleteMovie"),
     MoreInfo: () => import("../components/AdminPage/MoreInfo"),
+    SnackBar: () => import("../components/SnackBar"),
   },
   mounted() {
     this.$store.dispatch("getMovies");
@@ -170,13 +172,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.header {
+<style lang="scss" >
+.page-name {
   text-align: center;
   font-size: 4.7vw;
 
   margin: 2rem 0;
   color: rgb(238, 247, 252);
   -webkit-text-stroke: 2.5px #ebc858;
+}
+
+.v-dialog {
+  border-radius: 20px;
 }
 </style>

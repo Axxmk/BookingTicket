@@ -2,6 +2,7 @@
   <div class="part">
     <BookingStep></BookingStep>
     <BookingResult></BookingResult>
+    <SnackBar></SnackBar>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ export default {
   components: {
     BookingStep: () => import("../components/BookPage/BookingStep"),
     BookingResult: () => import("../components/BookPage/BookingResult"),
+    SnackBar: () => import("../components/SnackBar"),
   },
   mounted() {
     this.$store.dispatch("clearInfo");

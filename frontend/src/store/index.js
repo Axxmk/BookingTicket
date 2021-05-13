@@ -8,6 +8,7 @@ import movie from './modules/movie';
 import showtime from './modules/showtime';
 import booking from './modules/booking';
 import ticket from './modules/ticket';
+import notification from './modules/notification';
 
 Vue.use(Vuex)
 
@@ -28,6 +29,7 @@ export default new Vuex.Store({
     showtime,
     booking,
     ticket,
+    notification,
   },
 
 })

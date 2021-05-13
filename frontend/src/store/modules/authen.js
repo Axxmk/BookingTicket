@@ -59,29 +59,35 @@ const actions = {
 		axios
 			.post("/account/register", newUser)
 			.then(
-				(response) => {
-					if (response.data.success) {
-						console.log(response.data);
-						alert("Register was successful")
-
-						dispatch("login", { username: newUser.username, password: newUser.password });
+				async (response) => {
+					const data = response.data;
+					console.log(data);
+					if (data.success) {
+						await dispatch("login", { username: newUser.username, password: newUser.password });
+						dispatch("showSuccess", "Register was successful", { root: true });
 					}
 					else {
-						console.log(response.data);
-						alert(response.data.error_reason);
+						dispatch("showError", data.error_reason, { root: true });
 					}
 				},
 				(error) => console.log(error)
 			);
 	},
 
-	updateUser({ commit }, newData) {
+	updateUser({ commit, dispatch }, newData) {
 		axios
 			.put(`/account/${newData.userId}`, newData.detail)
 			.then(
 				(response) => {
-					commit("set_user", response.data.user);
-					Cookies.set("token", response.data.token, { expires: 3, secure: false });
+					const data = response.data;
+					if (data.success) {
+						commit("set_user", data.user);
+						Cookies.set("token", data.token, { expires: 3, secure: false });
+						dispatch("showSuccess", "Information has been updated", { root: true });
+					}
+					else {
+						dispatch("showError", data.error_reason, { root: true });
+					}
 				},
 				(error) => console.log(error)
 			);

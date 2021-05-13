@@ -42,8 +42,15 @@ export default {
         });
       } else {
         this.$router.push({ name: "Login" });
+        this.$store.dispatch("showError", "Please login before booking");
       }
     },
   },
 };
 </script>
+
+<style lang="scss" >
+.v-dialog {
+  border-radius: 20px;
+}
+</style>

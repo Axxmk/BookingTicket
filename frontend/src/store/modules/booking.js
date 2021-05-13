@@ -68,7 +68,7 @@ const mutations = {
 
 const actions = {
 	bookingShowtime({ commit }, movieId) {
-		console.log(movieId);
+		console.log("movie id : " + movieId);
 		axios
 			.get(`/booking/showtimes/${movieId}`)
 			.then(

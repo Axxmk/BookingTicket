@@ -44,25 +44,33 @@ const actions = {
 			);
 	},
 
-	addShowtime(_app, newShowtime) {
+	addShowtime({ dispatch }, newShowtime) {
 		axios
 			.post('/showtimes', newShowtime)
 			.then(
 				(response) => {
-					location.reload();
-					console.log(response.data)
+					const data = response.data;
+					console.log(data)
+					if (data.success)
+						dispatch("showSuccess", "Add showtime was successful", { root: true });
+					else
+						dispatch("showError", data.error_reason, { root: true });
 				},
 				(error) => console.log(error)
 			);
 	},
 
-	deleteShowtime(_app, showtimeId) {
+	deleteShowtime({ dispatch }, showtimeId) {
 		axios
 			.delete(`/showtimes/${showtimeId}`)
 			.then(
 				(response) => {
-					location.reload();
-					console.log(response.data)
+					const data = response.data;
+					console.log(data)
+					if (data.success)
+						dispatch("showSuccess", "Delete showtime was successful", { root: true });
+					else
+						dispatch("showError", data.error_reason, { root: true });
 				},
 				(error) => console.log(error)
 			);

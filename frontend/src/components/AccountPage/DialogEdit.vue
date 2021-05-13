@@ -74,11 +74,6 @@ export default {
   data: () => ({
     valid: true,
     rules: {
-      username: [
-        (v) => !!v || "Username is required",
-        (v) =>
-          (v && v.length <= 15) || "Username must be less than 15 characters",
-      ],
       firstname: [(v) => !!v || "FirstName is required."],
       lastname: [(v) => !!v || "LastName is required."],
       phone: [
@@ -87,7 +82,7 @@ export default {
       ],
       email: [
         (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+        (v) => /.+@.+\.(com|ac.th)/.test(v) || "E-mail must be valid",
       ],
     },
   }),

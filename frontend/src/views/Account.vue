@@ -3,6 +3,7 @@
     <NoReservation v-if="tickets.length == 0"></NoReservation>
     <TicketShow v-else :tickets="tickets"></TicketShow>
     <ProfileShow v-if="user" :user="user"></ProfileShow>
+    <SnackBar></SnackBar>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
     TicketShow: () => import("../components/AccountPage/TicketShow"),
     NoReservation: () => import("../components/AccountPage/NoReservation"),
     ProfileShow: () => import("../components/AccountPage/ProfileShow"),
+    SnackBar: () => import("../components/SnackBar"),
   },
   mounted() {
     this.$store.dispatch("getTicket");

@@ -68,6 +68,7 @@ export default {
         });
       } else {
         this.$router.push({ name: "Login" });
+        this.$store.dispatch("showError", "Please login before booking");
       }
     },
   },

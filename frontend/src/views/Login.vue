@@ -22,6 +22,7 @@
         </v-tabs-items>
       </v-container>
     </div>
+    <SnackBar></SnackBar>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ export default {
   components: {
     SignIn: () => import("../components/LoginPage/SignIn"),
     Register: () => import("../components/LoginPage/Register"),
+    SnackBar: () => import("../components/SnackBar"),
   },
   metaInfo: {
     title: "Log in",

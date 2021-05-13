@@ -9,6 +9,7 @@
     <ViewMovie :nowShowing="nowShowing" :comingSoon="comingSoon"></ViewMovie>
     <hr class="line" />
     <BoxOffice :movies="ranking"></BoxOffice>
+    <SnackBar></SnackBar>
   </div>
 </template>
 
@@ -20,6 +21,7 @@ export default {
     Carousel: () => import("../components/HomePage/Carousel"),
     ViewMovie: () => import("../components/MoviesPage/ViewMovie"),
     BoxOffice: () => import("../components/HomePage/BoxOffice"),
+    SnackBar: () => import("../components/SnackBar"),
   },
   metaInfo: {
     title: "Home",
