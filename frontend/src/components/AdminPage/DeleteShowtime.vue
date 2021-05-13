@@ -20,10 +20,15 @@
 export default {
   props: {
     showtimeId: Number,
+    movieId: Number,
   },
   methods: {
     deleteShowtime() {
-      this.$store.dispatch("deleteShowtime", this.showtimeId);
+      let data = {
+        showtimeId: this.showtimeId,
+        movieId: this.movieId,
+      };
+      this.$store.dispatch("deleteShowtime", data);
       this.$emit("closeDelete");
     },
   },

@@ -44,7 +44,7 @@ export default {
       if (seatCount > 0) {
         this.bookingInfo.price = seatCount * 200;
         this.$emit("nextStep");
-      } else alert("Please select seat");
+      } else this.$store.dispatch("showError", "Please select seat");
     },
   },
 };

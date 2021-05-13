@@ -67,8 +67,4 @@ export default {
     }
   }
 }
-
-.v-dialog {
-  border-radius: 30px;
-}
 </style>

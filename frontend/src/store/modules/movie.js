@@ -61,13 +61,14 @@ const actions = {
 			.post('/movies', newMovie)
 			.then(
 				(response) => {
-					console.log(response.data);
-					if (response.data.success) {
+					const data = response.data;
+					console.log(data)
+					if (data.success) {
 						dispatch("getMovies");
+						dispatch("showSuccess", "Add movie was successful", { root: true });
 					}
-					else {
-						alert(response.data.error_reason);
-					}
+					else dispatch("showError", data.error_reason, { root: true });
+
 				},
 				(error) => console.log(error)
 			);
@@ -78,8 +79,13 @@ const actions = {
 			.put(`/movies/${data.movieId}`, data.detail)
 			.then(
 				(response) => {
-					dispatch("getMovies");
-					console.log(response.data)
+					const data = response.data;
+					console.log(data)
+					if (data.success) {
+						dispatch("getMovies");
+						dispatch("showSuccess", "Update movie was successful", { root: true });
+					}
+					else dispatch("showError", data.error_reason, { root: true });
 				},
 				(error) => console.log(error)
 			);
@@ -90,18 +96,13 @@ const actions = {
 			.delete(`/movies/${movieId}`)
 			.then(
 				(response) => {
-					dispatch("getMovies");
-					console.log(response.data)
-					dispatch("showNotification",
-						{
-							message: {
-								color: "success",
-								text: "Delete movie was successful",
-							},
-							snackbar: true,
-						},
-						{ root: true }
-					);
+					const data = response.data;
+					console.log(data)
+					if (data.success) {
+						dispatch("getMovies");
+						dispatch("showSuccess", "Delete movie was successful", { root: true });
+					}
+					else dispatch("showError", data.error_reason, { root: true });
 				},
 				(error) => console.log(error)
 			);

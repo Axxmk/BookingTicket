@@ -25,8 +25,9 @@ const actions = {
 			.get(`/showtimes/${movieId}`)
 			.then(
 				(response) => {
-					console.log(response.data);
-					commit('set_showtimes', response.data.showtimes);
+					const data = response.data;
+					console.log(data);
+					commit('set_showtimes', data.showtimes);
 				},
 				(error) => console.log(error)
 			);
@@ -51,26 +52,28 @@ const actions = {
 				(response) => {
 					const data = response.data;
 					console.log(data)
-					if (data.success)
+					if (data.success) {
+						dispatch("getShowtimes", newShowtime.movieId);
 						dispatch("showSuccess", "Add showtime was successful", { root: true });
-					else
-						dispatch("showError", data.error_reason, { root: true });
+					}
+					else dispatch("showError", data.error_reason, { root: true });
 				},
 				(error) => console.log(error)
 			);
 	},
 
-	deleteShowtime({ dispatch }, showtimeId) {
+	deleteShowtime({ dispatch }, payload) {
 		axios
-			.delete(`/showtimes/${showtimeId}`)
+			.delete(`/showtimes/${payload.showtimeId}`)
 			.then(
 				(response) => {
 					const data = response.data;
 					console.log(data)
-					if (data.success)
+					if (data.success) {
+						dispatch("getShowtimes", payload.movieId);
 						dispatch("showSuccess", "Delete showtime was successful", { root: true });
-					else
-						dispatch("showError", data.error_reason, { root: true });
+					}
+					else dispatch("showError", data.error_reason, { root: true });
 				},
 				(error) => console.log(error)
 			);

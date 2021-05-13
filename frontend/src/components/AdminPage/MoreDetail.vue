@@ -24,7 +24,7 @@
       </div>
 
       <div>
-        <v-dialog v-model="dialog" max-width="550px">
+        <v-dialog v-model="dialog" max-width="550px" persistent>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               max-width="140px"

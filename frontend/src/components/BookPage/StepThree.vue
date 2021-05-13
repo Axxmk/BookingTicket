@@ -62,7 +62,11 @@ export default {
           password: this.confirmPassword,
         };
         this.$store.dispatch("checkPassword", data);
-      } else alert("Please fill your password for confirmation");
+      } else
+        this.$store.dispatch(
+          "showError",
+          "Please fill your password for confirmation"
+        );
     },
   },
 };

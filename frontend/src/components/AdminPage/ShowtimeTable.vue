@@ -44,6 +44,7 @@
       >
         <DeleteShowtime
           :showtimeId="item.showtimeId"
+          :movieId="movieId"
           @closeDelete="dialogDelete = false"
         ></DeleteShowtime>
       </v-dialog>
@@ -55,6 +56,9 @@
 export default {
   components: {
     DeleteShowtime: () => import("./DeleteShowtime"),
+  },
+  props: {
+    movieId: Number,
   },
   computed: {
     showtimes() {

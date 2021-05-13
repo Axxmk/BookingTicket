@@ -45,7 +45,7 @@ export default {
           seatNumbers: this.ticket.seat.join(),
         };
         this.$store.dispatch("buyTicket", data);
-      } else alert("Please fill the checkbox");
+      } else this.$store.dispatch("showError", "Please fill the checkbox");
     },
     close() {
       this.$store.commit("set_dialog", false);

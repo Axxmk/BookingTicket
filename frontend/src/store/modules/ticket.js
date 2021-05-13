@@ -20,8 +20,9 @@ const actions = {
 			.get('/tickets')
 			.then(
 				(response) => {
-					console.log(response.data);
-					commit("set_tickets", response.data.tickets);
+					const data = response.data;
+					console.log(data);
+					commit("set_tickets", data.tickets);
 				},
 				(error) => console.log(error)
 			);

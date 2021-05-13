@@ -73,9 +73,10 @@ const actions = {
 			.get(`/booking/showtimes/${movieId}`)
 			.then(
 				(response) => {
-					console.log(response.data);
-					commit("set_bookingShowtimes", response.data.showtimes);
-					commit("set_bookingInfo_title", response.data.movieTitle);
+					const data = response.data;
+					console.log(data);
+					commit("set_bookingShowtimes", data.showtimes);
+					commit("set_bookingInfo_title", data.movieTitle);
 				},
 				(error) => console.log(error)
 			);
@@ -87,23 +88,26 @@ const actions = {
 			.get(`/booking/seats/${showtimeId}`)
 			.then(
 				(response) => {
-					console.log(response.data);
+					const data = response.data;
+					console.log(data);
 					commit("set_bookingSeats", response.data.seats);
 				},
 				(error) => console.log(error)
 			);
 	},
 
-	checkPassword({ commit }, data) {
+	checkPassword({ commit, dispatch }, data) {
 		axios
 			.post('/booking/check', data)
 			.then(
 				(response) => {
-					if (response.data.success) {
-						console.log(response.data);
+					const data = response.data;
+					console.log(data)
+					if (data.success) {
 						commit("set_dialog", true);
+						dispatch("showSuccess", "Password is correct", { root: true });
 					}
-					else alert(response.data.error_reason);
+					else dispatch("showError", data.error_reason, { root: true });
 				},
 				(error) => console.log(error)
 			);
@@ -123,7 +127,7 @@ const actions = {
 			);
 	},
 
-	sendMail({ getters }) {
+	sendMail({ getters, dispatch }) {
 		let info = getters.bookingInfo;
 		let ticket = {
 			title: info.title,
@@ -138,13 +142,12 @@ const actions = {
 			.post('/tickets/mail', ticket)
 			.then(
 				(response) => {
-					console.log(response.data);
-					if (response.data.success) {
-						alert("We have already sent you an email");
+					const data = response.data;
+					console.log(data)
+					if (data.success) {
+						dispatch("showSuccess", "We have already sent you an email", { root: true });
 					}
-					else {
-						alert(response.data.error_reason);
-					}
+					else dispatch("showError", data.error_reason, { root: true });
 				},
 				(error) => console.log(error)
 			)

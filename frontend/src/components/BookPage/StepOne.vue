@@ -109,14 +109,16 @@ export default {
     },
     clearTheatre() {
       this.bookingInfo.theatre = "";
+      this.clearSeat();
+    },
+    clearSeat() {
+      this.bookingInfo.seat = [];
     },
     showtimeDone() {
       if (this.bookingInfo.start_time) {
         this.$store.dispatch("bookingSeats", this.showtimeId);
         this.$emit("nextStep");
-      } else {
-        alert("Please select Time");
-      }
+      } else this.$store.dispatch("showError", "Please select time");
     },
   },
 };
