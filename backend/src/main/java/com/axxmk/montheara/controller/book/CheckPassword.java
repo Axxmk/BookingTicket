@@ -1,7 +1,7 @@
 package com.axxmk.montheara.controller.book;
 
 import com.axxmk.montheara.model.User;
-import com.axxmk.montheara.util.JwtUtil;
+import com.axxmk.montheara.util.jwt.JwtUtil;
 import com.axxmk.montheara.util.MySQLConnection;
 import org.springframework.web.bind.annotation.*;
 

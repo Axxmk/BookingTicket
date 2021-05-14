@@ -1,5 +1,6 @@
-package com.axxmk.montheara.util;
+package com.axxmk.montheara.util.jwt;
 
+import com.axxmk.montheara.util.MySQLConnection;
 import io.jsonwebtoken.JwtException;
 
 import java.sql.Connection;

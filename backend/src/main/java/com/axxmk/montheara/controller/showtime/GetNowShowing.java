@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,8 +17,6 @@ public class GetNowShowing {
     public Map<String, Object> getNowShowing() {
         Map<String, Object> res = new HashMap<>();
 
-        Timestamp now = new Timestamp(new Date().getTime());
-
         try {
             Connection connection = MySQLConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -28,11 +25,9 @@ public class GetNowShowing {
                             "INNER JOIN movie ON showtime.movieId = movie.id " +
                             "INNER JOIN movie_genre ON movie_genre.movieId = movie.id " +
                             "INNER JOIN genre ON genre.id = movie_genre.genreId " +
-                            "WHERE showtime.start_time <= ? AND ? <= showtime.end_time " +
+                            "WHERE showtime.start_time <= current_timestamp AND current_timestamp <= showtime.end_time " +
                             "GROUP BY showtime.id "
             );
-            preparedStatement.setTimestamp(1, now);
-            preparedStatement.setTimestamp(2, now);
 
             ResultSet rs = preparedStatement.executeQuery();
 

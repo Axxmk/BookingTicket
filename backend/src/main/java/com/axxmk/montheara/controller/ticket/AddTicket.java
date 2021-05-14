@@ -1,7 +1,7 @@
 package com.axxmk.montheara.controller.ticket;
 
 import com.axxmk.montheara.model.Ticket;
-import com.axxmk.montheara.util.JwtUtil;
+import com.axxmk.montheara.util.jwt.JwtUtil;
 import com.axxmk.montheara.util.MySQLConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,15 +16,12 @@ public class GetShowtime {
     public Map<String, Object> getShowtime(@PathVariable int movieId) {
         Map<String, Object> res = new HashMap<>();
 
-        java.sql.Date now = new java.sql.Date(new Date().getTime());
-
         try {
             Connection connection = MySQLConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM showtime WHERE movieId = ? AND start_time >= ? "
+                    "SELECT * FROM showtime WHERE movieId = ? AND start_time >= current_timestamp "
             );
             preparedStatement.setInt(1, movieId);
-            preparedStatement.setDate(2, now);
 
             ResultSet rs = preparedStatement.executeQuery();
 

@@ -1,7 +1,7 @@
 package com.axxmk.montheara.controller.showtime;
 
 import com.axxmk.montheara.util.MySQLConnection;
-import com.axxmk.montheara.util.Permission;
+import com.axxmk.montheara.util.jwt.Permission;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;

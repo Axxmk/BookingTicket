@@ -1,4 +1,4 @@
-package com.axxmk.montheara.util;
+package com.axxmk.montheara.util.jwt;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

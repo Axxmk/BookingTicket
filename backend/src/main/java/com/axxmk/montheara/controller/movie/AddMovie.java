@@ -3,7 +3,7 @@ package com.axxmk.montheara.controller.movie;
 import com.axxmk.montheara.model.Movie;
 import com.axxmk.montheara.util.GetUrlContent;
 import com.axxmk.montheara.util.MySQLConnection;
-import com.axxmk.montheara.util.Permission;
+import com.axxmk.montheara.util.jwt.Permission;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 

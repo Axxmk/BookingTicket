@@ -2,7 +2,7 @@ package com.axxmk.montheara.controller.movie;
 
 import com.axxmk.montheara.model.Movie;
 import com.axxmk.montheara.util.MySQLConnection;
-import com.axxmk.montheara.util.Permission;
+import com.axxmk.montheara.util.jwt.Permission;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Connection;

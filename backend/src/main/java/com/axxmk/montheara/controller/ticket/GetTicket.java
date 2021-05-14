@@ -1,6 +1,6 @@
 package com.axxmk.montheara.controller.ticket;
 
-import com.axxmk.montheara.util.JwtUtil;
+import com.axxmk.montheara.util.jwt.JwtUtil;
 import com.axxmk.montheara.util.MySQLConnection;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;

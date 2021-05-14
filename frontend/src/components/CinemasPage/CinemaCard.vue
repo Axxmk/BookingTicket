@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="95%" class="cinema-card">
+  <v-card max-width="95%" class="cinema-card rounded-xl">
     <p>Theatre {{ showtime.showtimeInfo.theatre }}</p>
     <div class="px-3">
       <v-img height="200" class="mx-1" src="../../assets/cinema.jpg"></v-img>
@@ -38,7 +38,6 @@ export default {
   transition: all 0.2s ease-in-out;
   margin: 2% auto;
   padding: 3%;
-  border-radius: 10px;
 
   &:hover {
     transform: scale(1.05) translateY(-5px);

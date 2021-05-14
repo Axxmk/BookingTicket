@@ -1,7 +1,5 @@
 package com.axxmk.montheara.controller.book;
 
-import com.axxmk.montheara.model.User;
-import com.axxmk.montheara.util.JwtUtil;
 import com.axxmk.montheara.util.MySQLConnection;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +17,6 @@ public class Booking {
     @GetMapping(path = "/showtimes/{movieId}")
     public Map<String, Object> getBookingShowtime(@PathVariable int movieId) {
         Map<String, Object> res = new HashMap<>();
-
-        Timestamp now = new Timestamp(new Date().getTime());
         Timestamp sevenDays = new Timestamp(new Date().getTime() + (1000*60*60*24*7));
 
         try {
