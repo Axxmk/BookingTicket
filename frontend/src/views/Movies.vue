@@ -13,6 +13,8 @@
       :nowShowing="nowShowing"
       :comingSoon="comingSoon"
     ></ViewMovie>
+
+    <SnackBar></SnackBar>
   </div>
 </template>
 
@@ -26,6 +28,7 @@ export default {
   components: {
     SearchBar: () => import("../components/MoviesPage/SearchBar"),
     ViewMovie: () => import("../components/MoviesPage/ViewMovie"),
+    SnackBar: () => import("../components/SnackBar"),
   },
   mounted() {
     this.$store.dispatch("getMovies");

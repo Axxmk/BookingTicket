@@ -24,6 +24,8 @@
         See Movies
       </v-btn>
     </div>
+
+    <SnackBar></SnackBar>
   </div>
 </template>
 
@@ -34,6 +36,7 @@ export default {
   },
   components: {
     CinemaCard: () => import("../components/CinemasPage/CinemaCard"),
+    SnackBar: () => import("../components/SnackBar"),
   },
   mounted() {
     this.$store.dispatch("getNowShowing");

@@ -1,33 +1,43 @@
 <template>
-  <v-stepper
-    v-model="steps"
-    vertical
-    style="background-color: #f5f5f5; box-shadow: none"
-  >
-    <v-stepper-step :complete="steps > 1" step="1">
-      Select Showtime
-      <small class="pt-1">Date & Time & Theatre</small>
-    </v-stepper-step>
-    <v-stepper-content step="1">
-      <StepOne @nextStep="steps = 2"></StepOne>
-    </v-stepper-content>
+  <div>
+    <div v-if="bookingShowtimes.length > 0">
+      <v-stepper
+        v-model="steps"
+        vertical
+        style="background-color: #f5f5f5; box-shadow: none"
+      >
+        <v-stepper-step :complete="steps > 1" step="1">
+          Select Showtime
+          <small class="pt-1">Date & Time & Theatre</small>
+        </v-stepper-step>
+        <v-stepper-content step="1">
+          <StepOne @nextStep="steps = 2"></StepOne>
+        </v-stepper-content>
 
-    <v-stepper-step :complete="steps > 2" step="2">
-      Select Seat
-    </v-stepper-step>
-    <v-stepper-content step="2">
-      <StepTwo @nextStep="steps = 3" @backStep="steps = 1"></StepTwo>
-    </v-stepper-content>
+        <v-stepper-step :complete="steps > 2" step="2">
+          Select Seat
+        </v-stepper-step>
+        <v-stepper-content step="2">
+          <StepTwo @nextStep="steps = 3" @backStep="steps = 1"></StepTwo>
+        </v-stepper-content>
 
-    <v-stepper-step :complete="steps > 3" step="3"> Payment </v-stepper-step>
-    <v-stepper-content step="3">
-      <StepThree @backStep="steps = 2"></StepThree>
-    </v-stepper-content>
+        <v-stepper-step :complete="steps > 3" step="3">
+          Payment
+        </v-stepper-step>
+        <v-stepper-content step="3">
+          <StepThree @backStep="steps = 2"></StepThree>
+        </v-stepper-content>
 
-    <v-dialog v-model="dialog" width="550" persistent>
-      <DialogInfo></DialogInfo>
-    </v-dialog>
-  </v-stepper>
+        <v-dialog v-model="dialog" width="550" persistent>
+          <DialogInfo></DialogInfo>
+        </v-dialog>
+      </v-stepper>
+    </div>
+
+    <div v-else>
+      <NoShowtime></NoShowtime>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -37,6 +47,7 @@ export default {
     StepTwo: () => import("./StepTwo"),
     StepThree: () => import("./StepThree"),
     DialogInfo: () => import("./DialogInfo"),
+    NoShowtime: () => import("./NoShowtime"),
   },
   data: () => ({
     steps: 1,
@@ -44,6 +55,9 @@ export default {
   computed: {
     dialog() {
       return this.$store.getters.dialog;
+    },
+    bookingShowtimes() {
+      return this.$store.getters.bookingShowtimes;
     },
   },
 };
