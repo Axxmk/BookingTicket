@@ -39,7 +39,9 @@ const actions = {
 					else {
 						alert("username or password is incorrect");
 					}
-				});
+				},
+				(error) => console.log(error)
+			);
 	},
 
 	logout({ commit }) {
@@ -55,21 +57,32 @@ const actions = {
 		}
 	},
 
-	register({ dispatch }, newUser) {
+	register({ dispatch }, data) {
 		axios
-			.post("/account/register", newUser)
+			.post("/account/register", data)
 			.then(
 				async (response) => {
 					const data = response.data;
 					console.log(data);
 					if (data.success) {
-						await dispatch("login", { username: newUser.username, password: newUser.password });
+						await dispatch("login", { username: data.username, password: data.password });
 						dispatch("showSuccess", "Register was successful", { root: true });
+						dispatch("mailRegis", data.email);
 					}
 					else {
 						dispatch("showError", data.error_reason, { root: true });
 					}
 				},
+				(error) => console.log(error)
+			);
+	},
+
+	mailRegis(_app, email) {
+		let data = { email: email };
+		axios
+			.post("/account/register/mail", data)
+			.then(
+				(response) => console.log(response.data),
 				(error) => console.log(error)
 			);
 	},

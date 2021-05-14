@@ -23,6 +23,7 @@ const state = () => ({
 const getters = {
 	movies: state => state.movies,
 	genres: state => state.genres,
+	isComplete: state => state.isComplete,
 
 	nowShowingMovies: state => {
 		return state.movies.filter(movie => movie.status == "nowShowing");
@@ -56,7 +57,6 @@ const actions = {
 	},
 
 	addMovie({ dispatch }, newMovie) {
-		console.log(newMovie);
 		axios
 			.post('/movies', newMovie)
 			.then(
@@ -68,7 +68,6 @@ const actions = {
 						dispatch("showSuccess", "Add movie was successful", { root: true });
 					}
 					else dispatch("showError", data.error_reason, { root: true });
-
 				},
 				(error) => console.log(error)
 			);

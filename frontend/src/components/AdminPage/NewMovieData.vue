@@ -65,11 +65,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   computed: {
-    genres() {
-      return this.$store.getters.genres;
-    },
+    ...mapGetters(["genres", "isComplete"]),
   },
   data: () => ({
     title: "",
@@ -97,7 +97,7 @@ export default {
         !this.synopsis ||
         !this.tmdbId
       ) {
-        alert("Please correct your inform");
+        this.$store.dispatch("showError", "Please correct the form");
         return;
       }
 
@@ -108,7 +108,6 @@ export default {
         synopsis: this.synopsis,
         tmdbId: this.tmdbId.toString(),
       };
-
       this.$store.dispatch("addMovie", newMovie);
       this.close();
     },

@@ -5,7 +5,10 @@ import com.axxmk.montheara.util.GetUrlContent;
 import com.axxmk.montheara.util.MySQLConnection;
 import com.axxmk.montheara.util.jwt.Permission;
 import org.json.JSONObject;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.sql.*;
@@ -29,7 +32,8 @@ public class AddMovie {
         }
 
         try {
-            String content = GetUrlContent.getUrlContents(String.format("https://api.themoviedb.org/3/movie/%s?api_key=c1f769d21d49564d0ec0209addf4104a&language=en-US", movie.getTmdbId()));
+            String content = GetUrlContent.getUrlContents(String.format("https://api.themoviedb.org/3/movie/%s?api_key=c1f769d21d49564d0ec0209addf4104a&language=en-US", movie
+                    .getTmdbId()));
             JSONObject jsonObject = new JSONObject(content);
 
             poster_path = "https://image.tmdb.org/t/p/w500" + jsonObject.getString("poster_path");
@@ -53,7 +57,8 @@ public class AddMovie {
             preparedStatement.setString(1, movie.getTitle());
             preparedStatement.setString(2, movie.getStatus());
             preparedStatement.setInt(3, revenue);
-            preparedStatement.setDate(4, new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(releaseDate).getTime()));
+            preparedStatement.setDate(4, new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(releaseDate)
+                                                                                             .getTime()));
             preparedStatement.setInt(5, duration);
             preparedStatement.setString(6, movie.getSynopsis());
             preparedStatement.setString(7, poster_path);
@@ -82,7 +87,16 @@ public class AddMovie {
         } catch (SQLException | ParseException e) {
             e.printStackTrace();
             res.put("success", false);
-            res.put("error_reason", "MySQL Connection Error");
+
+            if (e instanceof SQLIntegrityConstraintViolationException) {
+                if (e.getMessage().contains("for key 'title'")) {
+                    res.put("error_reason", "Movie is already exist");
+                } else if (e.getMessage().contains("for key 'tmdb'")) {
+                    res.put("error_reason", "TMDB movie id is already exist");
+                }
+            } else {
+                res.put("error_reason", "MySQL Connection Error");
+            }
         }
 
         return res;

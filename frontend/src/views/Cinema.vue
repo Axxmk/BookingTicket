@@ -18,6 +18,7 @@
     </div>
 
     <div v-else class="no-movie">
+      <v-icon size="30" color="orange">mdi-close-circle-outline</v-icon>
       <span>No Movie Showtime Right Now</span>
       <v-btn link :to="{ name: 'Movies' }" color="white" class="yellow--text">
         See Movies
@@ -64,9 +65,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 10%;
 
   & span {
-    padding: 10% 0 2% 0;
+    padding: 1% 0;
     font-size: 1.7vw;
     color: rgba(0, 0, 0, 0.541);
   }

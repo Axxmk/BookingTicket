@@ -1,6 +1,7 @@
 <template>
   <div class="noreserve-part">
     <h3 class="pb-12">Your Ticket Booking</h3>
+    <v-icon size="30" color="orange">mdi-ticket</v-icon>
     <span>No Booking Ticket</span>
     <v-btn
       link
@@ -28,10 +29,11 @@ export default {};
   & h3 {
     font-size: 2.5vw;
     color: #358cdd;
+    margin-bottom: 10%;
   }
 
   & span {
-    padding: 10% 0 2% 0;
+    padding: 1% 0;
     font-size: 1.7vw;
     color: rgba(0, 0, 0, 0.541);
   }
