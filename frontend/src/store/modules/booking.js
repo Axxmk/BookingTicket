@@ -96,9 +96,9 @@ const actions = {
 			);
 	},
 
-	checkPassword({ commit, dispatch }, data) {
+	checkPassword({ commit, dispatch }, password) {
 		axios
-			.post('/booking/check', data)
+			.post('/booking/check', password)
 			.then(
 				(response) => {
 					const data = response.data;
@@ -113,9 +113,9 @@ const actions = {
 			);
 	},
 
-	buyTicket({ dispatch, commit }, data) {
+	buyTicket({ dispatch, commit }, ticket) {
 		axios
-			.post('/tickets', data)
+			.post('/tickets', ticket)
 			.then(
 				(response) => {
 					console.log(response.data);

@@ -73,9 +73,9 @@ const actions = {
 			);
 	},
 
-	updateMovie({ dispatch }, data) {
+	updateMovie({ dispatch }, movie) {
 		axios
-			.put(`/movies/${data.movieId}`, data.detail)
+			.put(`/movies/${movie.movieId}`, movie.detail)
 			.then(
 				(response) => {
 					const data = response.data;

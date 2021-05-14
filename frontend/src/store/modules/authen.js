@@ -57,17 +57,17 @@ const actions = {
 		}
 	},
 
-	register({ dispatch }, data) {
+	register({ dispatch }, user) {
 		axios
-			.post("/account/register", data)
+			.post("/account/register", user)
 			.then(
 				async (response) => {
 					const data = response.data;
 					console.log(data);
 					if (data.success) {
-						await dispatch("login", { username: data.username, password: data.password });
+						await dispatch("login", { username: user.username, password: user.password });
 						dispatch("showSuccess", "Register was successful", { root: true });
-						dispatch("mailRegis", data.email);
+						dispatch("mailRegis", user.email);
 					}
 					else {
 						dispatch("showError", data.error_reason, { root: true });

@@ -72,7 +72,7 @@ public class Register {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(user.getEmail());
         msg.setFrom("montheara@axxmk.ga");
-        msg.setSubject("Login Successfully");
+        msg.setSubject("Register Successfully");
         msg.setText("Hello, This is email from Montheara. Your registration was successful. " +
                 "Thank you for visiting and booking ticket with our website. " +
                 "Hope you have a great experience. Thank you, Ann (Founder of Montheara)");
