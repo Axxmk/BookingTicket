@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1 class="header">Theatre</h1>
+    <div class="header">
+      <hr />
+      <h1>Theatre</h1>
+      <hr />
+    </div>
 
     <div v-if="showtimes.length > 0">
       <v-row class="cinema-wrap">
@@ -18,10 +22,11 @@
     </div>
 
     <div v-else class="no-movie">
-      <v-icon size="30" color="orange">mdi-close-circle-outline</v-icon>
+      <v-icon size="35" color="blue lighten-2">mdi-ticket</v-icon>
       <span>No Movie Showtime Right Now</span>
-      <v-btn link :to="{ name: 'Movies' }" color="white" class="yellow--text">
+      <v-btn link :to="{ name: 'Movies' }" color="blue lighten-1" plain>
         See Movies
+        <v-icon>mdi-arrow-top-right</v-icon>
       </v-btn>
     </div>
 
@@ -50,13 +55,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
-  text-align: center;
-  font-size: 4.7vw;
+$base-color: #f4c430;
 
-  margin: 2rem 0;
-  color: transparent;
-  -webkit-text-stroke: 2.5px #f4c430;
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & hr {
+    width: 250px;
+    border: 1px solid $base-color;
+    background-color: $base-color;
+  }
+
+  & h1 {
+    margin: 2rem 2.5%;
+    font-size: 4.9vw;
+    color: transparent;
+    -webkit-text-stroke: 2.2px $base-color;
+  }
 }
 
 .cinema-wrap {

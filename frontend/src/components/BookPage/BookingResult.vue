@@ -31,7 +31,7 @@ export default {
 .contain {
   position: fixed;
   right: 0;
-  width: 25%;
+  width: 400px;
   height: 100%;
 
   display: flex;

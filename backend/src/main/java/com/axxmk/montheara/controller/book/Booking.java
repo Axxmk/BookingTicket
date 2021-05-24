@@ -17,15 +17,13 @@ public class Booking {
     @GetMapping(path = "/showtimes/{movieId}")
     public Map<String, Object> getBookingShowtime(@PathVariable int movieId) {
         Map<String, Object> res = new HashMap<>();
-        Timestamp sevenDays = new Timestamp(new Date().getTime() + (1000*60*60*24*7));
 
         try {
             Connection connection = MySQLConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM showtime WHERE movieId = ? AND start_time >= current_timestamp AND start_time <= ? ORDER BY start_time"
+                    "SELECT * FROM showtime WHERE movieId = ? AND start_time >= current_timestamp AND Date(start_time) <= current_date + interval 6 day ORDER BY start_time, theatre"
             );
             preparedStatement.setInt(1, movieId);
-            preparedStatement.setTimestamp(2, sevenDays);
 
             ResultSet rs = preparedStatement.executeQuery();
 

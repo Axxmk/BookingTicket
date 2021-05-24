@@ -1,6 +1,10 @@
 <template>
   <div class="d-flex flex-column align-center">
-    <h1 class="header">Movies</h1>
+    <div class="header">
+      <hr />
+      <h1>Movies</h1>
+      <hr />
+    </div>
     <SearchBar @search="search"></SearchBar>
 
     <ViewMovie
@@ -65,11 +69,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
-  font-size: 5vw;
+$base-color: #f4c430;
 
-  margin-top: 2rem;
-  color: transparent;
-  -webkit-text-stroke: 2.5px #f4c430;
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & hr {
+    width: 250px;
+    border: 1px solid $base-color;
+    background-color: $base-color;
+  }
+
+  & h1 {
+    margin: 3%;
+    font-size: 5vw;
+    color: transparent;
+    -webkit-text-stroke: 2.2px $base-color;
+  }
 }
 </style>

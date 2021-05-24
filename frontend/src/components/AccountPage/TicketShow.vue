@@ -1,6 +1,6 @@
 <template>
   <div class="ticket-part">
-    <h3 class="pb-12">Your Ticket Booking</h3>
+    <h3 class="pb-12">Your Booking History</h3>
 
     <v-row class="d-flex justify-center">
       <v-col

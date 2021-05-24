@@ -1,9 +1,11 @@
 <template>
-  <v-card class="pa-6 pb-4 rounded-lg" width="20rem">
+  <v-card class="pa-6 pb-4 rounded-lg ticket">
     <TicketInfo :ticket="ticket"></TicketInfo>
-    <hr class="divider" />
-    <p class="code">{{ code }}</p>
-    <footer>MonTheara Cinema</footer>
+    <div>
+      <hr class="divider" />
+      <p class="code">{{ code }}</p>
+      <footer>MonTheara Cinema</footer>
+    </div>
   </v-card>
 </template>
 
@@ -33,22 +35,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-hr.divider {
-  margin: 12% 0 6% 0;
-  border-top: 2px dashed rgb(206, 206, 206);
-  border-bottom: none;
-}
-
-.code {
+.ticket {
+  width: 20rem;
   display: flex;
-  justify-content: center;
-  font-size: 1.6rem;
-  font-weight: 500;
-}
+  flex-direction: column;
+  justify-content: space-around;
 
-footer {
-  text-align: center;
-  font-style: italic;
-  color: #ddc32e75;
+  hr.divider {
+    margin: 12% 0 6% 0;
+    border-top: 2px dashed rgb(206, 206, 206);
+    border-bottom: none;
+  }
+
+  .code {
+    display: flex;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  footer {
+    text-align: center;
+    font-style: italic;
+    color: #ddc32e75;
+  }
 }
 </style>

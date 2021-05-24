@@ -1,12 +1,12 @@
 <template>
   <div class="information">
     <div>
-      <v-icon color="blue darken-1"> mdi-email </v-icon>
+      <v-icon color="blue lighten-2"> mdi-email </v-icon>
       <span>{{ email }}</span>
     </div>
 
     <div>
-      <v-icon color="blue darken-1"> mdi-phone </v-icon>
+      <v-icon color="blue lighten-2"> mdi-phone </v-icon>
       <span>{{ phone }}</span>
     </div>
   </div>

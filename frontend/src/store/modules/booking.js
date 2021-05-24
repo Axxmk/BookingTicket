@@ -27,7 +27,7 @@ const getters = {
 	},
 	start_times: (state) => {
 		let dateSelect = state.bookingShowtimes.filter(showtime => showtime.date == state.bookingInfo.date);
-		return dateSelect.map(showtime => showtime.start_time);
+		return [...new Set(dateSelect.map(showtime => showtime.start_time))];
 	},
 	theatres: (state) => {
 		const info = state.bookingInfo;
@@ -68,7 +68,6 @@ const mutations = {
 
 const actions = {
 	bookingShowtime({ commit }, movieId) {
-		console.log("movie id : " + movieId);
 		axios
 			.get(`/booking/showtimes/${movieId}`)
 			.then(

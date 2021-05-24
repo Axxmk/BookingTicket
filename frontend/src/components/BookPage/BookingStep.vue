@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="bookingShowtimes.length > 0">
+  <div class="flex-display">
+    <div>
       <v-stepper
         v-model="steps"
         vertical
@@ -33,10 +33,6 @@
         </v-dialog>
       </v-stepper>
     </div>
-
-    <div v-else>
-      <NoShowtime></NoShowtime>
-    </div>
   </div>
 </template>
 
@@ -47,7 +43,6 @@ export default {
     StepTwo: () => import("./StepTwo"),
     StepThree: () => import("./StepThree"),
     DialogInfo: () => import("./DialogInfo"),
-    NoShowtime: () => import("./NoShowtime"),
   },
   data: () => ({
     steps: 1,
@@ -56,28 +51,29 @@ export default {
     dialog() {
       return this.$store.getters.dialog;
     },
-    bookingShowtimes() {
-      return this.$store.getters.bookingShowtimes;
-    },
   },
 };
 </script>
 
 <style lang="scss">
-.v-stepper--vertical {
-  width: 70%;
-  padding: 4%;
+.flex-display {
+  flex: 1;
 
-  & .heading {
-    font-size: 30px;
-    line-height: 80px;
-    letter-spacing: 2px;
-    color: #4d92d3;
-  }
+  .v-stepper--vertical {
+    width: calc(100% - 400px);
+    padding: 4%;
 
-  @media screen and (max-width: 768px) {
-    .heading {
-      font-size: 25px;
+    & .heading {
+      font-size: 30px;
+      line-height: 80px;
+      letter-spacing: 2px;
+      color: #4d92d3;
+    }
+
+    @media screen and (max-width: 768px) {
+      .heading {
+        font-size: 25px;
+      }
     }
   }
 }

@@ -16,7 +16,7 @@ export default {
     BookingResult: () => import("../components/BookPage/BookingResult"),
     SnackBar: () => import("../components/SnackBar"),
   },
-  mounted() {
+  destroyed() {
     this.$store.dispatch("clearInfo");
   },
 };
