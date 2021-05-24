@@ -43,6 +43,7 @@ const getters = {
 
 const mutations = {
 	set_bookingShowtimes(state, value) {
+		console.log(value);
 		state.bookingShowtimes = value;
 	},
 	set_bookingSeats(state, value) {
@@ -50,6 +51,9 @@ const mutations = {
 	},
 	set_bookingInfo_title(state, value) {
 		state.bookingInfo.title = value;
+	},
+	set_bookingInfo_date(state, value) {
+		state.bookingInfo.date = value;
 	},
 	set_empty(state) {
 		state.bookingInfo = {
@@ -73,9 +77,10 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data);
+
 					commit("set_bookingShowtimes", data.showtimes);
 					commit("set_bookingInfo_title", data.movieTitle);
+					commit("set_bookingInfo_date", data.showtimes[0].date);
 				},
 				(error) => console.log(error)
 			);
@@ -87,8 +92,6 @@ const actions = {
 			.get(`/booking/seats/${showtimeId}`)
 			.then(
 				(response) => {
-					const data = response.data;
-					console.log(data);
 					commit("set_bookingSeats", response.data.seats);
 				},
 				(error) => console.log(error)
@@ -101,7 +104,7 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data)
+
 					if (data.success) {
 						commit("set_dialog", true);
 						dispatch("showSuccess", "Password is correct", { root: true });
@@ -142,7 +145,7 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data)
+
 					if (data.success) {
 						dispatch("showSuccess", "We have already sent you an email", { root: true });
 					}
