@@ -62,7 +62,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data)
 					if (data.success) {
 						dispatch("getMovies");
 						dispatch("showSuccess", "Add movie was successful", { root: true });
@@ -79,7 +78,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data)
 					if (data.success) {
 						dispatch("getMovies");
 						dispatch("showSuccess", "Update movie was successful", { root: true });
@@ -96,7 +94,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data)
 					if (data.success) {
 						dispatch("getMovies");
 						dispatch("showSuccess", "Delete movie was successful", { root: true });

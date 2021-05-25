@@ -15,7 +15,7 @@
     </v-card-text>
 
     <v-card-actions class="d-flex justify-end">
-      <v-btn color="grey" plain text @click="close"> Cancle </v-btn>
+      <v-btn color="grey" plain text @click="close"> Cancel </v-btn>
       <v-btn color="primary" plain text @click="buyTicket">Confirm</v-btn>
     </v-card-actions>
   </v-card>

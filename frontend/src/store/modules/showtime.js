@@ -26,7 +26,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data);
 					commit('set_showtimes', data.showtimes);
 				},
 				(error) => console.log(error)
@@ -38,7 +37,6 @@ const actions = {
 			.get(`/showtimes/now`)
 			.then(
 				(response) => {
-					console.log(response.data);
 					commit('set_nowShowing', response.data.showtimes);
 				},
 				(error) => console.log(error)
@@ -51,7 +49,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data)
 					if (data.success) {
 						dispatch("getShowtimes", newShowtime.movieId);
 						dispatch("showSuccess", "Add showtime was successful", { root: true });
@@ -68,7 +65,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data)
 					if (data.success) {
 						dispatch("getShowtimes", payload.movieId);
 						dispatch("showSuccess", "Delete showtime was successful", { root: true });

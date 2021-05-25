@@ -21,7 +21,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-					console.log(data);
 					commit("set_tickets", data.tickets);
 				},
 				(error) => console.log(error)

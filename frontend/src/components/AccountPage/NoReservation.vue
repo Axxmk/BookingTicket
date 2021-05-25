@@ -1,6 +1,6 @@
 <template>
   <div class="noreserve-part">
-    <h3 class="pb-12">Your Ticket Booking</h3>
+    <h3 class="pb-12">Your Booking History</h3>
     <v-icon size="30" color="yellow darken-1">mdi-ticket</v-icon>
     <span>No Booking Ticket</span>
     <v-btn link :to="{ name: 'Movies' }" color="yellow darken-2" plain>

@@ -77,7 +77,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-
 					commit("set_bookingShowtimes", data.showtimes);
 					commit("set_bookingInfo_title", data.movieTitle);
 					commit("set_bookingInfo_date", data.showtimes[0].date);
@@ -104,7 +103,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-
 					if (data.success) {
 						commit("set_dialog", true);
 						dispatch("showSuccess", "Password is correct", { root: true });
@@ -145,7 +143,6 @@ const actions = {
 			.then(
 				(response) => {
 					const data = response.data;
-
 					if (data.success) {
 						dispatch("showSuccess", "We have already sent you an email", { root: true });
 					}
